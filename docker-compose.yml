@@ -1,0 +1,43 @@
+services:
+
+  postgres:
+    container_name: postgres
+    image: postgres:latest
+    ports:
+      - "5432:5432"
+    env_file:
+      - db.env
+    networks:
+      - closed
+    restart: always
+
+  backend:
+    container_name: backend
+    build: ../backend
+    depends_on:
+      - postgres
+    ports:
+      - "3000:3000"
+    volumes:
+      - ${PWD}/backend/src:/backend/src
+    env_file:
+      - ../backend/.env
+    networks:
+      - closed
+    restart: always
+
+  frontend:
+    container_name: frontend
+    build: ../frontend
+    depends_on:
+      - backend
+    ports:
+      - "8080:8080"
+    volumes:
+      - ${PWD}/frontend/src:/frontend/src
+    env_file:
+      - ../frontend/.env
+    restart: always
+
+networks:
+  closed: {}
