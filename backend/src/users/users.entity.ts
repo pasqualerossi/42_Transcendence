@@ -1,5 +1,5 @@
 import { Exclude } from 'class-transformer';
-import DatabaseFile from 'src/files/databaseFile.entity';
+import DatabaseFile from 'src/database/databaseFile.entity';
 import {
 	Entity,
 	PrimaryGeneratedColumn,

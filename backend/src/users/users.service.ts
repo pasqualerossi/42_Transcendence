@@ -3,7 +3,7 @@ import { Connection, Repository, Not, QueryRunner } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { User } from './users.entity';
 import * as bcrypt from 'bcrypt';
-import DatabaseFilesService from 'src/files/databaseFiles.service';
+import DatabaseFilesService from 'src/database/databaseFiles.service';
 import { plainToClass } from 'class-transformer';
 import { UserFriendsSerializer } from './users.serializer';
 
