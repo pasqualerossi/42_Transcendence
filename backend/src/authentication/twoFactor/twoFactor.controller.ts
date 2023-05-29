@@ -5,7 +5,7 @@ import JwtAuthenticationGuard from '../jwt/jwt.strategy';
 import RequestWithUser from '../interfaces/requestWithUser.interface';
 import { UsersService } from 'src/users/users.service';
 import { TwoFactorAuthenticationCodeDto } from './twoFactor.dto';
-import { AuthenticationService } from '../authentication.service';
+import { AuthenticationService } from '../authentication/authentication.service';
 
 @Controller('2fa')
 @UseInterceptors(ClassSerializerInterceptor)

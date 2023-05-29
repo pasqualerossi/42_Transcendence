@@ -1,6 +1,6 @@
 import { MutedService } from '../services/muted.service';
 import { RoomMutedUsers } from '../entities/muted.entity';
-import JwtAuthenticationGuard from 'src/authentication/jwt/jwt.guard';
+import JwtAuthenticationGuard from 'src/authentication/jwt.strategy';
 import RequestWithUser from 'src/authentication/interfaces/requestWithUser.interface';
 import { RoomService } from '../services/room.service';
 import { UsersService } from '../../users/users.service';

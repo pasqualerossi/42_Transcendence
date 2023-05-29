@@ -16,4 +16,5 @@ import { User } from 'src/users/users.entity';
     controllers: [ScoreController],
     exports: [ScoreService]
 })
+
 export class ScoreModule {}

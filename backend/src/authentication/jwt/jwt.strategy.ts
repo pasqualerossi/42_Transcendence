@@ -4,7 +4,13 @@ import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { Request } from 'express';
 import { UsersService } from '../../users/users.service';
+import { AuthGuard } from '@nestjs/passport';
 
+// JSON WEB TOKEN AUTHENTICATION GUARD
+@Injectable()
+export default class JwtAuthenticationGuard extends AuthGuard('jwt') {}
+
+// JSON WEB TOKEN AUTHENTICATION STRATEGY
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy) 
 {

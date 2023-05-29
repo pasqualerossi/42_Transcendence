@@ -12,7 +12,7 @@ import { ScoreModule } from './scoreboard/score.module';
 import { GameModule } from './game/game.module';
 import { TwoFactorAuthenticationController } from './authentication/twoFactor/twoFactor.controller';
 import { TwoFactorAuthenticationService } from './authentication/twoFactor/twoFactor.service';
-import { AuthenticationService } from './authentication/authentication.service';
+import { AuthenticationService } from './authentication/authentication/authentication.service';
 import { JwtService } from '@nestjs/jwt';
 import DatabaseFile from './database/databaseFile.entity';
 import { ChatRoom } from './chat/entities/room.entity'

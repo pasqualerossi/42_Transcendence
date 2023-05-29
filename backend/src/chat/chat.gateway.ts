@@ -8,16 +8,19 @@ import { HttpException, HttpStatus, Logger } from '@nestjs/common';
 
 
 @WebSocketGateway({
-	cors: {
+	cors: 
+	{
 		origin: '*',
 	},
 	namespace: '/chat'
 })
-export class ChatGateway {
+export class ChatGateway 
+{
 	@WebSocketServer()
 	server: Server;
 
-	constructor(
+	constructor
+	(
 		private readonly roomService: RoomService,
 		private readonly usersService: UsersService,
 		private readonly chatService: ChatService,
@@ -26,7 +29,8 @@ export class ChatGateway {
 
 	logger: Logger = new Logger(ChatGateway.name)
 	
-	async handleConnection(@ConnectedSocket() client: Socket) {
+	async handleConnection(@ConnectedSocket() client: Socket) 
+	{
 		const user = await this.chatService.validateToken(client);
 		if (!user)
 			return ;
@@ -36,7 +40,8 @@ export class ChatGateway {
 	handleDisconnect(@ConnectedSocket() client: Socket) {}
 
 	@SubscribeMessage('enterPrivateRoom')
-	async enterPrivateRoom(@MessageBody() receiverId: number, @ConnectedSocket() client: Socket) {
+	async enterPrivateRoom(@MessageBody() receiverId: number, @ConnectedSocket() client: Socket) 
+	{
 		const userId: number = Number(client.handshake.headers.authorization);
 		const sender = await this.usersService.findById(userId);
 		const receiver = await this.usersService.findById(receiverId);
@@ -46,7 +51,8 @@ export class ChatGateway {
 
 		const roomName: string = this.roomService.buildPrivateRoomName(sender.id.toString(), receiver.id.toString());
 
-		if (!await this.chatService.roomExists(roomName)) {
+		if (!await this.chatService.roomExists(roomName)) 
+		{
 			await this.createRoom({
 				roomName,
 				access: 'private',
@@ -59,10 +65,12 @@ export class ChatGateway {
 	}
 
 	@SubscribeMessage('createRoom')
-	async createRoom(@MessageBody() data: {roomName: string, access: string, roomPassword?: string}, @ConnectedSocket() client: Socket) {
+	async createRoom(@MessageBody() data: {roomName: string, access: string, roomPassword?: string}, @ConnectedSocket() client: Socket) 
+	{
 		const userId: number = Number(client.handshake.headers.authorization);
 		
-		if (await this.chatService.roomExists(data.roomName)) {
+		if (await this.chatService.roomExists(data.roomName)) 
+		{
 			this.logger.log(`Error: ${data.roomName} already exists`);
 			return false;
 		}
@@ -84,7 +92,8 @@ export class ChatGateway {
 	}
 
 	@SubscribeMessage('deleteRoom')
-	async deleteRoom(@MessageBody() roomName: string, @ConnectedSocket() client: Socket) {
+	async deleteRoom(@MessageBody() roomName: string, @ConnectedSocket() client: Socket) 
+	{
 		const userId: number = Number(client.handshake.headers.authorization);
 		if (!this.chatService.isAdmin(roomName, userId))
 			throw new HttpException('Admin rights required', HttpStatus.UNAUTHORIZED);
@@ -97,19 +106,23 @@ export class ChatGateway {
 	}
 
 	@SubscribeMessage('validateRoomAccess')
-	async validateRoomAccess(@MessageBody() data: {roomName: string, password: string}) {
+	async validateRoomAccess(@MessageBody() data: {roomName: string, password: string}) 
+	{
 		return !await this.chatService.passwordProtectionRoom(data.roomName, data.password);
 	}
  
 	@SubscribeMessage('joinRoom')
-	async joinRoom(@MessageBody() roomName: string, @ConnectedSocket() client: Socket) {
+	async joinRoom(@MessageBody() roomName: string, @ConnectedSocket() client: Socket) 
+	{
 		const userId: number = Number(client.handshake.headers.authorization);
 		const user = await this.usersService.findById(userId);
-		if (await this.chatService.isMember(roomName, userId)) {
+		if (await this.chatService.isMember(roomName, userId)) 
+		{
 			this.logger.log(`already member of: ${roomName}`);
 			return false;
 		}
-		if (await this.chatService.isBanned(roomName, userId)) {
+		if (await this.chatService.isBanned(roomName, userId)) 
+		{
 			this.logger.log(`${user.username} is banned from: ${roomName}`);
 			client.nsp.to(client.id).emit('banned', roomName);
 			return false;
@@ -126,7 +139,8 @@ export class ChatGateway {
 	}
 
 	@SubscribeMessage('enterRoom')
-	async enterRoom(@MessageBody() roomName: string, @ConnectedSocket() client: Socket) {
+	async enterRoom(@MessageBody() roomName: string, @ConnectedSocket() client: Socket) 
+	{
 		client.join(roomName);
 		client.broadcast.to(roomName).emit('refreshCurrentRoom', roomName);
 		client.nsp.to(client.id).emit('setCurrentRoom', roomName);
@@ -134,16 +148,19 @@ export class ChatGateway {
 	}
 	
 	@SubscribeMessage('leaveRoom')
-	async leaveRoom(@MessageBody() roomName: string, @ConnectedSocket() client: Socket) {
+	async leaveRoom(@MessageBody() roomName: string, @ConnectedSocket() client: Socket) 
+	{
 		const userId: number = Number(client.handshake.headers.authorization);
 		const room = await this.chatService.leaveRoom(roomName, userId);
 		const user = await this.usersService.findById(userId);
-		if (room.chatUser.length < 1) {
+		if (room.chatUser.length < 1) 
+		{
 			this.deleteRoom(room.name, client);
 			client.to(client.id).emit('refreshRooms');
 			return true;
 		}
-		if (room.admins.length < 1) {
+		if (room.admins.length < 1) 
+		{
 			await this.chatService.setUserAsAdmin(room, room.chatUser[0]);
 			await this.chatService.createBotMessage(room.name, `${room.chatUser[0].username} is now an Admin!`);
 			client.nsp.to(roomName).emit('refreshCurrentRoom', roomName);
@@ -159,7 +176,8 @@ export class ChatGateway {
 	}
 
 	@SubscribeMessage('makeAdmin')
-	async makeAdmin(@MessageBody() data: {roomName: string, newAdminId: number}, @ConnectedSocket() client: Socket) {
+	async makeAdmin(@MessageBody() data: {roomName: string, newAdminId: number}, @ConnectedSocket() client: Socket) 
+	{
 		const userId: number = Number(client.handshake.headers.authorization);
 		if (!this.chatService.isAdmin(data.roomName, userId))
 			throw new HttpException('Admin rights required', HttpStatus.UNAUTHORIZED);
@@ -171,7 +189,8 @@ export class ChatGateway {
 	}
 
 	@SubscribeMessage('setRoomProtected')
-	async setRoomProtected(@MessageBody() data: {roomName: string, password: string}, @ConnectedSocket() client: Socket) {
+	async setRoomProtected(@MessageBody() data: {roomName: string, password: string}, @ConnectedSocket() client: Socket) 
+	{
 		const userId: number = Number(client.handshake.headers.authorization);
 		if (!this.chatService.isAdmin(data.roomName, userId))
 			throw new HttpException('Admin rights required', HttpStatus.UNAUTHORIZED);
@@ -182,7 +201,8 @@ export class ChatGateway {
 	}
 	
 	@SubscribeMessage('setRoomPublic')
-	async setRoomPublic(@MessageBody() roomName: string, @ConnectedSocket() client: Socket) {
+	async setRoomPublic(@MessageBody() roomName: string, @ConnectedSocket() client: Socket) 
+	{
 		const userId: number = Number(client.handshake.headers.authorization);
 		if (!this.chatService.isAdmin(roomName, userId))
 			throw new HttpException('Admin rights required', HttpStatus.UNAUTHORIZED);
@@ -193,20 +213,24 @@ export class ChatGateway {
 	}
 
 	@SubscribeMessage('sendMessage')
-	async sendMessage(@MessageBody() data: {roomName: string, receiverId: number, message: string}, @ConnectedSocket() client: Socket) {
+	async sendMessage(@MessageBody() data: {roomName: string, receiverId: number, message: string}, @ConnectedSocket() client: Socket) 
+	{
 		const userId: number = Number(client.handshake.headers.authorization);
 		const user = await this.usersService.findById(userId)
-		if (await this.chatService.isBanned(data.roomName, userId)) {
+		if (await this.chatService.isBanned(data.roomName, userId)) 
+		{
 			this.logger.log(`${user.username} is banned from: ${data.roomName}`);
 			client.nsp.to(client.id).emit('banned', data.roomName);
 			return false;
 		}
-		if (await this.chatService.isBlocked(userId, data.receiverId)) {
+		if (await this.chatService.isBlocked(userId, data.receiverId)) 
+		{
 			this.logger.log(`${data.receiverId} is blocked from: ${user.username}`);
 			client.nsp.to(client.id).emit('blocked');
 			return false;
 		}
-		if (await this.chatService.isMuted(userId, data.roomName)) {
+		if (await this.chatService.isMuted(userId, data.roomName)) 
+		{
 			this.logger.log(`${user.username} is muted in: ${data.roomName}`);
 			client.nsp.to(client.id).emit('muted', data.roomName);
 			return false;
@@ -216,7 +240,8 @@ export class ChatGateway {
 	}
 
 	@SubscribeMessage('banUser')
-	async banUser(@MessageBody() data: {roomName: string, banUserId: number}, @ConnectedSocket() client: Socket) {
+	async banUser(@MessageBody() data: {roomName: string, banUserId: number}, @ConnectedSocket() client: Socket) 
+	{
 		const userId: number = Number(client.handshake.headers.authorization);
 		if (!this.chatService.isAdmin(data.roomName, userId))
 			throw new HttpException('Admin rights required', HttpStatus.UNAUTHORIZED);
@@ -231,7 +256,8 @@ export class ChatGateway {
 	}
 
 	@SubscribeMessage('unbanUser')
-	async unbanUser(@MessageBody() data: {roomName: string, banUserId: number}, @ConnectedSocket() client: Socket) {
+	async unbanUser(@MessageBody() data: {roomName: string, banUserId: number}, @ConnectedSocket() client: Socket) 
+	{
 		const userId: number = Number(client.handshake.headers.authorization);
 		if (!this.chatService.isAdmin(data.roomName, userId))
 			throw new HttpException('Admin rights required', HttpStatus.UNAUTHORIZED);
@@ -241,7 +267,8 @@ export class ChatGateway {
 	}
 
 	@SubscribeMessage('muteUser')
-	async muteUser(@MessageBody() data: {roomName: string, newMutedId: number, muteTimeInMinutes: number}, @ConnectedSocket() client: Socket) {
+	async muteUser(@MessageBody() data: {roomName: string, newMutedId: number, muteTimeInMinutes: number}, @ConnectedSocket() client: Socket) 
+	{
 		const userId: number = Number(client.handshake.headers.authorization);
 		if (!this.chatService.isAdmin(data.roomName, userId))
 			throw new HttpException('Admin rights required', HttpStatus.UNAUTHORIZED);
@@ -259,12 +286,14 @@ export class ChatGateway {
 	}
 
 	@SubscribeMessage('findGroupRooms')
-	async findGroupRooms() {
+	async findGroupRooms() 
+	{
 		return await this.roomService.findGroups();
 	}
 
 	@SubscribeMessage('findRoomByName')
-	async findRoomByName(@MessageBody() roomName: string) {
+	async findRoomByName(@MessageBody() roomName: string) 
+	{
 		return await this.roomService.findByName(roomName);
 	}
 }

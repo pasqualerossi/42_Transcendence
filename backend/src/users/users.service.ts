@@ -257,7 +257,6 @@ export class UsersService
 		// Status 1 = Online
 		// Status 2 = Playing a Pong Game
 		// Status 3 = Don't Distrub
-
 		if (status < 0 || status > 3)
 			throw new HttpException('Please enter a valid status', HttpStatus.CONFLICT);
 		await this.usersRepository.update({id: userId}, {status: status})

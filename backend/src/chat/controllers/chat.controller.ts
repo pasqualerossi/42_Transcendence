@@ -3,7 +3,7 @@ import { RoomService } from '../services/room.service';
 import { UsersService } from '../../users/users.service';
 import { ChatService } from '../services/chat.service';
 import { ChatRoom } from '../entities/room.entity';
-import JwtAuthenticationGuard from 'src/authentication/jwt/jwt.guard';
+import JwtAuthenticationGuard from 'src/authentication/jwt/jwt.strategy';
 
 @Controller('chat')
 export class ChatController 
