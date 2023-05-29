@@ -1,13 +1,11 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
-
 import { Score } from './score.entity';
 import { UsersService } from 'src/users/users.service';
 import { plainToClass } from 'class-transformer';
 import { UserFriendsSerializer } from 'src/users/users.serializer';
 import { User } from 'src/users/users.entity';
-
 
 @Injectable() 
 export class ScoreService 

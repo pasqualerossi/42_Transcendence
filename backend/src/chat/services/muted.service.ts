@@ -9,13 +9,16 @@ import { UserFriendsSerializer } from '../../users/users.serializer';
 
 
 @Injectable()
-export class MutedService {
-	constructor(
+export class MutedService 
+{
+	constructor
+	(
 		@InjectRepository(RoomMutedUsers)
 		private mutedRepository: Repository<RoomMutedUsers>,
 	) {}
 
-	async createMuted(user: User, room: ChatRoom, muteTime: number): Promise<RoomMutedUsers> {
+	async createMuted(user: User, room: ChatRoom, muteTime: number): Promise<RoomMutedUsers> 
+	{
 		const roomMutedUsers = this.mutedRepository.create({
 			muteTime: muteTime,
 			roomId: room.id,
@@ -26,23 +29,28 @@ export class MutedService {
 		return await this.mutedRepository.save(roomMutedUsers);
 	}
 
-	async deleteMuted(roomMutedUsersId: number) {
+	async deleteMuted(roomMutedUsersId: number) 
+	{
 		return await this.mutedRepository.delete(roomMutedUsersId);
 	}
 
-	findAll(): Promise<RoomMutedUsers[]> {
+	findAll(): Promise<RoomMutedUsers[]> 
+	{
 		return this.mutedRepository.find({
-			relations: [
+			relations: 
+			[
 				'room',
 				'user',
 			]
 		});
 	}
 
-	findById(id: number): Promise<RoomMutedUsers> {
+	findById(id: number): Promise<RoomMutedUsers> 
+	{
 		return this.mutedRepository.findOne({
 			where: {roomMutedUsersId: id},
-			relations: [
+			relations: 
+			[
 				'room',
 				'user',
 			]

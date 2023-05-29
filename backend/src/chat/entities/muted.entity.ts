@@ -1,16 +1,19 @@
-import {
-	Entity,
-	PrimaryGeneratedColumn,
-	Column,
-	ManyToOne
-} from 'typeorm';
 import { ChatRoom } from './room.entity';
 import { User } from '../../users/users.entity';
 import { CreateDateColumn } from "typeorm";
 import { UserFriendsSerializer } from '../../users/users.serializer';
 
+import 
+{
+	Entity,
+	PrimaryGeneratedColumn,
+	Column,
+	ManyToOne
+} from 'typeorm';
+
 @Entity()
-export class RoomMutedUsers {
+export class RoomMutedUsers 
+{
 	@PrimaryGeneratedColumn()
 	public roomMutedUsersId!: number;
 

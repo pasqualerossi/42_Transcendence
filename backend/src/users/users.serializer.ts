@@ -1,6 +1,6 @@
 import { Exclude, Expose } from "class-transformer";
 
-export class UserFriendsSerializer 
+export class UserFriendsSerializer
 {
 	@Expose()
 	id: number;

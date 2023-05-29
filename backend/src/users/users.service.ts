@@ -7,19 +7,23 @@ import DatabaseFilesService from 'src/database/databaseFiles.service';
 import { plainToClass } from 'class-transformer';
 import { UserFriendsSerializer } from './users.serializer';
 
-
 @Injectable()
-export class UsersService {
-	constructor(
+export class UsersService 
+{
+	constructor
+	(
 		@InjectRepository(User)
 		private usersRepository: Repository<User>,
 		private readonly databaseFilesService: DatabaseFilesService,
 		private connection: Connection,
 	) {}
 
-	async findAll(): Promise<User[]> {
-		return await this.usersRepository.find({
-			relations: [
+	async findAll(): Promise<User[]> 
+	{
+		return await this.usersRepository.find
+		({
+			relations: 
+			[
 				'chatRoom',
 				'roomAdmin',
 				'friends',
@@ -35,10 +39,13 @@ export class UsersService {
 		});
 	}
 
-	async findById(id: number): Promise<User> {
-		return await this.usersRepository.findOne({
+	async findById(id: number): Promise<User> 
+	{
+		return await this.usersRepository.findOne
+		({
 			where: {id: id},
-			relations: [
+			relations: 
+			[
 				'chatRoom',
 				'roomAdmin',
 				'friends',
@@ -54,10 +61,12 @@ export class UsersService {
 		});
 	}
 
-	async findByLoginName(name: string): Promise<User> {
+	async findByLoginName(name: string): Promise<User> 
+	{
 		return await this.usersRepository.findOne({
 			where: {loginName: name},
-			relations: [
+			relations: 
+			[
 				'chatRoom',
 				'roomAdmin',
 				'friends',
@@ -73,10 +82,12 @@ export class UsersService {
 		});
 	}
 
-	async findByUserName(name: string): Promise<User> {
+	async findByUserName(name: string): Promise<User> 
+	{
 		return await this.usersRepository.findOne({
 			where: {username: name},
-			relations: [
+			relations: 
+			[
 				'chatRoom',
 				'roomAdmin',
 				'friends',
@@ -92,10 +103,13 @@ export class UsersService {
 		});
 	}
 
-	async findAllExceptMe(user: User): Promise<User[]> {
-		return await this.usersRepository.find({
+	async findAllExceptMe(user: User): Promise<User[]> 
+	{
+		return await this.usersRepository.find
+		({
 			where: { id: Not(user.id) },
-			relations: [
+			relations: 
+			[
 				'chatRoom',
 				'roomAdmin',
 				'friends',
@@ -111,20 +125,23 @@ export class UsersService {
 		});
 	}
 
-	async findAllOnlineUsers(): Promise<User[]> {
-		return await this.usersRepository.find({
+	async findAllOnlineUsers(): Promise<User[]> 
+	{
+		return await this.usersRepository.find
+		({
 			where: { status: 1 },
 		});
 	}
 
-	async create(newUser: User): Promise<User> {
-		// checks if user exists already in db
-		const user: User | null = await this.usersRepository.findOne({
-			where: {
+	async create(newUser: User): Promise<User> 
+	{
+		const user: User | null = await this.usersRepository.findOne
+		({
+			where: 
+			{
 				loginName: newUser.loginName
 			}
 		});
-		// if user already exits return
 		if (user)
 			return user;
 		newUser.avatarId = 1;
@@ -132,21 +149,26 @@ export class UsersService {
 		return await this.usersRepository.save(newUser);
 	}
 
-	async updateName(userId: number, newUserName: string): Promise<boolean> {
-		try {
+	async updateName(userId: number, newUserName: string): Promise<boolean> 
+	{
+		try 
+		{
 			await this.usersRepository.update({id: userId}, {username: newUserName})
 			return true;
 		}
-		catch {
+		catch 
+		{
 			return false;
 		}
 	}
 
-	async delete(id: number) {
+	async delete(id: number) 
+	{
 		await this.usersRepository.delete(id);
 	}
 
-	async turnOnTwoFactorAuthentication(userId: number) {
+	async turnOnTwoFactorAuthentication(userId: number) 
+	{
 		return this.usersRepository.createQueryBuilder()
 		.update(User)
 		.set({ isTwoFactorAuthenticationEnabled: true })
@@ -162,7 +184,8 @@ export class UsersService {
 		.execute()
 	}
 
-	async setTwoFactorAuthenticationSecret(secret: string, userId: number) {
+	async setTwoFactorAuthenticationSecret(secret: string, userId: number) 
+	{
 		return this.usersRepository.createQueryBuilder()
 		.update(User)
 		.set({ twoFactorAuthenticationSecret: secret })
@@ -170,7 +193,8 @@ export class UsersService {
 		.execute()
 	}
 
-	async setCurrentRefreshToken(refreshToken: string, userId: number) {
+	async setCurrentRefreshToken(refreshToken: string, userId: number) 
+	{
 		const HashedRefreshToken = await bcrypt.hash(refreshToken, 10);
 		return this.usersRepository.createQueryBuilder()
 		.update(User)
@@ -179,7 +203,8 @@ export class UsersService {
 		.execute()
 	}
 
-	async removeRefreshToken(userId: number) {
+	async removeRefreshToken(userId: number) 
+	{
 		return this.usersRepository.createQueryBuilder()
 		.update(User)
 		.set({ currentHashedRefreshToken: null })
@@ -187,15 +212,18 @@ export class UsersService {
 		.execute()
 	}
 
-	async addAvatar(userId: number, imageBuffer: Buffer, filename: string) {
+	async addAvatar(userId: number, imageBuffer: Buffer, filename: string) 
+	{
 		const queryRunner: QueryRunner = this.connection.createQueryRunner();
 
 		await queryRunner.connect();
 		await queryRunner.startTransaction();
 
 		try {
-			const user: User | null = await queryRunner.manager.findOne( User, {
-				where: {
+			const user: User | null = await queryRunner.manager.findOne( User, 
+				{
+				where: 
+				{
 					id: userId
 				}
 			});
@@ -205,7 +233,8 @@ export class UsersService {
 
 			const avatar = await this.databaseFilesService.uploadDatabaseFileWithQueryRunner(imageBuffer, filename, queryRunner);
 
-			await queryRunner.manager.update(User, userId, {
+			await queryRunner.manager.update(User, userId, 
+			{
 				avatarId: avatar.id
 			});
 
@@ -222,11 +251,12 @@ export class UsersService {
 		}
 	}
 
-	async setStatus(status: number, userId: number): Promise<User> {
-		// offline 0
-		// online 1
-		// in a game 2
-		// do not disturb 3
+	async setStatus(status: number, userId: number): Promise<User> 
+	{
+		// Status 0 = Offline
+		// Status 1 = Online
+		// Status 2 = Playing a Pong Game
+		// Status 3 = Don't Distrub
 
 		if (status < 0 || status > 3)
 			throw new HttpException('Please enter a valid status', HttpStatus.CONFLICT);
@@ -234,7 +264,8 @@ export class UsersService {
 		return await this.findById(userId);
 	}
 
-	async sendFriendReqeuest(userId: number, friendId: number): Promise<User> {
+	async sendFriendReqeuest(userId: number, friendId: number): Promise<User> 
+	{
 		if (userId === friendId)
 			throw new HttpException('Can not add yourself as a friend', HttpStatus.CONFLICT);
 		const user: User | null = await this.findById(userId);
@@ -258,7 +289,8 @@ export class UsersService {
 		return await this.usersRepository.save(user);
 	}
 
-	async removeFriend(userId: number, friendId: number): Promise<User> {
+	async removeFriend(userId: number, friendId: number): Promise<User> 
+	{
 		const user: User | null = await this.findById(userId);
 		if (!user)
 			throw new HttpException('User does not exist', HttpStatus.CONFLICT);
@@ -269,18 +301,21 @@ export class UsersService {
 		if (!user.friends.some(x => x.id === friend.id))
 			throw new HttpException('Conflict: no such friend', HttpStatus.CONFLICT);
 
-		friend.friends = friend.friends.filter(x => {
+		friend.friends = friend.friends.filter(x => 
+			{
 			return x.id !== user.id;
 		});
 		await this.usersRepository.save(friend);
 
-		user.friends = user.friends.filter(x => {
+		user.friends = user.friends.filter(x => 
+		{
 			return x.id !== friend.id;
 		});
 		return await this.usersRepository.save(user);
 	}
 
-	async acceptFriendReqeuest(userId: number, friendId: number): Promise<User> {
+	async acceptFriendReqeuest(userId: number, friendId: number): Promise<User> 
+	{
 		if (userId === friendId)
 			throw new HttpException('Can not add yourself as a friend', HttpStatus.CONFLICT);
 		const user: User | null = await this.findById(userId);
@@ -291,15 +326,17 @@ export class UsersService {
 			throw new HttpException('Friend not found', HttpStatus.NOT_FOUND);
 
 		if (user.receivedFriendRequests.some(x => x.id === friend.id) &&
-		friend.sendFriendRequests.some(x => x.id === user.id)) {
-
-			user.receivedFriendRequests = user.receivedFriendRequests.filter(x => {
+		friend.sendFriendRequests.some(x => x.id === user.id)) 
+		{
+			user.receivedFriendRequests = user.receivedFriendRequests.filter(x => 
+			{
 				return x.id !== friend.id;
 			});
 			user.friends.push(plainToClass(UserFriendsSerializer, friend));
 			await this.usersRepository.save(user);
 			
-			friend.sendFriendRequests = friend.sendFriendRequests.filter(x => {
+			friend.sendFriendRequests = friend.sendFriendRequests.filter(x => 
+			{
 				return x.id !== user.id;
 			});
 			friend.friends.push(plainToClass(UserFriendsSerializer, user));
@@ -309,7 +346,8 @@ export class UsersService {
 			throw new HttpException('No such friend-request received', HttpStatus.NOT_FOUND);
 	}
 
-	async declineFriendReqeuest(userId: number, friendId: number): Promise<User> {
+	async declineFriendReqeuest(userId: number, friendId: number): Promise<User> 
+	{
 		if (userId === friendId)
 			throw new HttpException('Can not add yourself as a friend', HttpStatus.CONFLICT);
 		const user: User | null = await this.findById(userId);
@@ -318,14 +356,16 @@ export class UsersService {
 		const friend: User | null = await this.findById(friendId);
 		if (!friend)
 			throw new HttpException('Friend not found', HttpStatus.NOT_FOUND);
-		if (user.receivedFriendRequests.some(x => x.id === friend.id) &&
-		friend.sendFriendRequests.some(x => x.id === user.id)) {
-			friend.sendFriendRequests = friend.sendFriendRequests.filter(x => {
+		if (user.receivedFriendRequests.some(x => x.id === friend.id) && friend.sendFriendRequests.some(x => x.id === user.id)) 
+		{
+			friend.sendFriendRequests = friend.sendFriendRequests.filter(x => 
+			{
 				return x.id !== user.id
 			});
 			await this.usersRepository.save(friend);
 			
-			user.receivedFriendRequests = user.receivedFriendRequests.filter(x => {
+			user.receivedFriendRequests = user.receivedFriendRequests.filter(x => 
+			{
 				return x.id !== friend.id
 			});
 			return await this.usersRepository.save(user);
@@ -334,7 +374,8 @@ export class UsersService {
 			throw new HttpException('No such friend-request received', HttpStatus.NOT_FOUND);
 	}
 
-	async retrieveFriendReqeuest(userId: number, friendId: number): Promise<User> {
+	async retrieveFriendReqeuest(userId: number, friendId: number): Promise<User> 
+	{
 		if (userId === friendId)
 			throw new HttpException('Can not add yourself as a friend', HttpStatus.CONFLICT);
 		const user: User | null = await this.findById(userId);
@@ -345,12 +386,14 @@ export class UsersService {
 			throw new HttpException('Friend not found', HttpStatus.NOT_FOUND);
 		if (user.sendFriendRequests.some(x => x.id === friend.id) &&
 		friend.receivedFriendRequests.some(x => x.id === user.id)) {
-			friend.receivedFriendRequests = friend.receivedFriendRequests.filter(x => {
+			friend.receivedFriendRequests = friend.receivedFriendRequests.filter(x => 
+			{
 				return x.id !== user.id;
 			});
 			this.usersRepository.save(friend);
 			
-			user.sendFriendRequests = user.sendFriendRequests.filter(x => {
+			user.sendFriendRequests = user.sendFriendRequests.filter(x => 
+			{
 				return x.id !== friend.id;
 			});
 			return this.usersRepository.save(user);
@@ -359,7 +402,8 @@ export class UsersService {
 			throw new HttpException('No such friend-request received', HttpStatus.NOT_FOUND);
 	}
 
-	async blockUser(userId: number, blockedId: number): Promise<User> {
+	async blockUser(userId: number, blockedId: number): Promise<User> 
+	{
 		if (userId === blockedId)
 			throw new HttpException('Can not block yourself', HttpStatus.CONFLICT);
 		const user: User | null = await this.findById(userId);
@@ -378,7 +422,8 @@ export class UsersService {
 		return await this.usersRepository.save(user);
 	}
 
-	async unblockUser(userId: number, blockedId: number): Promise<User> {
+	async unblockUser(userId: number, blockedId: number): Promise<User> 
+	{
 		if (userId === blockedId)
 			throw new HttpException('Can not unblock yourself', HttpStatus.CONFLICT);
 		const user: User | null = await this.findById(userId);
@@ -390,18 +435,21 @@ export class UsersService {
 		if (!user.blockedUsers.some(e => e.id === blocked.id))
 			throw new HttpException('User is not blocked', HttpStatus.NOT_FOUND);
 
-		blocked.blockedFromUsers = blocked.blockedFromUsers.filter(x => {
+		blocked.blockedFromUsers = blocked.blockedFromUsers.filter(x => 
+		{
 			return x.id !== user.id;
 		});
 		this.usersRepository.save(blocked);
 		
-		user.blockedUsers = user.blockedUsers.filter(x => {
+		user.blockedUsers = user.blockedUsers.filter(x => 
+		{
 			return x.id !== blocked.id;
 		});
 		return await this.usersRepository.save(user);
 	}
 
-	async addWin(userId: number): Promise<User> {
+	async addWin(userId: number): Promise<User> 
+	{
 		const user: User | null = await this.findById(userId);
 		if (!user)
 			return ;
@@ -409,7 +457,8 @@ export class UsersService {
 		return await this.usersRepository.save(user);
 	}
 
-	async addLose(userId: number): Promise<User> {
+	async addLose(userId: number): Promise<User> 
+	{
 		const user: User | null = await this.findById(userId);
 		if (!user)
 			return ;
@@ -417,4 +466,3 @@ export class UsersService {
 		return await this.usersRepository.save(user);
 	}
 }
-

@@ -1,5 +1,10 @@
 import { Exclude } from 'class-transformer';
 import DatabaseFile from 'src/database/databaseFile.entity';
+import { ChatRoom } from '../chat/entities/room.entity';
+import { Score } from '../scoreboard/score.entity';
+import { RoomMutedUsers } from '../chat/entities/muted.entity';
+import { UserFriendsSerializer } from './users.serializer'
+
 import {
 	Entity,
 	PrimaryGeneratedColumn,
@@ -10,15 +15,12 @@ import {
 	ManyToOne,
 	OneToMany
 } from 'typeorm';
-import { ChatRoom } from '../chat/entities/room.entity';
-import { Score } from '../scoreboard/score.entity';
-import { RoomMutedUsers } from '../chat/entities/muted.entity';
-import { UserFriendsSerializer } from './users.serializer'
 
-@Entity()
-export class User {
-
-	constructor(partial: Partial<User>) {
+@Entity() 
+export class User 
+{
+	constructor(partial: Partial<User>)
+	{
 		Object.assign(this, partial);
 	}
 
@@ -101,4 +103,3 @@ export class User {
 	@JoinTable()
 	matchHistory: Score[];
 }
-

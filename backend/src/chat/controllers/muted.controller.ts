@@ -1,3 +1,10 @@
+import { MutedService } from '../services/muted.service';
+import { RoomMutedUsers } from '../entities/muted.entity';
+import JwtAuthenticationGuard from 'src/authentication/jwt/jwt.guard';
+import RequestWithUser from 'src/authentication/interfaces/requestWithUser.interface';
+import { RoomService } from '../services/room.service';
+import { UsersService } from '../../users/users.service';
+
 import {
 	Controller,
 	Get,
@@ -10,16 +17,12 @@ import {
 	HttpException,
 	HttpStatus
 } from '@nestjs/common';
-import { MutedService } from '../services/muted.service';
-import { RoomMutedUsers } from '../entities/muted.entity';
-import JwtAuthenticationGuard from 'src/auth/jwt/jwt.guard';
-import RequestWithUser from 'src/auth/interfaces/requestWithUser.interface';
-import { RoomService } from '../services/room.service';
-import { UsersService } from '../../users/users.service';
 
 @Controller('muted')
-export class MutedController {
-	constructor(
+export class MutedController 
+{
+	constructor
+	(
 		private readonly mutedService: MutedService,
 		private readonly roomService: RoomService,
 		private readonly usersService: UsersService,
@@ -28,14 +31,16 @@ export class MutedController {
 	@Get('all')
 	@UseGuards(JwtAuthenticationGuard)
 	@UseInterceptors(ClassSerializerInterceptor)
-	async getAll():Promise<RoomMutedUsers[]>{
+	async getAll():Promise<RoomMutedUsers[]>
+	{
 		return await this.mutedService.findAll();
 	}
 
 	@Post('create/:roomName')
 	@UseGuards(JwtAuthenticationGuard)
 	@UseInterceptors(ClassSerializerInterceptor)
-	async sendFriendReqeuest(@Req() request: RequestWithUser, @Param('roomName') roomName: string): Promise<RoomMutedUsers> {
+	async sendFriendReqeuest(@Req() request: RequestWithUser, @Param('roomName') roomName: string): Promise<RoomMutedUsers> 
+	{
 		const user = await this.usersService.findById(request.user.id);
 		const room = await this.roomService.findByName(roomName);
 		if (!user)

@@ -2,11 +2,11 @@ import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from 'typeorm';
 import { ChatRoom } from './room.entity';
 
 @Entity()
-export class Message {
-
+export class Message 
+{
 	@PrimaryGeneratedColumn()
 	id: number;
-	
+
 	@Column()
 	fromId: number;
 

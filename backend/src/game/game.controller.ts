@@ -1,12 +1,11 @@
 import { GameService } from './game.service';
+import JwtTwoFactorGuard from 'src/authentication/twoFactor/twoFactor.guard';
 import 
 {
 	Controller,
 	Get,
 	UseGuards,
 } from '@nestjs/common';
-
-import JwtTwoFactorGuard from 'src/auth/twoFactor/twoFactor.guard';
 
 @Controller('game')
 export class GameController 

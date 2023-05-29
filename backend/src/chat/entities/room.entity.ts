@@ -5,7 +5,8 @@ import { Message } from './message.entity'
 import { RoomMutedUsers } from './muted.entity'
 
 @Entity()
-export class ChatRoom {
+export class ChatRoom 
+{
 	@PrimaryGeneratedColumn()
 	id: number;
 
@@ -19,7 +20,8 @@ export class ChatRoom {
 	@Column({nullable: true})
 	password: string;
 
-	@ManyToMany(() => User, admin => admin.roomAdmin, {
+	@ManyToMany(() => User, admin => admin.roomAdmin, 
+	{
 		onDelete: 'CASCADE',
 	})
 	admins: User[];
@@ -27,12 +29,14 @@ export class ChatRoom {
 	@OneToMany(() => Message, message => message.chatRoom)
 	messages: Message[];
 	
-	@ManyToMany(() => User, chatUser => chatUser.chatRoom, {
+	@ManyToMany(() => User, chatUser => chatUser.chatRoom, 
+	{
 		onDelete: 'CASCADE',
 	})
 	chatUser: User[];
 
-	@ManyToMany(() => User, bannedUsers => bannedUsers.bannedRooms, {
+	@ManyToMany(() => User, bannedUsers => bannedUsers.bannedRooms, 
+	{
 		onDelete: 'CASCADE',
 	})
 	bannedUsers: User[];

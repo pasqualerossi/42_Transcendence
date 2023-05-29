@@ -8,7 +8,8 @@ import { Score } from 'src/scoreboard/score.entity';
 
 
 @Injectable()
-export class GameService {
+export class GameService 
+{
 	constructor(
 		private readonly usersService: UsersService,
 		private readonly scoreService: ScoreService,
@@ -16,44 +17,46 @@ export class GameService {
 
 	private logger: Logger = new Logger(GameService.name)
 
-	/************************** GAME DATA **************************/
-	public gameKeyToReadyPlayers: Map<number, number[]> = new Map()
-	public gameRooms: Map<number, GameData> = new Map()
-	private pendingInvitations: Map<number, GameData> = new Map()
-	private gameKeyToActionTimeout: Map<number, NodeJS.Timeout> = new Map()
-	/************************** GAME DATA **************************/
-	
-	/************************* GAME CONFIG *************************/
+	// GAME DATA
+
+	public gameKeyToReadyPlayers: Map<number, number[]> = new Map() // A map that stores game keys and an array of ready players.
+	public gameRooms: Map<number, GameData> = new Map() // A map that stores game keys and corresponding GameData objects.
+	private pendingInvitations: Map<number, GameData> = new Map() // A map that stores pending game invitations.
+	private gameKeyToActionTimeout: Map<number, NodeJS.Timeout> = new Map() // A map that associates game keys with action timeouts.
+
+	// GAME CONFIGURATIONS
+
 	private readonly BASE_PADDLE_SPEED: number = 30
 	private readonly BASE_BALL_SPEED: number = 4
 	private readonly BASE_BALL_SPEED_INCREASE: number = 1
 	private readonly BASE_SCORE_LIMIT: number = 5
 	private readonly BASE_ACTION_INTERVAL_MS: number = 6000
 	private readonly BASE_COUNTDOWN_SECONDS: number = 5
-	
 	private readonly BASE_COLOR_WALL: string = 'black'
 	private readonly BASE_COLOR_BACKGROUND: string = '#EFEFEF'
 	private readonly BASE_COLOR_PADDLE: string = 'black'
 	private readonly BASE_COLOR_BALL: string = '#185ADB'
-	
 	private readonly BASE_CANVAS_HEIGHT: number = 585
 	private readonly BASE_CANVAS_WIDTH: number = 750
 	private readonly BASE_GRID: number = 15
 	private readonly BASE_PADDLE_HEIGHT: number = this.BASE_GRID * 5
-	/************************* GAME CONFIG *************************/
 
-	async validateToken(client: Socket) {
+	async validateToken(client: Socket) // Validates the token of a client connection using the UsersService and returns the associated user object if valid.
+	{
 		const userId: number = Number(client.handshake.headers.authorization);
 		const user = await this.usersService.findById(userId);
-		if (!user) {
+		if (!user) 
+		{
 			client.disconnect();
 			return null;
 		}
 		return user;
 	}
 
-	/* INIT */
-	initGameData(gameData: GameData): GameData {
+	// GAME DATA
+
+	initGameData(gameData: GameData): GameData // Initialises the game data with default values based on the provided GameData object.
+	{
 		gameData.canvasHeight = this.BASE_CANVAS_HEIGHT
 		gameData.canvasWidth = this.BASE_CANVAS_WIDTH
 		gameData.grid = this.BASE_GRID
@@ -69,7 +72,8 @@ export class GameService {
 		gameData.gameLoopIntervalID = null
 		gameData.spectatorsID = []
 
-		gameData.leftPaddle = {
+		gameData.leftPaddle = 
+		{
 			x: this.BASE_GRID * 2,
 			y: this.BASE_CANVAS_HEIGHT / 2 - this.BASE_PADDLE_HEIGHT / 2,
 			width: this.BASE_GRID,
@@ -78,7 +82,8 @@ export class GameService {
 			color: this.BASE_COLOR_PADDLE,
 		}
 
-		gameData.rightPaddle = {
+		gameData.rightPaddle = 
+		{
 			x: this.BASE_CANVAS_WIDTH - this.BASE_GRID * 3,
 			y: this.BASE_CANVAS_HEIGHT / 2 - this.BASE_PADDLE_HEIGHT / 2,
 			width: this.BASE_GRID,
@@ -87,7 +92,8 @@ export class GameService {
 			color: this.BASE_COLOR_PADDLE,
 		}
 
-		gameData.ball = {
+		gameData.ball = 
+		{
 			x: this.BASE_CANVAS_WIDTH / 2,
 			y: this.BASE_CANVAS_HEIGHT / 2,
 			width: this.BASE_GRID,
@@ -98,7 +104,8 @@ export class GameService {
 			color: this.BASE_COLOR_BALL,
 		}
 
-		gameData.score = {
+		gameData.score = 
+		{
 			limit: this.BASE_SCORE_LIMIT,
 			left: 0,
 			right: 0,
@@ -106,38 +113,36 @@ export class GameService {
 
 		return gameData;
 	}
-	/* INIT */
 
+	// GAME ENGINE
 
-	/* GAME ENGINE */
-	movePedal(gameKey: number, userId: number, pedalDirection: string) {
+	movePedal(gameKey: number, userId: number, pedalDirection: string) // Moves the paddle of a player in a specific game based on the provided parameters.
+	{
 		const gameInstance: GameData | undefined = this.gameRooms.get(gameKey)
 		if (!gameInstance)
 			return ;
-		if (userId === gameInstance.userLeftSideID) {
+		if (userId === gameInstance.userLeftSideID) 
+		{
 			const updatedPedalLeft = {...gameInstance.leftPaddle};
 			if (pedalDirection === 'up')
 				updatedPedalLeft.velocity = -gameInstance.paddleSpeed;
 			else if (pedalDirection === 'down')
 				updatedPedalLeft.velocity = gameInstance.paddleSpeed;
-			// move paddles by their velocity
 			updatedPedalLeft.y += updatedPedalLeft.velocity;
-			// prevent paddles from going through walls
 			if (updatedPedalLeft.y < gameInstance.grid)
 				updatedPedalLeft.y = gameInstance.grid;
 			else if (updatedPedalLeft.y > gameInstance.maxPaddleY)
 				updatedPedalLeft.y = gameInstance.maxPaddleY;
 			this.gameRooms.set(gameKey, {...this.gameRooms.get(gameKey), leftPaddle: updatedPedalLeft})
 		}
-		else if (userId === gameInstance.userRightSideID) {
+		else if (userId === gameInstance.userRightSideID) 
+		{
 			const updatedPedalRight = {...gameInstance.rightPaddle};
 			if (pedalDirection === 'up')
 				updatedPedalRight.velocity = -gameInstance.paddleSpeed;
 			else if (pedalDirection === 'down')
 				updatedPedalRight.velocity = gameInstance.paddleSpeed;
-			// move paddles by their velocity
 			updatedPedalRight.y += updatedPedalRight.velocity;
-			// prevent paddles from going through walls
 			if (updatedPedalRight.y < gameInstance.grid)
 				updatedPedalRight.y = gameInstance.grid;
 			else if (updatedPedalRight.y > gameInstance.maxPaddleY)
@@ -146,28 +151,31 @@ export class GameService {
 		}
 	}
 
-	moveBall(gameKey: number) {
+	moveBall(gameKey: number) // Moves the ball in a specific game.
+	{
 		const gameInstance: GameData | undefined = this.gameRooms.get(gameKey)
 		if (!gameInstance)
 			return ;
 		const updatedBall = {...gameInstance.ball};
-		// move ball by its velocity with an increasing speed
 		updatedBall.x += (updatedBall.velocityX *= this.BASE_BALL_SPEED_INCREASE);
 		updatedBall.y += (updatedBall.velocityY *= this.BASE_BALL_SPEED_INCREASE);
-		// prevent ball from going through walls by changing its velocity
-		if (updatedBall.y < gameInstance.grid) {
+		if (updatedBall.y < gameInstance.grid) 
+		{
 			updatedBall.y = gameInstance.grid;
 			updatedBall.velocityY *= -1;
 		}
-		else if (updatedBall.y + gameInstance.grid > gameInstance.canvasHeight - gameInstance.grid) {
+		else if (updatedBall.y + gameInstance.grid > gameInstance.canvasHeight - gameInstance.grid) 
+		{
 			updatedBall.y = gameInstance.canvasHeight - gameInstance.grid * 2;
 			updatedBall.velocityY *= -1;
 		}
 		this.gameRooms.set(gameKey, {...this.gameRooms.get(gameKey), ball: updatedBall})
 	}
 
-	collides(obj1: any, obj2: any) {
-		if (obj1.x && obj2.x && obj1.y && obj2.y && obj1.width && obj2.width && obj1.height && obj2.height) {
+	collides(obj1: any, obj2: any) // Checks if two objects collide based on their coordinates and dimensions.
+	{
+		if (obj1.x && obj2.x && obj1.y && obj2.y && obj1.width && obj2.width && obj1.height && obj2.height) 
+		{
 			return obj1.x < obj2.x + obj2.width &&
 					obj1.x + obj1.width > obj2.x &&
 					obj1.y < obj2.y + obj2.height &&
@@ -177,31 +185,28 @@ export class GameService {
 			return false
 	}
 
-	ballCollision(gameKey: number) {
+	ballCollision(gameKey: number) // Handles ball collisions with paddles in a specific game.
+	{
 		const gameInstance: GameData | undefined = this.gameRooms.get(gameKey)
 		if (!gameInstance)
 			return ;
 		const updatedBall = {...gameInstance.ball};
 
-		// check to see if ball collides with paddle. if they do change x velocity
-		if (this.collides(updatedBall, gameInstance.leftPaddle)) {
+		if (this.collides(updatedBall, gameInstance.leftPaddle)) 
+		{
 			updatedBall.velocityX *= -1;
-
-			// move ball next to the paddle otherwise the collision will happen again
-			// in the next frame
 			updatedBall.x = gameInstance.leftPaddle.x + gameInstance.leftPaddle.width;
 		}
-		else if (this.collides(updatedBall, gameInstance.rightPaddle)) {
+		else if (this.collides(updatedBall, gameInstance.rightPaddle)) 
+		{
 			updatedBall.velocityX *= -1;
-
-			// move ball next to the paddle otherwise the collision will happen again
-			// in the next frame
 			updatedBall.x = gameInstance.rightPaddle.x - updatedBall.width;
 		}
 		this.gameRooms.set(gameKey, {...this.gameRooms.get(gameKey), ball: updatedBall})
 	}
 
-	changeBallSpeed(x: number = this.BASE_BALL_SPEED, updatedBall: any) {
+	changeBallSpeed(x: number = this.BASE_BALL_SPEED, updatedBall: any) // Updates the ball's velocity based on the provided speed.
+	{
 		if (updatedBall.velocityX < 0)
 			updatedBall.velocityX = -x;
 		else
@@ -215,48 +220,41 @@ export class GameService {
 		return updatedBall;
 	}
 
-	// TODO: give some time for the player to recover before launching the ball again
-	resetBall(gameKey: number) {
+	resetBall(gameKey: number) // Resets the ball's position and velocity in a specific game when it goes out of bounds.
+	{
 		const gameInstance: GameData | undefined = this.gameRooms.get(gameKey)
 		if (!gameInstance)
 			return ;
-
 		const updatedBall = {...gameInstance.ball};
 		const updatedScore = {...gameInstance.score};
-
-		// reset ball if it goes past paddle (but only if we haven't already done so)
-		if ((updatedBall.x < 0 || updatedBall.x > gameInstance.canvasWidth) && !updatedBall.resetting) {
+		if ((updatedBall.x < 0 || updatedBall.x > gameInstance.canvasWidth) && !updatedBall.resetting) 
+		{
 			updatedBall.resetting = true;
-
-			// increase score counter after goal
 			if (updatedBall.x < 0)
 				updatedScore.right++;
 			if (updatedBall.x > gameInstance.canvasWidth)
 				updatedScore.left++;
-
-			// resets ball speed after each goal
 			const {velocityX, velocityY} = this.changeBallSpeed(this.BASE_BALL_SPEED, updatedBall);
 			updatedBall.velocityX = velocityX;
 			updatedBall.velocityY = velocityY;
 			updatedBall.resetting = false;
-			// reset ball to center of screen
 			updatedBall.x = gameInstance.canvasWidth / 2;
 			updatedBall.y = gameInstance.canvasHeight / 2;
-			// make ball go to player that scored last goal
 			updatedBall.velocityY *= (-1);
 			updatedBall.velocityX *= (-1);
 		}
-		this.gameRooms.set(gameKey, {
+		this.gameRooms.set(gameKey, 
+		{
 			...this.gameRooms.get(gameKey),
 			ball: updatedBall,
 			score: updatedScore,
 		})
 	}
-	/* GAME ENGINE */
 
+	// GAME UTILS
 
-	/* UTILS */
-	gameIsWaitingForPlayer(gameKey: number): boolean {
+	gameIsWaitingForPlayer(gameKey: number): boolean 
+	{
 		const game: GameData | undefined = this.gameRooms.get(gameKey);
 		if (!game)
 			return false;
@@ -265,19 +263,25 @@ export class GameService {
 		return false;
 	}
 
-	deleteGame(gameKey: number) {
+	deleteGame(gameKey: number) 
+	{
 		this.gameRooms.delete(gameKey);
 	}
 
-	findKeyOfAvailableGame(specialActions: boolean): number | undefined {
-		if (specialActions === true) {
-			for (let [key, value] of this.gameRooms.entries()) {
+	findKeyOfAvailableGame(specialActions: boolean): number | undefined 
+	{
+		if (specialActions === true) 
+		{
+			for (let [key, value] of this.gameRooms.entries()) 
+			{
 				if (value.userLeftSideID && !value.userRightSideID && value.specialAction)
 					return key;
 			}
 		}
-		else if (specialActions === false) {
-			for (let [key, value] of this.gameRooms.entries()) {
+		else if (specialActions === false) 
+		{
+			for (let [key, value] of this.gameRooms.entries()) 
+			{
 				if (value.userLeftSideID && !value.userRightSideID && !value.specialAction)
 					return key;
 			}
@@ -285,12 +289,15 @@ export class GameService {
 		return undefined;
 	}
 
-	findGameKeyByPlayerID(playerId: number): number | undefined {
-		for (let [key, value] of this.gameRooms.entries()) {
+	findGameKeyByPlayerID(playerId: number): number | undefined 
+	{
+		for (let [key, value] of this.gameRooms.entries()) 
+		{
 			if (value.userLeftSideID && !value.userRightSideID)
 				if (playerId === value.userLeftSideID)
 					return key;
-			if (value.userLeftSideID && value.userRightSideID) {
+			if (value.userLeftSideID && value.userRightSideID) 
+			{
 				if (playerId === value.userLeftSideID || playerId === value.userRightSideID)
 					return key;
 			}
@@ -298,19 +305,22 @@ export class GameService {
 		return undefined;
 	}
 
-	getWinnerID(gameInstance: GameData): number {
+	getWinnerID(gameInstance: GameData): number 
+	{
 		if (gameInstance.score.left > gameInstance.score.right)
 			return gameInstance.userLeftSideID;
 		return gameInstance.userRightSideID;
 	}
 	
-	getLoserID(gameInstance: GameData): number {
+	getLoserID(gameInstance: GameData): number 
+	{
 		if (gameInstance.score.left > gameInstance.score.right)
 			return gameInstance.userRightSideID;
 		return gameInstance.userLeftSideID;
 	}
 
-	getOtherPlayerID(gameKey: number, playerId: number): number | undefined {
+	getOtherPlayerID(gameKey: number, playerId: number): number | undefined 
+	{
 		const gameInstance: GameData | undefined = this.gameRooms.get(gameKey);
 		if (!gameInstance)
 			return undefined;
@@ -321,24 +331,30 @@ export class GameService {
 		return undefined;
 	}
 
-	timeout(ms: number) {
+	timeout(ms: number) 
+	{
 		return new Promise(resolve => setTimeout(resolve, ms));
 	}
 
-	randomNumberBetween(min: number, max: number): number {
+	randomNumberBetween(min: number, max: number): number 
+	{
 		return (Math.floor((Math.random() * (max - min) + min)));
 	}
 
-	userIsSpectator(gameKey: number, userId: number): boolean | undefined {
+	userIsSpectator(gameKey: number, userId: number): boolean | undefined 
+	{
 		const room: GameData | undefined = this.gameRooms.get(gameKey);
 		if (!room)
 			return undefined;
 		return room.spectatorsID.includes(userId);
 	}
 
-	userIsInWaitingRoom(userId: number): number | undefined {
-		for (let [key, value] of this.gameRooms.entries()) {
-			if (value.userLeftSideID && !value.userRightSideID) {
+	userIsInWaitingRoom(userId: number): number | undefined 
+	{
+		for (let [key, value] of this.gameRooms.entries()) 
+		{
+			if (value.userLeftSideID && !value.userRightSideID) 
+			{
 				if (userId === value.userLeftSideID)
 					return key;
 			}
@@ -346,7 +362,8 @@ export class GameService {
 		return undefined;
 	}
 
-	async getPlayersByGameKey(gameKey: number): Promise<Object | void> {
+	async getPlayersByGameKey(gameKey: number): Promise<Object | void> 
+	{
 		const game: GameData | undefined = this.gameRooms.get(gameKey);
 		if (!game)
 			return ;
@@ -356,11 +373,11 @@ export class GameService {
 			return ;
 		return {playerLeft, playerRight}
 	}
-	/* UTILS */
 
+	// GAME STATE
 
-	/* GAME STATE */
-	async gameOver(client: Socket, gameInstance: GameData, gameKey: number) {
+	async gameOver(client: Socket, gameInstance: GameData, gameKey: number) 
+	{
 		const winnerId: number = this.getWinnerID(gameInstance);
 		const loserId: number = this.getLoserID(gameInstance);
 		client.nsp.to(gameKey.toString()).emit('playerWins', {winnerId, loserId});
@@ -381,36 +398,42 @@ export class GameService {
 		await this.usersService.setStatus(1, loserId);
 	}
 
-	checkWinner(gameKey: number, client: Socket): boolean {
+	checkWinner(gameKey: number, client: Socket): boolean 
+	{
 		const gameInstance: GameData | undefined = this.gameRooms.get(gameKey);
 		if (!gameInstance)
 			return ;
-		if (gameInstance.score.left >= gameInstance.score.limit
-			|| gameInstance.score.right >= gameInstance.score.limit) {
+		if (gameInstance.score.left >= gameInstance.score.limit || gameInstance.score.right >= gameInstance.score.limit) 
+			{
 				this.gameOver(client, gameInstance, gameKey);
 				return true;
 			}
 		return false;
 	}
 
-	startGameCountdown(client: Socket, gameKey: number, countdownSeconds: number) {
+	startGameCountdown(client: Socket, gameKey: number, countdownSeconds: number) 
+	{
 		let counter: number = countdownSeconds;
 		client.nsp.to(gameKey.toString()).emit('countdown', counter);
-		const intervalId = setInterval(() => {
+		const intervalId = setInterval(() => 
+		{
 			counter--;
 			client.nsp.to(gameKey.toString()).emit('countdown', counter);
-			if (counter === 0) {
+			if (counter === 0) 
+			{
 				clearInterval(intervalId);
 				client.nsp.to(gameKey.toString()).emit('killCountdown');
 			}
 		}, 1000)
 	}
 
-	gameLoop(client: Socket, gameKey: number) {
+	gameLoop(client: Socket, gameKey: number) 
+	{
 		const gameInstance: GameData | undefined = this.gameRooms.get(gameKey);
 		if (!gameInstance)
 			return ;
-		const intervalID = setInterval(() => {
+		const intervalID = setInterval(() => 
+		{
 			this.moveBall(gameKey);
 			this.resetBall(gameKey);
 			if (!this.checkWinner(gameKey, client))
@@ -422,7 +445,8 @@ export class GameService {
 			this.startActionInterval(gameKey);
 	}
 
-	async startGame(client: Socket, gameKey: number) {
+	async startGame(client: Socket, gameKey: number) 
+	{
 		const gameInstance: GameData | undefined = this.gameRooms.get(gameKey);
 		if (!gameInstance)
 			return ;
@@ -434,7 +458,8 @@ export class GameService {
 		this.gameLoop(client, gameKey);
 	}
 
-	pauseGame(gameKey: number) {
+	pauseGame(gameKey: number) 
+	{
 		const gameInstance: GameData | undefined = this.gameRooms.get(gameKey);
 		if (!gameInstance)
 			return ;
@@ -443,11 +468,13 @@ export class GameService {
 		clearInterval(gameInstance.gameLoopIntervalID);
 	}
 
-	resumeGame(client: Socket, gameKey: number) {
+	resumeGame(client: Socket, gameKey: number) 
+	{
 		this.gameLoop(client, gameKey);
 	}
 
-	async exitGame(quitterId: number, gameKey: number) {
+	async exitGame(quitterId: number, gameKey: number) 
+	{
 		const gameInstance: GameData | undefined = this.gameRooms.get(gameKey);
 		if (!gameInstance)
 			return ;
@@ -468,11 +495,11 @@ export class GameService {
 		await this.usersService.setStatus(1, winnerId);
 		await this.usersService.setStatus(1, quitterId);
 	}
-	/* GAME STATE */
 
+	// GAME MATCHMAKING
 
-	/* MATCHMAKING */
-	createGameInstance(createrId: number, specialActions: boolean): string {
+	createGameInstance(createrId: number, specialActions: boolean): string 
+	{
 		const newGameRoom: GameData = new GameData();
 		newGameRoom.userLeftSideID = createrId;
 		newGameRoom.specialAction = specialActions;
@@ -481,7 +508,8 @@ export class GameService {
 		return createrId.toString();
 	}
 
-	joinGameInstance(gameKey: number, joinerId: number): string {
+	joinGameInstance(gameKey: number, joinerId: number): string 
+	{
 		this.gameRooms.set(
 			gameKey,
 			{...this.gameRooms.get(gameKey), userRightSideID: joinerId}
@@ -489,7 +517,8 @@ export class GameService {
 		return gameKey.toString();
 	}
 
-	sendGameInvitation(senderId: number) {
+	sendGameInvitation(senderId: number) 
+	{
 		const gameInstance: GameData = new GameData()
 		gameInstance.userLeftSideID = senderId
 		gameInstance.specialAction = false
@@ -497,7 +526,8 @@ export class GameService {
 		this.pendingInvitations.set(senderId, gameInstance);
 	}
 
-	spectateGameInstance(gameKey: number, spectatorId: number): string {
+	spectateGameInstance(gameKey: number, spectatorId: number): string 
+	{
 		const gameInstance: GameData | undefined = this.gameRooms.get(gameKey);
 		if (!gameInstance)
 			return ;
@@ -509,63 +539,62 @@ export class GameService {
 		);
 		return gameKey.toString();
 	}
-	/* MATCHMAKING */
 
+	// RANDOM ACTIONS
 
-	/* RANDOM ACTIONS */
-	actionIncreasePedalSize(gameKey: number, gameInstance: GameData) {
-		// only change pedal size if its not biggest size already
+	actionIncreasePedalSize(gameKey: number, gameInstance: GameData) 
+	{
 		if (gameInstance.leftPaddle.height == this.BASE_PADDLE_HEIGHT * 2)
 			return ;
 
 		const updatedPedalLeft = {...gameInstance.leftPaddle};
 		const updatedPedalRight = {...gameInstance.rightPaddle};
-
-		// change pedal height
 		updatedPedalLeft.height *= 2;
 		updatedPedalRight.height *= 2;
 		this.gameRooms.set(gameKey, {...this.gameRooms.get(gameKey), leftPaddle: updatedPedalLeft, rightPaddle: updatedPedalRight})
 
-		// change pedal position if it collides with wall
-		if (gameInstance.leftPaddle.height == this.BASE_PADDLE_HEIGHT) {
+		if (gameInstance.leftPaddle.height == this.BASE_PADDLE_HEIGHT) 
+		{
 			this.gameRooms.set(gameKey, {...this.gameRooms.get(gameKey),
 				maxPaddleY: gameInstance.canvasHeight - gameInstance.grid - this.BASE_PADDLE_HEIGHT * 2
 			})
 		}
-		else {
+		else 
+		{
 			this.gameRooms.set(gameKey, {...this.gameRooms.get(gameKey),
 				maxPaddleY: gameInstance.canvasHeight - gameInstance.grid - this.BASE_PADDLE_HEIGHT
 			})
 		}
 	}
 
-	actionDecreasePedalSize(gameKey: number, gameInstance: GameData) {
-		// only change pedal size if its not smallest size already
+	actionDecreasePedalSize(gameKey: number, gameInstance: GameData) 
+	{
 		if (gameInstance.leftPaddle.height == this.BASE_PADDLE_HEIGHT / 2)
 			return ;
 
 		const updatedPedalLeft = {...gameInstance.leftPaddle};
 		const updatedPedalRight = {...gameInstance.rightPaddle};
 
-		// change pedal height
 		updatedPedalLeft.height /= 2;
 		updatedPedalRight.height /= 2;
 		this.gameRooms.set(gameKey, {...this.gameRooms.get(gameKey), leftPaddle: updatedPedalLeft, rightPaddle: updatedPedalRight})
 
-		// change pedal position if it collides with wall
-		if (gameInstance.leftPaddle.height == this.BASE_PADDLE_HEIGHT) {
+		if (gameInstance.leftPaddle.height == this.BASE_PADDLE_HEIGHT) 
+		{
 			this.gameRooms.set(gameKey, {...this.gameRooms.get(gameKey),
 				maxPaddleY: gameInstance.canvasHeight - gameInstance.grid - this.BASE_PADDLE_HEIGHT / 2
 			})
 		}
-		else {
+		else 
+		{
 			this.gameRooms.set(gameKey, {...this.gameRooms.get(gameKey),
 				maxPaddleY: gameInstance.canvasHeight - gameInstance.grid - this.BASE_PADDLE_HEIGHT
 			})
 		}
 	}
 
-	actionResetPedalSize(gameKey: number, gameInstance: GameData) {
+	actionResetPedalSize(gameKey: number, gameInstance: GameData) 
+	{
 		if (gameInstance.leftPaddle.height == this.BASE_PADDLE_HEIGHT)
 			return ;
 
@@ -581,11 +610,13 @@ export class GameService {
 		})
 	}
 
-	actionChangePaddleSize(gameKey: number, incDec: string) {
+	actionChangePaddleSize(gameKey: number, incDec: string) 
+	{
 		const gameInstance: GameData | undefined = this.gameRooms.get(gameKey);
 		if (!gameInstance)
 			return ;
-		switch (incDec) {
+		switch (incDec) 
+		{
 			case 'reset':
 				this.actionResetPedalSize(gameKey, gameInstance);
 				break;
@@ -598,7 +629,8 @@ export class GameService {
 		}
 	}
 
-	actionChangeBallSpeed(gameKey: number, ballSpeed: number) {
+	actionChangeBallSpeed(gameKey: number, ballSpeed: number) 
+	{
 		const gameInstance: GameData | undefined = this.gameRooms.get(gameKey);
 		if (!gameInstance)
 			return ;
@@ -611,32 +643,38 @@ export class GameService {
 		this.gameRooms.set(gameKey, {...this.gameRooms.get(gameKey), ball: updatedBall});
 	}
 
-	actionReversePaddles(gameKey: number) {
+	actionReversePaddles(gameKey: number) 
+	{
 		const gameInstance: GameData | undefined = this.gameRooms.get(gameKey);
 		if (!gameInstance)
 			return ;
-		if (gameInstance.paddleSpeed > 0) {
+		if (gameInstance.paddleSpeed > 0) 
+		{
 			this.gameRooms.set(gameKey, {...this.gameRooms.get(gameKey),
 				paddleSpeed: gameInstance.paddleSpeed *= -1
 			})
 		}
 	}
 
-	actionChangePaddleSpeed(gameKey: number, speed: number) {
+	actionChangePaddleSpeed(gameKey: number, speed: number) 
+	{
 		this.gameRooms.set(gameKey, {...this.gameRooms.get(gameKey), paddleSpeed: speed});
 	}
 
-	actionChangeBackgroundColor(gameKey: number, color: string) {
+	actionChangeBackgroundColor(gameKey: number, color: string) 
+	{
 		this.gameRooms.set(gameKey, {...this.gameRooms.get(gameKey), backgroundColor: color});
 	}
 
-	randomActions(gameKey: number) {
+	randomActions(gameKey: number) 
+	{
 		this.actionChangePaddleSpeed(gameKey, this.BASE_PADDLE_SPEED);
 		this.actionChangeBallSpeed(gameKey, this.BASE_BALL_SPEED);
 		this.actionChangePaddleSize(gameKey, 'reset');
 		this.actionChangeBackgroundColor(gameKey, this.BASE_COLOR_BACKGROUND)
 
-		switch(this.randomNumberBetween(1, 7)) {
+		switch(this.randomNumberBetween(1, 7)) 
+		{
 			case 1:
 				this.actionChangePaddleSize(gameKey, 'increase');
 				break ;
@@ -660,8 +698,10 @@ export class GameService {
 		}
 	}
 
-	startActionInterval(gameKey: number) {
-		const timeout: NodeJS.Timeout = setTimeout(() => {
+	startActionInterval(gameKey: number) 
+	{
+		const timeout: NodeJS.Timeout = setTimeout(() => 
+		{
 			this.randomActions(gameKey);
 			clearTimeout(this.gameKeyToActionTimeout.get(gameKey));
 			this.gameKeyToActionTimeout.delete(gameKey);
@@ -669,5 +709,4 @@ export class GameService {
 		}, this.BASE_ACTION_INTERVAL_MS)
 		this.gameKeyToActionTimeout.set(gameKey, timeout);
 	}
-	/* RANDOM ACTIONS */
 }

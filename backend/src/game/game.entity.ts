@@ -1,26 +1,19 @@
 export class GameData 
 {
 	id: number
-
 	specialAction: boolean
-
 	userLeftSideID: number
 	userRightSideID: number
 	spectatorsID: number[]
-
 	canvasHeight: number
 	canvasWidth: number
 	grid: number
-
 	paddleHeight: number
 	maxPaddleY: number
-	
 	paddleSpeed: number 
 	ballSpeed: number
-	
 	wallColor: string
 	backgroundColor: string
-	
 	gameLoopIntervalID: NodeJS.Timer
 	
 	leftPaddle: 

@@ -14,6 +14,7 @@ import { User } from 'src/users/users.entity';
 	},
 	namespace: '/game'
 })
+
 export class GameGateway 
 {
 	@WebSocketServer()

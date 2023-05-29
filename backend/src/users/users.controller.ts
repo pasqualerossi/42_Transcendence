@@ -1,5 +1,10 @@
 import { UsersService } from './users.service';
 import { User } from './users.entity';
+import JwtTwoFactorGuard from 'src/authentication/twoFactor/twoFactor.guard';
+import RequestWithUser from 'src/authentication/interfaces/requestWithUser.interface';
+import { FileInterceptor } from '@nestjs/platform-express';
+import { Express } from 'express'
+
 import 
 {
 	Controller,
@@ -17,10 +22,6 @@ import
 	HttpException,
 	HttpStatus
 } from '@nestjs/common';
-import JwtTwoFactorGuard from 'src/auth/twoFactor/twoFactor.guard';
-import { FileInterceptor } from '@nestjs/platform-express';
-import RequestWithUser from 'src/auth/interfaces/requestWithUser.interface';
-import { Express } from 'express'
 
 @Controller('users')
 export class UserController 
