@@ -1,4 +1,11 @@
 <template>
+
+	<!-- This template represents a form for changing the user's username or display name. -->
+	<!-- This displays the current username and provides an input field where the user can enter a new name.  -->
+	<!-- When the "Submit" button is clicked, the changeUsername method is triggered, which handles the submission and validation of the new name. -->
+	<!-- If there is an error with the name, such as it being too short or already taken, an error message is displayed below the input field. -->
+	<!-- The component relies on the currentUser prop to display the current username. -->
+
 	<div class="change-name-wrapper">
 		<h2>Change Username</h2>
 		<div>Current Name:</div>
@@ -12,6 +19,11 @@
 </template>
 
 <script>
+
+	// A component that allows the user to change their username. 
+	// Validates the new name input, displays error messages for invalid input, and sends a request to the server to update the username.
+	// It also updates the current user's data after a successful update.
+
 	import axios from 'axios'
 	import store from '@/store/index.js'
 

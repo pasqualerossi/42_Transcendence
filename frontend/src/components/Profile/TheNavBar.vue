@@ -25,6 +25,10 @@
 </template>
 
 <script>
+
+// This is a navigation bar component that handles user authentication and provides logout functionality.
+// It interacts with the server and Vuex store to manage user data.
+
 	import axios from 'axios'
 	import store from '@/store/index.js';
 

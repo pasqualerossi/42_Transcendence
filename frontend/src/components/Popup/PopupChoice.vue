@@ -1,4 +1,7 @@
 <template>
+
+	<!-- This template represents a modal component that shows a message and allows the user to confirm or cancel an action.-->
+
 	<div class="modal" v-if="visible">
 		<div class="text">{{info}}</div>
 		<div class="choices">
@@ -9,6 +12,10 @@
 </template>
 
 <script>
+
+// This script is a component that handles the behavior and functionality of a popup choice component.
+// It emits events when the user confirms or cancels the choice.
+
 export default {
 	name: 'PopupChoice',
 

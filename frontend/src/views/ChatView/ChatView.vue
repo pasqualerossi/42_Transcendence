@@ -1,4 +1,7 @@
 <template>
+
+	<!-- The template defines the structure of the chat interface using a grid layout. -->
+
 	<div class="grid-container" v-if="currentUser && socket">
 		<ChatHeader class="header" v-if="currentRoom" :currentRoom="currentRoom"/>
 		<ChatSidenav class="sidenav" :groupRooms="groupRooms"/>
@@ -9,6 +12,12 @@
 </template>
 
 <script setup>
+
+	// This handles the functionality of the chat interface.
+	// It imports dependencies and defines variables and methods using Vue Composition API.
+	// It interacts with the Vuex store to retrieve the current user and chat socket.
+	// It also sets up event listeners for socket communication and performs actions based on received events.
+
 	import { computed, onBeforeMount, ref, onUnmounted } from 'vue'
 	import store from '@/store/index.js';
 	import { useRouter } from 'vue-router';

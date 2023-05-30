@@ -1,4 +1,12 @@
 <template>
+
+<!-- This is the template section of a chat sidebar component. -->
+<!-- It consists of two tabs, "Groups" and "Private," represented by buttons. -->
+<!-- Depending on the selected tab, different components are rendered. -->
+<!-- If the "Groups" tab is active, the ChatSidenavGroups component is displayed, which shows group chat rooms. -->
+<!-- If the "Private" tab is active, the ChatSidenavPrivate component is shown, which likely handles private or one-on-one conversations. -->
+<!-- The user can switch between the tabs by clicking on the respective buttons. -->
+
 	<aside class="sidenav">
 		<div class="sidenav__tabs">
 			<button
@@ -25,6 +33,9 @@
 </template>
 
 <script setup>
+
+// This script sets up a chat sidebar component with a reactive variable for tracking the selected tab and receives a prop for group chat rooms.
+
 	import { ref } from'vue';
 	import ChatSidenavGroups from '@/components/ChatSidenavGroups.vue'
 	import ChatSidenavPrivate from '@/components/ChatSidenavPrivate.vue'
@@ -32,7 +43,8 @@
 	const currentSidenavTab = ref('Groups');
 
 	const props = defineProps({
-		groupRooms: {
+		groupRooms: 
+		{
 			type: Array,
 			required: true
 		}
@@ -40,7 +52,8 @@
 </script>
 
 <style scoped>
-	button {
+	button 
+	{
 		width: 80px;
 		height: 35px;
 		border: 2px solid black;
@@ -55,12 +68,14 @@
 		cursor: pointer;
 	}
 
-	.sidenav {
+	.sidenav 
+	{
 		display: flex;
 		flex-direction: column;
 	}
 
-	.sidenav__tabs {
+	.sidenav__tabs 
+	{
 		height: 100px;
 		display: flex;
 		justify-content: space-evenly;

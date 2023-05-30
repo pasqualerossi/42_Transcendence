@@ -1,4 +1,8 @@
 <template>
+
+	<!-- This displays a section for managing friends. -->
+	<!-- It allows users to switch between different tabs and renders the content based on the selected tab. -->
+
 	<div class="friends-wrapper">
 		<div class="wrapper">
 			<h2>Friends</h2>
@@ -14,6 +18,11 @@
 </template>
 
 <script>
+
+// This fetches data from the server using Axios, interacts with the Vuex store, and manages different tabs for displaying friends-related content.
+// This includes methods for retrieving and updating user data, as well as computed properties for accessing the current user.
+// The component is mounted before rendering, ensuring that the necessary data is fetched and the user is authenticated.
+
 import axios from 'axios'
 import store from '@/store/index.js';
 

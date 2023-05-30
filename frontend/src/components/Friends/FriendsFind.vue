@@ -1,4 +1,8 @@
 <template>
+
+	<!-- This template represents a component for finding friends. -->
+	<!-- It includes a search input field and displays user cards based on the search results. -->
+
 	<div class="friends">
 		<h3>Find Friends</h3>
 		<input v-model="filterText" placeholder="search user">
@@ -11,8 +15,11 @@
 </template>
 
 <script>
-import _ from 'lodash'
 
+// This script is a component that handles the functionality of finding friends.
+// It manages data, filters and sorts users based on search criteria, and interacts with the application's store to fetch the current user's data.
+
+import _ from 'lodash'
 import store from '@/store/index.js';
 import BaseCardUser from '@/components/BaseCardUser.vue'
 

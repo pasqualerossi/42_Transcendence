@@ -1,4 +1,10 @@
 <template>
+
+	<!-- This is a component called "ProfileInfo" that displays basic information about a user's profile. -->
+	<!-- It includes the user's username, an image, their number of wins and losses displayed as boxes, and their current status.  -->
+	<!-- The component uses the "BaseBoxNumberWithTitle" component to render the boxes for wins and losses. -->
+	<!-- The image source is determined by the "imageLink" computed property. -->
+
 	<div class="profile-info">
 		<h2 class="info__title">Profile</h2>
 		<h2 class="info__username">{{user.username}}</h2>
@@ -10,6 +16,12 @@
 </template>
 
 <script>
+
+// This is a component called "ProfileUserInfo" that displays user-specific information within a profile. 
+// It imports and utilises the "BaseBoxNumberWithTitle" component to render boxes with titles and numbers.
+// The component receives a user object as a prop, which contains information such as the user's avatar, profile picture URL, status, wins, and losses. 
+// The computed properties "imageLink" and "userStatus" are used to determine the image source and status text based on the user's data.
+
 	import BaseBoxNumberWithTitle from '@/components/BaseBoxNumberWithTitle.vue'
 
 	export default {

@@ -1,4 +1,9 @@
 <template>
+
+<!-- This template represents a button with a dropdown menu. -->
+<!-- Clicking the button toggles the visibility of the dropdown menu. -->
+<!-- Which contains additional buttons for actions like making someone an admin, muting or banning a user, or unbanning a user. -->
+
 	<div class="button-wrapper">
 		<button :id="componentId + 'toggle-button'" class="toggle-button" @click="changeDropdownState">&uarr;</button>
 		<div class="button-dropdown" :id="componentId + 'dropdown'">
@@ -11,6 +16,10 @@
 </template>
 
 <script>
+
+// This script is a component that controls the behavior of a dropdown menu.
+// It handles showing and hiding the dropdown, emitting events for various button actions, and adding/removing animations.
+
 export default {
 	name: 'DropdownChatAdmin',
 

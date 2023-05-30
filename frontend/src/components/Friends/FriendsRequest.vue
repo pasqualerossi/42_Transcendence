@@ -1,4 +1,7 @@
 <template>
+
+	<!-- This template represents a component for displaying a list of user cards for friend requests. -->
+
 	<div class="friends">
 		<h3>Friend Requests</h3>
 		<div v-for="user in orderedRequestsList" :key="user">
@@ -8,8 +11,11 @@
 </template>
 
 <script>
-import _ from 'lodash'
 
+// This script is a component that handles the functionality of displaying friend requests.
+// It retrieves the user's friend request data, sorts them alphabetically, and interacts with the application's store to fetch the current user's data.
+
+import _ from 'lodash'
 import store from '@/store/index.js';
 import BaseCardUser from '@/components/BaseCardUser.vue'
 

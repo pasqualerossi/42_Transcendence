@@ -1,4 +1,10 @@
 <template>
+
+	<!-- This template represents a profile view page that displays information about a user. -->
+	<!-- It includes sections for user information and match history. -->
+	<!-- The page also includes buttons for navigating back, viewing the user's profile, and displaying match history. -->
+	<!-- An error message is shown if there is an error. -->
+
 	<div class="wrapper">
 		<div class="profile" v-if="user && currentUser">
 			<button @click="goPageBack" class="close-button" v-if="buttonsAllowed">&#x2715;</button>
@@ -13,6 +19,13 @@
 </template>
 
 <script>
+
+	// This script represents the logic and functionality for the ProfileView component.
+	// This fetches user data from the server based on the user ID and displays it on the profile page.
+	// This handles navigation, error handling, and computed properties for the component.
+	// The component includes sub-components such as ProfileMatchHistory, ProfileButtons, and ProfileUserInfo for displaying specific sections of the user's profile.
+	// This script interacts with the store to access and update data using Vuex.
+
 	import store from '@/store/index.js'
 	import axios from 'axios'
 	

@@ -1,8 +1,17 @@
 <template>
+
+	<!-- A component representing a checkbox input element. -->
+	<!-- It allows the user to toggle a boolean value and emits an event when the checkbox is changed, passing the updated boolean value. -->
+
 	<input type="checkbox" v-model="bool" @change="$emit('checked', bool)">
 </template>
 
 <script>
+
+// A component representing a switch control.
+// It maintains an internal boolean value that can be toggled. 
+// The component emits an event when the switch is checked or unchecked, providing the updated boolean value to the parent component.
+
 	export default {
 		name: 'BaseSwitch',
 

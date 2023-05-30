@@ -1,4 +1,10 @@
 <template>
+
+	<!-- This displays a game lobby interface when there is a current user and a socket connection established. -->
+	<!-- This includes a GameSearch component for searching and entering game rooms, -->
+	<!-- and two other components, GameSpectate and GameInvitePlayers, displayed in rows within the lobby. -->
+	<!-- The template is conditionally rendered based on the presence of the current user and socket connection. -->
+
 	<div class="game-lobby-wrapper" v-if="currentUser && socket">
 		<GameSearch @enterGame="enterGameRoom($event)" :socket="socket"/>
 		<div class="rows">
@@ -9,6 +15,13 @@
 </template>
 
 <script setup>
+
+	// This script sets up dependencies and computed variables, handles user navigation and game room entry.
+	// The enterGameRoom function is defined, which is triggered when a user wants to enter a game room. 
+	// It sets the current game key and role in the store, and navigates the user to the game room view using the router.push method.
+	// The onBeforeMount hook is used to fetch the current user from the store and perform a check.
+	// If the current user is not available, it redirects the user to the home page.
+
 	import { computed, onBeforeMount } from 'vue'
 	import store from '@/store/index.js';
 	import { useRouter } from 'vue-router';

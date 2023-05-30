@@ -1,4 +1,9 @@
 <template>
+
+<!-- This is a header component in a chat application. -->
+<!-- It displays the current room's name or the name of the other user in a private chat. -->
+<!-- It also includes dropdown menus and pop-up windows for performing actions related to the chat room, such as password protection or making choices. -->
+
 	<header class="header">
 		<strong v-if="currentRoom.access !== 'private'">{{currentRoom.name}}</strong>
 		<strong v-if="currentRoom.access === 'private'">{{otherUserName}}</strong>
@@ -30,6 +35,13 @@
 </template>
 
 <script setup>
+
+// This is a script section of a component in a chat application.
+// It defines the behavior and functionality of the header component.
+// It imports other components such as DropdownChatHeader, PopupPassword, and PopupChoice for dropdown menus and pop-up windows. 
+// It also includes computed properties, methods, and variables to handle various actions such as leaving a room, deleting a room, setting room password, and handling user permissions. 
+// The script sets up event listeners and emits events to communicate with the parent component and other components.
+
 	import store from '@/store/index.js';
 	import DropdownChatHeader from '@/components/DropdownChatHeader.vue';
 	import PopupPassword from '@/components/PopupPassword.vue';
@@ -37,7 +49,8 @@
 	import { computed, ref } from 'vue';
 
 	const dropdownTitle = 'Menu';
-	const dropdownOptions = [
+	const dropdownOptions = 
+	[
 		{
 			title: 'Leave',
 			onlyAdmin: false
@@ -61,53 +74,55 @@
 	const showPopupChoice = ref(false);
 	const errorPopupPassword = ref('');
 	
-
-	/* PROPS */
 	const props = defineProps({
-		currentRoom: {
+		currentRoom: 
+		{
 			type: Object,
 			required: true,
 		},
 	})
-	/* PROPS */
 
-
-	/* COMPUTED */
-	const currentUser = computed(() => {
+	const currentUser = computed(() => 
+	{
 		return store.getters.getCurrentUser
 	})
 
-	const filteredOptions = computed(() => {
+	const filteredOptions = computed(() => 
+	{
 		if (isAdmin(props.currentRoom, currentUser.value.username))
 			return dropdownOptions;
-		return dropdownOptions.filter(e => {
+		return dropdownOptions.filter(e => 
+		{
 			return e.onlyAdmin === false;
 		});
 	})
 
-	const socket = computed(() => {
+	const socket = computed(() => 
+	{
 		return store.getters.getSocketChat;
 	})
 
-	const otherUserName = computed(() => {
+	const otherUserName = computed(() => 
+	{
 		const user =  props.currentRoom.chatUser.find(user => user.id !== currentUser.value.id);
 		if (!user)
 			return ;
 		return user.username;
 	})
-	/* COMPUTED */
 
-
-	/* FUNCTIONS */
-	const isAdmin = (room, username) => {
-		const filtered = room.admins.filter((e) => {
+	const isAdmin = (room, username) => 
+	{
+		const filtered = room.admins.filter((e) => 
+		{
 			return e.username === username;
 		})
 		return filtered.length > 0;
 	}
 
-	const showPopup = (data, type) => {
-		switch(type) {
+	const showPopup = (data, type) => 
+	{
+		switch(type) 
+		{
 			case 'Password':
 				popupData.value = data;
 				showPopupPassword.value = true;
@@ -119,15 +134,18 @@
 		}
 	}
 
-	const hidePopup = () => {
+	const hidePopup = () => 
+	{
 		showPopupChoice.value = false;
 		showPopupPassword.value = false;
 		popupData.value = null;
 		errorPopupPassword.value = '';
 	}
 
-	const confirmedPopupChoice = (actionName) => {
-		switch(actionName) {
+	const confirmedPopupChoice = (actionName) => 
+	{
+		switch(actionName) 
+		{
 			case 'Leave':
 				leaveRoom(props.currentRoom.name);
 				break ;
@@ -141,8 +159,10 @@
 		hidePopup();
 	}
 
-	const dropdownAction = (actionName) => {
-		switch(actionName) {
+	const dropdownAction = (actionName) => 
+	{
+		switch(actionName) 
+		{
 			case 'Leave':
 				showPopup({ title: 'Leave', info: 'Leave Room?' }, 'Choice');
 				break ;
@@ -157,38 +177,40 @@
 				break ;
 		}
 	}
-	/* FUNCTIONS */
 
-
-	/* SOCKET ACTIONS */
-	const leaveRoom = (roomName) => {
+	const leaveRoom = (roomName) => 
+	{
 		socket.value.emit('leaveRoom', roomName);
 	}
 
-	const deleteRoom = (roomName) => {
+	const deleteRoom = (roomName) => 
+	{
 		socket.value.emit('deleteRoom', roomName);
 	}
 
-	const setRoomPublic = (roomName) => {
+	const setRoomPublic = (roomName) => 
+	{
 		socket.value.emit('setRoomPublic', roomName);
 	}
 
-	const setRoomProtected = (roomName, password) => {
+	const setRoomProtected = (roomName, password) => 
+	{
 		socket.value.emit('setRoomProtected', {roomName, password});
 		hidePopup();
 	}
-	/* SOCKET ACTIONS */
 </script>
 
 <style scoped>
-	.header {
+	.header 
+	{
 		padding: 0 30px;
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
 	}
 
-	.header strong {
+	.header strong 
+	{
 		font-size: 20px;
 	}
 </style>

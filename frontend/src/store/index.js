@@ -1,3 +1,9 @@
+// State defines the initial state of the application.
+// The getters section provides methods to access the state values defined in the store.
+// The actions section defines asynchronous methods that can be called to perform actions like fetching the current user, updating the user's status, and setting up socket connections.
+// The mutations section contains synchronous methods to update the state values in the store.
+// The store is created using createStore from Vuex, with the defined state, getters, actions, and mutations.
+
 import { createStore } from 'vuex';
 import axios from 'axios';
 import io from 'socket.io-client';

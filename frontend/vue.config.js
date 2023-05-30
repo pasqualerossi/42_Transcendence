@@ -1,3 +1,6 @@
+// This file is used to customise the configuration of the Vue CLI (Command Line Interface). 
+// It allows to modify various settings related to development and build processes.
+
 const { defineConfig } = require('@vue/cli-service')
 
 module.exports = defineConfig({

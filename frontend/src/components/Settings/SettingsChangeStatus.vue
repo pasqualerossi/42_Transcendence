@@ -1,4 +1,9 @@
 <template>
+
+	<!-- A component that allows the user to change their status. -->
+	<!-- This displays the current status of the user and provides buttons to set different status options such as "Offline," "Online," and "Do Not Disturb."  -->
+	<!-- When a button is clicked, it triggers a method to update the user's status accordingly. -->
+
 	<div class="change-status-wrapper">
 		<h2>Change User Status</h2>
 		<div>Current Status:</div>
@@ -6,12 +11,19 @@
 		<div class="status">
 			<button @click="setUserStatus(0)">Offline</button>
 			<button @click="setUserStatus(1)">Online</button>
-			<button @click="setUserStatus(3)">Do not Disturb</button>
+			<button @click="setUserStatus(3)">Do Not Disturb</button>
 		</div>
 	</div>
 </template>
 
 <script>
+
+// This is a component that handles the functionality to change the user's status. 
+// It receives the current user object as a prop and displays the user's current status.
+// It provides buttons for different status options such as "Offline," "Online," and "Do not Disturb."
+// When a button is clicked, it triggers a method to update the user's status by dispatching an action to the store. 
+// The computed property 'userStatus()' converts the numerical status value to a descriptive string for display purposes.
+
 import store from '@/store/index.js'
 
 export default {

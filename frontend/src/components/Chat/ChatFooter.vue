@@ -1,4 +1,7 @@
 <template>
+
+<!-- This is a footer section with an input field and a send button to enter and send messages. -->
+
 	<footer class="footer">
 		<input v-model="messageText" placeholder="message">
 		<button @click="(messageText) ? sendMessage() : 0">Send</button>
@@ -6,13 +9,16 @@
 </template>
 
 <script setup>
+
+// This is a script section using the Vue 3 Composition API. 
+// It includes reactive variables, event listeners, and lifecycle hooks.
+// It handles sending messages in a chat room using a socket connection.
+
 	import { ref, computed, onMounted, onUnmounted } from 'vue'
 	import store from '@/store/index.js'
 
 	const messageText = ref('');
 
-
-	/* PROPS */
 	const props = defineProps({
 		roomName: {
 			type: String,
@@ -23,52 +29,51 @@
 			required: true
 		}
 	});
-	/* PROPS */
 
-
-	/* COMPUTED */
-	const socket = computed(() => {
+	const socket = computed(() => 
+	{
 		return store.getters.getSocketChat;
 	})
-	/* COMPUTED */
 
-
-	/* FUNCTIONS */
-	const findOtherUserId = (roomName) => {
+	const findOtherUserId = (roomName) => 
+	{
 		const id = roomName.replace(props.userId.toString(), '').replace('_', '');
 		return Number(id);
 	}
-	/* FUNCTIONS */
 
-
-	/* SOCKET ACTIONS */
-	const sendMessage = () => {
-		socket.value.emit('sendMessage', {
+	const sendMessage = () => 
+	{
+		socket.value.emit('sendMessage', 
+		{
 			roomName: props.roomName,
 			receiverId: findOtherUserId(props.roomName),
 			message: messageText.value,
 		})
 		messageText.value = '';
 	}
-	/* SOCKET ACTIONS */
 
-	const readKey = (e) => {
-		if (e.key === 'Enter' && messageText.value) {
+	const readKey = (e) => 
+	{
+		if (e.key === 'Enter' && messageText.value) 
+		{
 			sendMessage();
 		}
 	}
 
-	onUnmounted(() => {
+	onUnmounted(() => 
+	{
 		document.removeEventListener('keydown', readKey);
 	})
 
-	onMounted(() => {
+	onMounted(() => 
+	{
 		document.addEventListener('keydown', readKey);
 	})
 </script>
 
 <style scoped>
-	button {
+	button 
+	{
 		height: 36px;
 		width: 100px;
 		background-color: var(--blue-light);
@@ -79,11 +84,13 @@
 		font-weight: bold;
 	}
 
-	button:hover {
+	button:hover 
+	{
 		border-color: var(--blue-light);
 	}
 
-	.footer {
+	.footer 
+	{
 		display: flex;
 		align-items: center;
 		flex-direction: row;
@@ -91,7 +98,8 @@
 		padding: 0 30px;
 	}
 
-	.footer input {
+	.footer input 
+	{
 		flex: 1;
 		outline: none;
 		color: black;

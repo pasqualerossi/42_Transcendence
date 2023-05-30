@@ -1,4 +1,10 @@
 <template>
+
+	<!-- This template represents a two-factor login form in a user interface. -->
+	<!-- This displays a form where the user can enter an authentication code.  -->
+	<!-- If there is an error, it displays an error message. -->
+	<!-- When the form is submitted, it triggers the "login2FA" method. -->
+
 	<div class="two-factor-login-wrapper">
 		<div class="two-factor-login">
 			<h2>Login Two Factor</h2>
@@ -12,6 +18,10 @@
 </template>
 
 <script>
+
+// This script handles the login process for two-factor authentication.
+// This captures the user's input code, sends a request to authenticate it, and redirects to the profile page if successful.
+
 import axios from 'axios'
 
 export default 
@@ -53,7 +63,6 @@ export default
 		},
 	}
 }
-
 </script>
 
 <style scoped>

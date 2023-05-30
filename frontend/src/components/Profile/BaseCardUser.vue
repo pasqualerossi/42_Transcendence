@@ -1,4 +1,11 @@
 <template>
+
+	<!-- This is a component that represents a user profile card. -->
+	<!-- It displays the user's profile picture, username, and optionally their status. -->
+	<!-- The component is clickable and triggers a navigation action to the user's profile page when clicked. -->
+	<!-- The data for the user's information and profile picture is passed as props to the component, -->
+	<!-- allowing it to be reused for different users with their respective details. -->
+
 	<div>
 		<div class="card" @click="goToProfilePage">
 			<div class="img-container">
@@ -13,6 +20,10 @@
 </template>
 
 <script>
+
+// A component representing a user card with profile information, including a profile picture, username, and status.
+// It allows navigation to the user's profile page and handles the display of user data.
+
 import store from '@/store/index.js'
 
 export default {

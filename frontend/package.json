@@ -2,12 +2,14 @@
   "name": "frontend",
   "version": "0.1.0",
   "private": true,
-  "scripts": {
+  "scripts": 
+  {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint"
   },
-  "dependencies": {
+  "dependencies": 
+  {
     "axios": "^0.27.2",
     "form-data": "^4.0.0",
     "lodash": "^4.17.21",
@@ -16,26 +18,32 @@
     "vue-router": "^4.0.16",
     "vuex": "^4.0.2"
   },
-  "devDependencies": {
+  "devDependencies": 
+  {
     "@vue/cli-service": "~5.0.0",
     "eslint": "^7.32.0",
     "eslint-plugin-vue": "^8.0.3"
   },
-  "eslintConfig": {
+  "eslintConfig": 
+  {
     "root": true,
-    "env": {
+	"env": 
+	{
       "node": true
     },
-    "extends": [
+	"extends": 
+	[
       "plugin:vue/vue3-essential",
       "eslint:recommended"
     ],
-    "parserOptions": {
+	"parserOptions": 
+	{
       "parser": "@babel/eslint-parser"
     },
     "rules": {}
   },
-  "browserslist": [
+  "browserslist": 
+  [
     "> 1%",
     "last 2 versions",
     "not dead",

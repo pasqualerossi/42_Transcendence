@@ -1,4 +1,7 @@
 <template>
+
+	<!-- This is a button that users can click to initiate the login process.-->
+
 	<div class="login-wrapper">
 		<button @click="login">
 			<img src="@/assets/42-logo-white.svg">
@@ -8,6 +11,9 @@
 </template>
 
 <script>
+
+	// This script handles the login functionality by redirecting the user to an authentication callback URL.
+
 	export default {
 		name: 'LoginView',
 

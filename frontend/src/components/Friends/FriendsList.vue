@@ -1,4 +1,7 @@
 <template>
+
+	<!-- This template represents a component for displaying a list of user cards for the user's friends. -->
+
 	<div class="xxx">
 		<h3>My Friends</h3>
 		<div v-for="friend in orderedFriendsList" :key="friend">
@@ -8,6 +11,10 @@
 </template>
 
 <script>
+
+// This script is a component that handles the functionality of displaying the user's friends list.
+// It retrieves the user's friends data, sorts them alphabetically, and interacts with the application's store to fetch the current user's data.
+
 import _ from 'lodash'
 
 import store from '@/store/index.js';

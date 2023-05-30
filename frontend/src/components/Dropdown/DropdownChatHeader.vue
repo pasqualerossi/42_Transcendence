@@ -1,4 +1,8 @@
 <template>
+
+	<!-- This template represents a button with a dropdown menu. -->
+	<!-- Clicking the button toggles the visibility of the dropdown menu, which contains buttons representing different options. -->
+
 	<div class="button-wrapper">
 		<button id="header-toggle-button" @click="changeDropdownState">&uarr;</button>
 		<div class="button-dropdown" id="header-dropdown">

@@ -1,4 +1,9 @@
 <template>
+
+	<!-- This template represents a form for changing the user's profile picture. -->
+	<!-- This displays the current profile picture, allows the user to select a new image file, and provides a button to submit the change. -->
+	<!-- Also includes a preview of the selected image before uploading, along with a message that appears after the submission process. -->
+
 	<div class="change-avatar-wrapper">
 		<h2>Change Profile Picture</h2>
 		<div>Current Picture:</div>
@@ -14,6 +19,13 @@
 </template>
 
 <script>
+
+// This script component handles the functionality of changing the user's avatar or profile picture.
+// This communicates with the server to upload the selected image file and updates the user's profile with the new picture.
+// This provides methods to handle image selection, previewing the selected image, validating the file type and size, and submitting the changes.
+// Displays an error message if there are any issues during the upload process.
+// The component receives the current user's information as a prop from the parent component.
+
 import axios from 'axios'
 import store from '@/store/index.js'
 

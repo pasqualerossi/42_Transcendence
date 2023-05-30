@@ -1,8 +1,13 @@
 <template>
+
+	<!-- This is a modal component that displays information and allows the user to select a number from a dropdown menu. -->
+	<!-- It also provides an error message for invalid selections. -->
+	<!-- The component includes cancel and confirm buttons for the user to cancel or confirm their selection. -->
+
 	<div class="modal" v-if="visible">
 		<div class="text">{{info}}</div>
 		<select v-model.number="inputNumber">
-			<option disabled value="">Please select one</option>
+			<option disabled value="">Please Select One</option>
 			<option>5</option>
 			<option>10</option>
 			<option>15</option>
@@ -18,6 +23,11 @@
 </template>
 
 <script>
+
+// This is a component called "PopupNumber" that represents a modal popup window.
+// It allows the user to select a number from a dropdown menu and provides options to confirm or cancel the selection. 
+// The component emits events when the user confirms or cancels, and it also manages the input number and displays an optional error message.
+
 export default {
 	name: 'PopupNumber',
 

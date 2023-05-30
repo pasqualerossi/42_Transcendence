@@ -26,6 +26,13 @@
 </template>
 
 <script>
+
+// A component called "ProfileButtons" that provides various functionalities for interacting with user profiles. 
+// It includes methods for sending friend requests, retrieving friend requests, deleting friends, accepting friend requests, declining friend requests, blocking users, and unblocking users.
+// These methods make asynchronous requests to a server API using Axios and update the application state through a Vuex store. 
+// The component also defines computed properties to check the current user's relationship with the profile user, such as received friend requests, sent friend requests, friendship status, and blocked status.
+// The component handles error messages in case of API request failures.
+
 	import store from '@/store/index.js'
 	import axios from 'axios'
 

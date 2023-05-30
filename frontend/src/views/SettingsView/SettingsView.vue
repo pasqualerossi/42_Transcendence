@@ -1,4 +1,10 @@
 <template>
+
+	<!-- This template represents a settings menu in a user interface. -->
+	<!-- It is conditionally rendered based on whether a currentUser is available. -->
+	<!-- Inside the menu, there are several items such as SettingsChangeAvatar, SettingsChangeStatus, SettingsChangeName, and SettingsTwoFactorSetup, each represented by a component. -->
+	<!-- These components handle different settings functionalities, such as changing the user's avatar, status, name, and setting up two-factor authentication. -->
+
 	<div class="settings-wrapper" v-if="currentUser">
 		<div class="menu">
 			<SettingsChangeAvatar class="menu-item" :currentUser="currentUser"/>
@@ -10,6 +16,11 @@
 </template>
 
 <script>
+
+	// This script handles the settings view in a user interface.
+	// This imports and includes components for various settings functionalities.
+	// This fetches the current user from the store and redirects if the user is not available.
+
 	import store from '@/store/index.js'
 
 	import SettingsTwoFactorSetup from '@/components/Settings/SettingsTwoFactorSetup.vue'

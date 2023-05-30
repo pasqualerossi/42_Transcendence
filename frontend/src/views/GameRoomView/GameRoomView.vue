@@ -1,4 +1,8 @@
 <template>
+
+	<!-- This includes features like a pause menu, game result display, player information, game score, countdown, and a canvas for rendering the game. -->
+	<!-- The components are conditionally rendered based on the game state and socket connection. -->
+
 	<div class="wrapper">
 		<GamePauseMenu v-if="gameIsPaused && socket" @resumeGame="resumeGame" @exitGame="exitGame"/>
 		<GameResult v-if="gameResult && socket" :message="gameResult" @goToLobby="gameOver"/>
@@ -14,6 +18,12 @@
 </template>
 
 <script setup>
+
+	// This script sets up the logic and functionality for a game view in a Vue application. 
+	// This includes various functions for drawing the game elements on a canvas, handling game events, and managing the game state. 
+	// This also handles socket communication, listens for events from the server, and performs actions based on those events.
+	// Also initialising and cleaning up resources when the component is mounted or unmounted.
+
 	import { computed, onBeforeMount, onMounted, onUnmounted, ref } from 'vue'
 	import store from '@/store/index.js';
 	import { useRouter } from 'vue-router';

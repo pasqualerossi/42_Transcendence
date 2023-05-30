@@ -1,4 +1,7 @@
 <template>
+
+	<!-- This template represents a simplified modal component that displays a message and allows the user to confirm an action.-->
+
 	<div class="modal" v-if="visible">
 		<div class="text">{{info}}</div>
 		<button class="confirm" @click="userConfirmed">{{confirmButtonText}}</button>
@@ -6,6 +9,9 @@
 </template>
 
 <script>
+
+// This is a component called "PopupInformation" that displays information in a modal and emits events when confirmed.
+
 export default {
 	name: 'PopupInformation',
 

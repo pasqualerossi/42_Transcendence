@@ -1,4 +1,10 @@
 <template>
+
+	<!-- This is a component that represents a modal popup window. -->
+	<!-- It includes a text message, an input field where the user can enter text, and options to confirm or cancel the input.  -->
+	<!-- The component also handles the visibility of the modal based on a boolean variable, and it emits events when the user confirms or cancels. -->
+	<!-- It can display an optional error message below the input field. -->
+
 	<div class="modal" v-if="visible">
 		<div class="text">{{info}}</div>
 		<input v-model="inputText">
@@ -11,6 +17,13 @@
 </template>
 
 <script>
+
+// This is a component called "PopupPassword" that represents a modal popup window. 
+// It is specifically designed for entering and confirming passwords. 
+// The component includes a text message, an input field where the user can enter a password, and options to confirm or cancel the input.
+// The component handles the visibility of the modal based on a boolean variable and emits events when the user confirms or cancels. 
+// It can also display an optional error message below the input field.
+
 export default {
 	name: 'PopupPassword',
 

@@ -1,4 +1,8 @@
 <template>
+
+	<!-- This template is for a component that handles the setup and management of two-factor authentication (2FA) for a user. -->
+	<!-- It allows the user to generate a QR code, enter a verification code, enable/disable 2FA, and displays error messages if necessary. -->
+
 	<div class="two-factor-wrapper" v-if="currentUser">
 		<h2>Setup Two Factor</h2>
 		<div class="code" v-if="!currentUser.isTwoFactorAuthenticationEnabled">
@@ -14,8 +18,12 @@
 	</div>
 </template>
 
-
 <script>
+
+// This script handles the logic and functionality of the Vue.js component for managing two-factor authentication (2FA) setup.
+// It includes methods for submitting verification codes, generating QR codes, and enabling/disabling 2FA.
+// It communicates with a server using Axios and interacts with the application's store to manage the current user's data.
+
 import axios from 'axios'
 import store from '@/store/index.js'
 

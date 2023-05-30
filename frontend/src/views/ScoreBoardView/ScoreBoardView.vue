@@ -1,4 +1,12 @@
 <template>
+
+	<!-- This represents a scoreboard component that displays the top 10 players based on their wins. -->
+	<!-- It includes a table with columns for rank, player, and wins. -->
+	<!-- Each row represents a player with their corresponding rank, name, and number of wins. -->
+	<!-- The component also handles error messages and displays them if necessary. -->
+	<!-- The user's own score is highlighted in a different style. -->
+	<!-- The data for each player is passed to the BaseCardUser component for rendering user-specific information. -->
+
 	<div class="score-board-wrapper" v-if="currentUser">
 		<div class="score-board">
 			<h2>TOP 10</h2>
@@ -34,6 +42,12 @@
 </template>
 
 <script>
+
+	// This script is a Vue component called ScoreBoardView. 
+	// It fetches the top player's data from the server and displays it in a scoreboard table.
+	// It uses Axios for HTTP requests and Vuex for state management.
+	// The component includes a BaseCardUser component for rendering user information.
+
 	import axios from 'axios'
 	import store from '@/store/index.js'
 
