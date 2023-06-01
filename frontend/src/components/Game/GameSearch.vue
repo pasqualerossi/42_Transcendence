@@ -1,4 +1,8 @@
 <template>
+
+<!-- This is for an options component that displays a message while searching for a game, a switch for toggling specials, -->
+<!-- and buttons for playing or canceling searching for a pong game.-->
+
 	<div class="options">
 		<div v-if="waiting">searching game .......</div>
 		<div class="switch">
@@ -11,6 +15,9 @@
 </template>
 
 <script setup>
+
+// This is a script that sets up reactive variables, socket event listeners, and functions for an options component.
+
 	import { computed, ref, onMounted, onUnmounted } from 'vue'
 	
 	import store from '@/store/index.js';

@@ -1,4 +1,7 @@
 <template>
+
+<!-- This is for a pause component that displays the "PAUSE" text and two buttons for resuming and exiting the game. -->
+
 	<div class="pause">
 		<strong>PAUSE</strong>
 		<button @click="$emit('resumeGame')">Resume</button>
@@ -7,6 +10,9 @@
 </template>
 
 <script>
+
+// This is a script for a game pause menu that emits events for exiting or resuming the game.
+
 	export default {
 		name: 'GamePauseMenu',
 

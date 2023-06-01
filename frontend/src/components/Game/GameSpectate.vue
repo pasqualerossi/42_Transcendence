@@ -1,4 +1,7 @@
 <template>
+
+<!-- This is for a spectate component that displays a list of live games and allows users to refresh the games and spectate a specific game.-->
+
 	<div class="spectate">
 		<h2>Spectate Game</h2>
 		<button @click="showGames">Refresh Games</button>
@@ -9,6 +12,10 @@
 </template>
 
 <script setup>
+
+// This is a script that handles the logic for a spectate component.
+// It includes socket communication, retrieving live games, and spectating a specific game.
+
 	import { onBeforeMount, ref, computed, onMounted } from 'vue'
 
 	import store from '@/store/index.js'

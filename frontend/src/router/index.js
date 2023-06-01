@@ -1,4 +1,5 @@
-// This defines different routes and their associated components.
+// This sets up the routing configuration for a Vue.js application using Vue Router.
+// It defines different routes and their associated components.
 
 import ChatView from '@/views/ChatView/ChatView.vue'
 import FriendsView from '@/views/FriendsView/FriendsView.vue'

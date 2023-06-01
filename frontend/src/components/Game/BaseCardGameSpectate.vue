@@ -1,4 +1,7 @@
 <template>
+
+<!-- This is for a game card component that displays two players and allows the user to spectate the game -->
+
 	<div
 		v-if="playerLeft && playerRight && (playerLeft.id != currentUser.id) && (playerRight.id != currentUser.id)"
 		class="card" @click="$emit('spectateGame', gameKey)">
@@ -19,6 +22,10 @@
 </template>
 
 <script>
+
+// This is a script that handles the logic and functionality for a game card.
+// It fetches player information, generates image links, and interacts with the Vuex store and a socket connection.
+
 import store from '@/store/index.js'
 
 export default {

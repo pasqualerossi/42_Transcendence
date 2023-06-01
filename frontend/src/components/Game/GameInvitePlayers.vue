@@ -1,4 +1,7 @@
 <template>
+
+<!-- This is for an invite component that displays a list of available users and allows sending game invitations. -->
+
 	<div class="invite">
 		<h2>Send Invites</h2>
 		<button @click="showAvailableUsers">Refresh Users</button>
@@ -13,40 +16,50 @@
 </template>
 
 <script setup>
+
+// This is a script that interacts with the Vuex store and socket connection to handle the logic and functionality to invite people to a game of Pong.
+
 	import BaseCardUser from '@/components/BaseCardUser.vue'
 	import { onBeforeMount, ref, computed, onMounted } from 'vue'
 	import store from '@/store/index.js'
 
 	const availableUsers = ref([]);
 
-	const socket = computed(() => {
+	const socket = computed(() => 
+	{
 		return store.getters.getSocketGame;
 	})
 
-	const showAvailableUsers = () => {
-		socket.value.emit('showAvailableUsers', (users) => {
+	const showAvailableUsers = () => 
+	{
+		socket.value.emit('showAvailableUsers', (users) => 
+		{
 			availableUsers.value = users;
 		})
 	}
 
-	const sendGameInvitation = (userId) => {
+	const sendGameInvitation = (userId) => 
+	{
 		socket.value.emit('sendGameInvitation', userId)
 	}
 
-	onMounted(() => {
+	onMounted(() => 
+	{
 		showAvailableUsers();
 	})
 </script>
 
 <style scoped>
-	.invite {
+	.invite 
+	{
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
 	}
 
-	button {
+	button 
+	{
 		width: 150px;
 		height: 40px;
 		background-color: var(--orange);

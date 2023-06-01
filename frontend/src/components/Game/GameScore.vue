@@ -1,4 +1,7 @@
 <template>
+
+<!-- This is for a score component that displays the scores of two entities. -->
+
 	<div class="score">
 		<span>{{score.left}}</span>
 		<span>{{score.right}}</span>
@@ -6,6 +9,9 @@
 </template>
 
 <script>
+
+// This is a script for a game score component that requires a prop named "score" of type Object.
+
 	export default {
 		name: 'GameScore',
 

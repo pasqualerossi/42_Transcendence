@@ -1,4 +1,8 @@
 <template>
+
+<!-- This is for an invite box component that shows a game invitation from a sender. -->
+<!-- It includes buttons to accept or decline the invitation. -->
+
 	<div class="invite-box" v-if="invitesAllowed">
 		<strong>Received Game invitation from: {{senderName}}</strong>
 		<div class="buttons">
@@ -9,6 +13,10 @@
 </template>
 
 <script>
+
+// This is for displaying and handling game invitations.
+// It shows an alert box with the sender's information, allows accepting or declining the invitation, and automatically hides after a specified duration.
+
 import store from '@/store/index.js'
 
 export default {

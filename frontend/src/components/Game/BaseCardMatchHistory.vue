@@ -1,4 +1,7 @@
 <template>
+
+<!-- This is for a game card component that displays two players, their usernames, scores, and dynamically applies a border class based on whether the user is the winner.-->
+
 	<div class="card" :class="(currentUserIsWinner) ? 'green-border' : 'red-border'">
 		<div class="player left-side" v-if="playerLeft">
 			<div class="img-container">
@@ -19,35 +22,48 @@
 </template>
 
 <script>
+
+// This is a script for the match history card.
+// This handles data properties, props, and computed properties related to displaying player information, image links,
+// and determining if the current user is the winner.
+
 export default {
 	name: 'BaseCardMatchHistory',
 
-	data() {
+	data() 
+	{
 		return {
 			playerLeft: null,
 			playerRight: null,
 		}
 	},
 
-	props: {
-		gameInfo: {
+	props: 
+	{
+		gameInfo: 
+		{
 			type: Object,
 			required: true
 		},
-		currentUserId: {
+		currentUserId: 
+		{
 			type: Number,
 			required: true
 		}
 	},
 
-	async created() {
+	async created() 
+	{
 		this.playerLeft = this.gameInfo.matchHistoryUsers.find(user => user.id === this.gameInfo.playerOneId);
 		this.playerRight = this.gameInfo.matchHistoryUsers.find(user => user.id === this.gameInfo.playerTwoId);
 	},
 
-	computed: {
-		imageLinkLeft() {
-			if (this.playerLeft) {
+	computed: 
+	{
+		imageLinkLeft() 
+		{
+			if (this.playerLeft) 
+			{
 				if (this.playerLeft.avatarId === 1 && this.playerLeft.profilePictureURL)
 					return this.playerLeft.profilePictureURL;
 				else
@@ -55,8 +71,10 @@ export default {
 			}
 		},
 
-		imageLinkRight() {
-			if (this.playerRight) {
+		imageLinkRight() 
+		{
+			if (this.playerRight) 
+			{
 				if (this.playerRight.avatarId === 1 && this.playerRight.profilePictureURL)
 					return this.playerRight.profilePictureURL;
 				else
@@ -64,11 +82,11 @@ export default {
 			}
 		},
 
-		currentUserIsWinner() {
-			if ((this.gameInfo.scorePlayerOne > this.gameInfo.scorePlayerTwo
-			&& this.gameInfo.playerOneId == this.currentUserId)
-			|| (this.gameInfo.scorePlayerOne < this.gameInfo.scorePlayerTwo
-			&& this.gameInfo.playerTwoId == this.currentUserId)) {
+		currentUserIsWinner() 
+		{
+			if ((this.gameInfo.scorePlayerOne > this.gameInfo.scorePlayerTwo && this.gameInfo.playerOneId == this.currentUserId)
+			|| (this.gameInfo.scorePlayerOne < this.gameInfo.scorePlayerTwo && this.gameInfo.playerTwoId == this.currentUserId)) 
+			{
 				return true;
 			}
 			return false;
@@ -82,7 +100,8 @@ export default {
 		box-sizing: border-box;
 	}
 
-	.img-container {
+	.img-container 
+	{
 		display: inline-block;
 		border-radius: 50%;
 		overflow: hidden;
@@ -91,13 +110,15 @@ export default {
 		border: 2px solid var(--grey);
 	}
 
-	#profile-pic {
+	#profile-pic 
+	{
 		width: 100%;
 		height: 100%;
 		object-fit: cover;
 	}
 
-	.card {
+	.card 
+	{
 		display: flex;
 		flex-direction: row;
 		align-items: center;
@@ -111,15 +132,18 @@ export default {
 		width: 310px;
 	}
 
-	.green-border {
+	.green-border 
+	{
 		border-color: rgb(17, 207, 17);
 	}
 
-	.red-border {
+	.red-border 
+	{
 		border-color: rgb(225, 22, 22);
 	}
 
-	.player {
+	.player 
+	{
 		display: flex;
 		flex-direction: row;
 		align-items: center;

@@ -1,7 +1,10 @@
 <template>
+
+<!-- This is for a result component that displays a message and a button to go back to the lobby. -->
+
 	<div class="result">
 		<strong>{{message}}</strong>
-		<button @click="$emit('goToLobby')">To Lobby</button>
+		<button @click="$emit('goToLobby')">To The Lobby</button>
 	</div>
 </template>
 
