@@ -174,6 +174,8 @@ It's the simplest and smallest Transcendence Project I can find.
 - 1 .css file
 - 1 .svg file
 
+[![My Skills](https://skillicons.dev/icons?i=vue,js,docker,css,svg)](https://skillicons.dev)
+
 Total of 57 Frontend Files
 
 ## :building_construction: Backend
@@ -182,6 +184,8 @@ Total of 57 Frontend Files
 - 4 .json files
 - 1 Dockerfile
 - 1 .png file
+
+[![My Skills](https://skillicons.dev/icons?i=ts,js,docker,nodejs,postgresql)](https://skillicons.dev)
 
 Total of 47 Backend Files
 
