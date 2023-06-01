@@ -4,6 +4,10 @@ https://github.com/42akurz/ft_transcendence
 
 It's the simplest and smallest Transcendence Project I can find.
 
+# To-Do
+
+- Fix up the Backend.
+
 # Setup
 
 <img width="712" alt="Screen Shot 2023-05-24 at 5 14 35 PM" src="https://github.com/pasqualerossi/42_Transcendence/assets/58959408/e44a0292-7d40-4901-a085-f0f266ac0822">
@@ -159,3 +163,31 @@ It's the simplest and smallest Transcendence Project I can find.
 		- <i class="devicon-typescript-plain"></i> users.controller.ts
 		- <i class="devicon-typescript-plain"></i> users.service.ts
 		- <i class="devicon-typescript-plain"></i> users.seraliser.ts
+
+
+## 🏠 Frontend
+
+- 48 .vue files
+- 4 .js files
+- 2 .json files
+- 1 Dockerfile
+- 1 .css file
+- 1 .svg file
+
+Total of 57 Frontend Files
+
+## :building_construction: Backend
+
+- 41 .ts files
+- 4 .json files
+- 1 Dockerfile
+- 1 .png file
+
+Total of 47 Backend Files
+
+## 🖥️ Main Files
+
+- 1 .yml file
+- 1 Makefile
+
+Grand Total of 106 Files
