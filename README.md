@@ -165,6 +165,11 @@ It's the simplest and smallest Transcendence Project I can find.
 		- <i class="devicon-typescript-plain"></i> users.seraliser.ts
 
 
+## 🖥️ Main Files
+
+- 1 .yml file
+- 1 Makefile
+
 ## 🏠 Frontend
 
 - 48 .vue files
@@ -189,9 +194,6 @@ Total of 57 Frontend Files
 
 Total of 47 Backend Files
 
-## 🖥️ Main Files
-
-- 1 .yml file
-- 1 Makefile
+## :bar_chart: Grand Total
 
 Grand Total of 106 Files
