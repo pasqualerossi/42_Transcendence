@@ -3,7 +3,7 @@ import DatabaseFile from 'src/database/databaseFile.entity';
 import { ChatRoom } from '../chat/entities/room.entity';
 import { Score } from '../scoreboard/score.entity';
 import { RoomMutedUsers } from '../chat/entities/muted.entity';
-import { UserFriendsSerializer } from './users.serializer'
+import { UserFriendsSerializer } from './users.serialiser'
 
 import {
 	Entity,

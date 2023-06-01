@@ -5,7 +5,7 @@ import { RoomMutedUsers } from '../entities/muted.entity';
 import { User } from '../../users/users.entity';
 import { ChatRoom } from '../entities/room.entity';
 import { plainToClass } from 'class-transformer';
-import { UserFriendsSerializer } from '../../users/users.serializer';
+import { UserFriendsSerializer } from '../../users/users.serialiser';
 
 
 @Injectable()

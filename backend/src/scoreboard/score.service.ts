@@ -4,7 +4,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Score } from './score.entity';
 import { UsersService } from 'src/users/users.service';
 import { plainToClass } from 'class-transformer';
-import { UserFriendsSerializer } from 'src/users/users.serializer';
+import { UserFriendsSerializer } from 'src/users/users.serialiser';
 import { User } from 'src/users/users.entity';
 
 @Injectable() 

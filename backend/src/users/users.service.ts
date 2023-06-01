@@ -5,7 +5,7 @@ import { User } from './users.entity';
 import * as bcrypt from 'bcrypt';
 import DatabaseFilesService from 'src/database/databaseFiles.service';
 import { plainToClass } from 'class-transformer';
-import { UserFriendsSerializer } from './users.serializer';
+import { UserFriendsSerializer } from './users.serialiser';
 
 @Injectable()
 export class UsersService 

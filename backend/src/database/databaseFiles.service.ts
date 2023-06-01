@@ -20,7 +20,7 @@ class DatabaseFilesService implements OnModuleInit {
 
 		if (DatabaseFile === null)
 		{
-			var picture = fs.readFileSync('./assets/default-avatar.png')
+			var picture = fs.readFileSync('./Assets/default-avatar.png')
 			this.uploadDatabaseFile(picture, "default")
 		}
 	}
