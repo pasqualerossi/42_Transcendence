@@ -1,7 +1,8 @@
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
-class DatabaseFile {
+class DatabaseFile 
+{
 	@PrimaryGeneratedColumn()
 	public id: number;
 

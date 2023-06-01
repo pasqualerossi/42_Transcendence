@@ -4,15 +4,19 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { ChatRoom } from '../entities/room.entity';
 
 @Injectable()
-export class RoomService {
-	constructor(
+export class RoomService 
+{
+	constructor
+	(
 		@InjectRepository(ChatRoom)
 		private roomRepository: Repository<ChatRoom>,
 	) {}
 
-	findAll(): Promise<ChatRoom[]> {
+	findAll(): Promise<ChatRoom[]> 
+	{
 		return this.roomRepository.find({
-			relations: [
+			relations: 
+			[
 				'chatUser',
 				'messages',
 				'admins',
@@ -23,10 +27,12 @@ export class RoomService {
 		});
 	}
 
-	findById(id: number): Promise<ChatRoom> {
+	findById(id: number): Promise<ChatRoom> 
+	{
 		return this.roomRepository.findOne({
 			where: {id: id},
-			relations: [
+			relations: 
+			[
 				'chatUser',
 				'messages',
 				'admins',
@@ -37,10 +43,12 @@ export class RoomService {
 		});
 	}
 
-	findByName(roomName: string): Promise<ChatRoom> {
+	findByName(roomName: string): Promise<ChatRoom> 
+	{
 		return this.roomRepository.findOne({
 			where: {name: roomName},
-			relations: [
+			relations: 
+			[
 				'chatUser',
 				'messages',
 				'admins',
@@ -51,10 +59,12 @@ export class RoomService {
 		});
 	}
 	
-	findGroups(): Promise<ChatRoom[]> {
+	findGroups(): Promise<ChatRoom[]> 
+	{
 		return this.roomRepository.find({
 			where: {access: Not('private')},
-			relations: [
+			relations: 
+			[
 				'chatUser',
 				'messages',
 				'admins',
@@ -65,7 +75,8 @@ export class RoomService {
 		})
 	}
 
-	buildPrivateRoomName(name1: string, name2: string): string {
+	buildPrivateRoomName(name1: string, name2: string): string 
+	{
 		if (name1 < name2)
 			return name1 + '_' + name2;
 		return name2 + '_' + name1;

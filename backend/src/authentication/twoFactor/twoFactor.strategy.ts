@@ -6,25 +6,33 @@ import { Request } from 'express';
 import { UsersService } from '../../users/users.service';
 
 @Injectable()
-export class JwtTwoFactorStrategy extends PassportStrategy(
+export class JwtTwoFactorStrategy extends PassportStrategy
+(
 	Strategy,
 	'jwt-two-factor'
-) {
-	constructor(
+) 
+{
+	constructor
+	(
 		private readonly configService: ConfigService,
 		private readonly userService: UsersService,
-	) {
-		super({
-			jwtFromRequest: ExtractJwt.fromExtractors([(request: Request) => {
+	) 
+	{
+		super
+		({
+			jwtFromRequest: ExtractJwt.fromExtractors([(request: Request) => 
+			{
 				return request?.cookies?.Authentication;
 			}]),
 			secretOrKey: configService.get('JWT_ACCESS_TOKEN_SECRET')
 		});
 	}
 
-	async validate(payload: TokenPayload) {
+	async validate(payload: TokenPayload) 
+	{
 		const user = await this.userService.findByLoginName(payload.loginName);
-		if (user) {
+		if (user) 
+		{
 			if (!user.isTwoFactorAuthenticationEnabled)
 				return user;
 		}

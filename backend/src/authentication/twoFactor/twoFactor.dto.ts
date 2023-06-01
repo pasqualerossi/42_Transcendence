@@ -1,3 +1,4 @@
-export class TwoFactorAuthenticationCodeDto {
+export class TwoFactorAuthenticationCodeDto 
+{
 	twoFactorAuthenticationCode: string;
 }

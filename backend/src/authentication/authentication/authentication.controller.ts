@@ -10,15 +10,18 @@ import { FortyTwoAuthGuard } from '../fourtyTwo/fourtyTwo.strategy';
 
 @Controller('authentication')
 @UseInterceptors(ClassSerializerInterceptor)
-export class AuthenticationController {
-	constructor(
+export class AuthenticationController 
+{
+	constructor
+	(
 		private readonly authenticationService: AuthenticationService,
 		private readonly usersService: UsersService
 	) {}
 
 	@UseGuards(JwtAuthenticationGuard)
 	@Get()
-	authenticate(@Req() request: RequestWithUser) {
+	authenticate(@Req() request: RequestWithUser) 
+	{
 		const user = request.body;
 		user.password = undefined;
 		return user;
@@ -27,10 +30,12 @@ export class AuthenticationController {
 	@UseInterceptors(ClassSerializerInterceptor)
 	@UseGuards(FortyTwoAuthGuard)
 	@Get('callback')
-	async login(@Req() request: RequestWithUser, @Res() response: Response): Promise<User> {
+	async login(@Req() request: RequestWithUser, @Res() response: Response): Promise<User> 
+	{
 		const user = request.user;
 		const accessTokenCookie = this.authenticationService.getCookieWithJwtAccessToken(user.loginName);
-		const {
+		const 
+		{
 			cookie: refreshTokenCookie,
 			token: refreshToken
 		} = this.authenticationService.getCookieWithJwtRefreshToken(user.loginName, user.isTwoFactorAuthenticationEnabled);
@@ -43,13 +48,14 @@ export class AuthenticationController {
 
 		Logger.log('HOST_URL: ' + process.env.VUE_APP_HOST_URL);
 		
-		if (user.isTwoFactorAuthenticationEnabled) {
+		if (user.isTwoFactorAuthenticationEnabled) 
+		{
 			Logger.log('2fa is enabled');
 			response.status(302).redirect(`${process.env.VUE_APP_HOST_URL}:8080/2falogin`);
 		}
-		else {
+		else 
+		{
 			Logger.log('2fa is disabled')
-			// user is logged in after authenticating 2fa --> status = online
 			await this.usersService.setStatus(1, user.id);
 			response.status(302).redirect(`${process.env.VUE_APP_HOST_URL}:8080/profile`);
 		}
@@ -60,7 +66,8 @@ export class AuthenticationController {
 	@UseGuards(JwtAuthenticationGuard)
 	@Post('logout')
 	@HttpCode(200)
-	async logOut(@Req() request: RequestWithUser) {
+	async logOut(@Req() request: RequestWithUser) 
+	{
 		await this.usersService.removeRefreshToken(request.user.id);
 		await this.usersService.setStatus(0, request.user.id);
 		request.res.setHeader('Set-Cookie', this.authenticationService.getCookiesForLogOut());

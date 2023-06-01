@@ -10,16 +10,19 @@ import { JwtTwoFactorStrategy } from '../twoFactor/twoFactor.strategy';
 import { FortyTwoStrategy } from '../fourtyTwo/fourtyTwo.strategy';
 
 @Module({
-	imports: [
+	imports: 
+	[
 		UsersModule,
 		PassportModule,
 		ConfigModule,
 		JwtModule.registerAsync({
 			imports: [ConfigModule],
 			inject: [ConfigService],
-			useFactory: async (configService: ConfigService) => ({
+			useFactory: async (configService: ConfigService) => 
+			({
 				secret: configService.get('JWT_ACCESS_TOKEN_SECRET'),
-				signOptions: {
+				signOptions: 
+				{
 					expiresIn: `${configService.get('JWT_ACCESS_TOKEN_EXPIRATION_TIME')}s`,
 				},
 			}),

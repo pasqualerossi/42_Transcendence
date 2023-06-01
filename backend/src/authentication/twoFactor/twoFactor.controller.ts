@@ -9,8 +9,10 @@ import { AuthenticationService } from '../authentication/authentication.service'
 
 @Controller('2fa')
 @UseInterceptors(ClassSerializerInterceptor)
-export class TwoFactorAuthenticationController {
-	constructor(
+export class TwoFactorAuthenticationController 
+{
+	constructor
+	(
 		private readonly twoFactorAuthenticationService: TwoFactorAuthenticationService,
 		private readonly usersService: UsersService,
 		private readonly authenticationService: AuthenticationService,
@@ -22,11 +24,13 @@ export class TwoFactorAuthenticationController {
 	async turnOnTwoFactorAuthentication(
 		@Req() request: RequestWithUser,
 		@Body() { twoFactorAuthenticationCode } : TwoFactorAuthenticationCodeDto
-	) {
+	) 
+	{
 		const isCodeValid = this.twoFactorAuthenticationService.isTwoFactorAuthenticationCodeValid(
 			twoFactorAuthenticationCode, request.user
 		);
-		if (!isCodeValid) {
+		if (!isCodeValid) 
+		{
 			throw new UnauthorizedException('Wrong authentication code');
 		}
 
@@ -39,16 +43,19 @@ export class TwoFactorAuthenticationController {
 	@Post('turn-off')
 	@HttpCode(200)
 	@UseGuards(JwtAuthenticationGuard)
-	async turnOffTwoFactorAuthentication(
+	async turnOffTwoFactorAuthentication
+	(
 		@Req() request: RequestWithUser,
 		@Body() { twoFactorAuthenticationCode } : TwoFactorAuthenticationCodeDto
-	) {
+	) 
+	{
 		await this.usersService.turnOffTwoFactorAuthentication(request.user.id);
 	}
 
 	@Get('generate')
 	@UseGuards(JwtAuthenticationGuard)
-	async register(@Res() response: Response, @Req() request: RequestWithUser) {
+	async register(@Res() response: Response, @Req() request: RequestWithUser) 
+	{
 		const { otpauthUrl } = await this.twoFactorAuthenticationService.generateTwoFactorAuthenticationSecret(request.user);
 
 		response.setHeader('content-type','image/png')
@@ -68,17 +75,14 @@ export class TwoFactorAuthenticationController {
 		const isCodeValid = this.twoFactorAuthenticationService.isTwoFactorAuthenticationCodeValid(
 			twoFactorAuthenticationCode, request.user
 		);
-		if (!isCodeValid) {
+		if (!isCodeValid) 
+		{
 			throw new UnauthorizedException('Wrong authentication code');
 		}
 
 		const accessTokenCookie = this.authenticationService.getCookieWithJwtAccessToken(request.user.loginName, true);
-
-		// user is logged in after authenticating 2fa --> status = online
 		await this.usersService.setStatus(1, request.user.id);
-
 		request.res.setHeader('Set-Cookie', [accessTokenCookie]);
-
 		return request.user;
 	}
 }

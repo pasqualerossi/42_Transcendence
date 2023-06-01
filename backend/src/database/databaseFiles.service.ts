@@ -5,13 +5,16 @@ import DatabaseFile from './databaseFile.entity';
 import * as fs from 'fs';
 
 @Injectable()
-class DatabaseFilesService implements OnModuleInit {
-	constructor(
+class DatabaseFilesService implements OnModuleInit 
+{
+	constructor
+	(
 		@InjectRepository(DatabaseFile)
 		private databaseFilesRepository: Repository<DatabaseFile>,
 	) {}
 
-	async onModuleInit() {
+	async onModuleInit() 
+	{
 		const DatabaseFile = await this.databaseFilesRepository.findOne(
 			{ where:
 				{ id: 1 }
@@ -34,7 +37,8 @@ class DatabaseFilesService implements OnModuleInit {
 		)
 	}
 
-	async uploadDatabaseFile(dataBuffer: Buffer, filename: string) {
+	async uploadDatabaseFile(dataBuffer: Buffer, filename: string) 
+	{
 		const newFile = await this.databaseFilesRepository.create({
 			filename,
 			data: dataBuffer
@@ -43,7 +47,8 @@ class DatabaseFilesService implements OnModuleInit {
 		return newFile;
 	}
 
-	async getFileById(Fileid: number) {
+	async getFileById(Fileid: number) 
+	{
 		const file = await this.databaseFilesRepository.findOne(
 			{ where:
 				{ id: Fileid }
@@ -55,8 +60,10 @@ class DatabaseFilesService implements OnModuleInit {
 		return file;
 	}
 
-	async uploadDatabaseFileWithQueryRunner(dataBuffer: Buffer, filename: string, queryRunner: QueryRunner) {
-		const newFile = await queryRunner.manager.create(DatabaseFile, {
+	async uploadDatabaseFileWithQueryRunner(dataBuffer: Buffer, filename: string, queryRunner: QueryRunner) 
+	{
+		const newFile = await queryRunner.manager.create(DatabaseFile, 
+		{
 			filename,
 			data: dataBuffer
 		})
@@ -64,9 +71,11 @@ class DatabaseFilesService implements OnModuleInit {
 		return newFile;
 	}
 
-	async deleteFileWithQueryRunner(fileId: number, queryRunner: QueryRunner) {
+	async deleteFileWithQueryRunner(fileId: number, queryRunner: QueryRunner) 
+	{
 		const deleteResponse = await queryRunner.manager.delete(DatabaseFile, fileId);
-		if (!deleteResponse.affected) {
+		if (!deleteResponse.affected) 
+		{
 			throw new NotFoundException();
 		}
 	}

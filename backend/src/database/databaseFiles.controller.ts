@@ -5,8 +5,10 @@ import { Response } from 'express';
 
 @Controller('database-files')
 @UseInterceptors(ClassSerializerInterceptor)
-export default class DatabaseFilesController {
-	constructor(
+export default class DatabaseFilesController 
+{
+	constructor
+	(
 		private readonly databaseFilesService: DatabaseFilesService
 	) {}
 

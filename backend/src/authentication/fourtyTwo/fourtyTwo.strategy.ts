@@ -14,16 +14,21 @@ export class FortyTwoAuthGuard extends AuthGuard('42') {}
 
 // 42 Authentication Strategy
 @Injectable()
-export class FortyTwoStrategy extends PassportStrategy(Strategy) {
-  constructor(
+export class FortyTwoStrategy extends PassportStrategy(Strategy) 
+{
+  constructor
+  (
     private readonly configService: ConfigService,
     private readonly userService: UsersService,
-  ) {
-    super({
+  ) 
+  {
+	super
+	({
       clientID: configService.get('FORTYTWO_APP_ID'),
       clientSecret: configService.get('FORTYTWO_APP_SECRET'),
       callbackURL: configService.get('CALLBACK_URL'),
-      profileFields: {
+	  profileFields: 
+	  {
         id: (obj) => String(obj.id),
         username: 'login',
         image_url: 'image_url',
