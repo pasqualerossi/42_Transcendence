@@ -25,10 +25,10 @@
 	// It listens to game invitation events and redirects to the game room.
 	// Finally, it creates and mounts the Vue application.
 
-	import TheNavBar from '@/components/Profile/TheNavBar.vue'
-	import TheGameInviteBox from '@/components/Game/TheGameInviteBox.vue'
-	import store from '@/store/index.js'
-	import router from './router'
+	import TheNavBar from '@/Components/Profile/TheNavBar.vue'
+	import TheGameInviteBox from '@/Components/Game/TheGameInviteBox.vue'
+	import store from '@/Store/index.js'
+	import router from './Router'
 	import { createApp } from 'vue'
 
 	export default 
