@@ -17,8 +17,8 @@ It's the simplest and smallest Transcendence Project I can find.
 - :house: Frontend
   - <i class="devicon-javascript-plain"></i> Babel.config.js
   - <i class="devicon-javascript-plain"></i> vue.config.js
-  - <i class="devicon-javascript-plain"></i> jsconfig.json
-  - <i class="devicon-javascript-plain"></i> package.json
+  - <i class="devicon-npm-original-wordmark"></i> jsconfig.json
+  - <i class="devicon-npm-original-wordmark"></i> package.json
   - <i class="devicon-docker-plain"></i> Dockerfile
   - :telescope: src
   	- <i class="devicon-vuejs-plain"></i> Main.vue
@@ -95,10 +95,10 @@ It's the simplest and smallest Transcendence Project I can find.
 			- <i class="devicon-vuejs-plain"></i> TwoFactorLoginView.vue
 	
 - :building_construction: Backend
-  - <i class="devicon-javascript-plain"></i> nest-cli.json
-  - <i class="devicon-javascript-plain"></i> package.json
-  - <i class="devicon-javascript-plain"></i> tsconfig.build.json
-  - <i class="devicon-javascript-plain"></i> tsconfig.json
+  - <i class="devicon-npm-original-wordmark"></i> nest-cli.json
+  - <i class="devicon-npm-original-wordmark"></i> package.json
+  - <i class="devicon-npm-original-wordmark"></i> tsconfig.build.json
+  - <i class="devicon-npm-original-wordmark"></i> tsconfig.json
   - <i class="devicon-docker-plain"></i> Dockerfile
   - :telescope: src
   	- <i class="devicon-typescript-plain"></i> Main.ts
@@ -188,7 +188,7 @@ Total of 57 Frontend Files
 - 1 Dockerfile
 - 1 .png file
 
-[![My Skills](https://skillicons.dev/icons?i=ts,js,docker,nodejs,postgresql)](https://skillicons.dev)
+[![My Skills](https://skillicons.dev/icons?i=ts,js,docker,nodejs,postgresql,nestjs)](https://skillicons.dev)
 
 Total of 47 Backend Files
 
