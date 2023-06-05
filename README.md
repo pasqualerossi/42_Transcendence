@@ -14,87 +14,89 @@ It's the simplest and smallest Transcendence Project I can find.
 
 - <i class="devicon-docker-plain"></i> Docker-Compose.yml
 - <i class="devicon-c-plain"></i> Makefile
-- :house: Frontend
-  - <i class="devicon-javascript-plain"></i> Babel.config.js
-  - <i class="devicon-javascript-plain"></i> vue.config.js
-  - <i class="devicon-npm-original-wordmark"></i> jsconfig.json
-  - <i class="devicon-npm-original-wordmark"></i> package.json
-  - <i class="devicon-docker-plain"></i> Dockerfile
-  - :telescope: src
-  	- <i class="devicon-vuejs-plain"></i> Main.vue
-	- :signal_strength: Router
-		- <i class="devicon-javascript-plain"></i> index.js
-	- :convenience_store: Store
-		- <i class="devicon-javascript-plain"></i> index.js
-	- :framed_picture: Assets
-		- 42-logo-white.svg
-		- <i class="devicon-css3-plain"></i> main.css
-	- :robot: Components
-		- :speaking_head: Chat
-			- <i class="devicon-vuejs-plain"></i> BaseCardRoom.vue 
-			- <i class="devicon-vuejs-plain"></i> ChatFooter.vue
-			- <i class="devicon-vuejs-plain"></i> ChatHeader.vue
-			- <i class="devicon-vuejs-plain"></i> ChatMain.vue
-			- <i class="devicon-vuejs-plain"></i> ChatSideNav.vue
-			- <i class="devicon-vuejs-plain"></i> ChatSideNavCreateRoom.vue
-			- <i class="devicon-vuejs-plain"></i> ChatSideNavGroups.vue
-			- <i class="devicon-vuejs-plain"></i> ChatSideNavPrivate.vue
-		- :arrow_heading_down: Dropdown
-			- <i class="devicon-vuejs-plain"></i> DropdownChatAdmin.vue
-			- <i class="devicon-vuejs-plain"></i> DropdownChatHeader.vue
-		- :busts_in_silhouette: Friends
-			- <i class="devicon-vuejs-plain"></i> FriendsFind.vue
-			- <i class="devicon-vuejs-plain"></i> FriendsList.vue
-			- <i class="devicon-vuejs-plain"></i> FriendsRequest.vue
-		- :ping_pong: Game
-			- <i class="devicon-vuejs-plain"></i> BaseCardGameSpectate.vue
-			- <i class="devicon-vuejs-plain"></i> BaseCardMatchHistory.vue
-			- <i class="devicon-vuejs-plain"></i> GameInvitePlayers.vue
-			- <i class="devicon-vuejs-plain"></i> GamePauseMenu.vue
-			- <i class="devicon-vuejs-plain"></i> GamePlayers.vue
-			- <i class="devicon-vuejs-plain"></i> GameResult.vue
-			- <i class="devicon-vuejs-plain"></i> GameScore.vue
-			- <i class="devicon-vuejs-plain"></i> GameSearch.vue
-			- <i class="devicon-vuejs-plain"></i> GameSpectate.vue
-			- <i class="devicon-vuejs-plain"></i> TheGameInviteBox.vue
-		- :arrow_heading_up: Popup
-			- <i class="devicon-vuejs-plain"></i> PopupChoice.vue
-			- <i class="devicon-vuejs-plain"></i> PopupInformation.vue
-			- <i class="devicon-vuejs-plain"></i> PopupNumber.vue
-			- <i class="devicon-vuejs-plain"></i> PopupPassword.vue
-		- :bust_in_silhouette: Profile
-			- <i class="devicon-vuejs-plain"></i> BaseBoxNumberWithTitle.vue
-			- <i class="devicon-vuejs-plain"></i> BaseCardUser.vue
-			- <i class="devicon-vuejs-plain"></i> BaseSwitch.vue
-			- <i class="devicon-vuejs-plain"></i> ProfileButtons.vue
-			- <i class="devicon-vuejs-plain"></i> ProfileMatchHistory.vue
-			- <i class="devicon-vuejs-plain"></i> TheNavBar.vue
-		- :gear: Settings
-			- <i class="devicon-vuejs-plain"></i> SettingsChangeAvatar.vue
-			- <i class="devicon-vuejs-plain"></i> SettingsChangeName.vue
-			- <i class="devicon-vuejs-plain"></i> SettingsChangeStatus.vue
-			- <i class="devicon-vuejs-plain"></i> SettingsTwoFactorSetup.vue
-	- Views
-		- ChatView
-			- <i class="devicon-vuejs-plain"></i> ChatView.vue
-		- FriendsView
-			- <i class="devicon-vuejs-plain"></i> FriendsView.vue
-		- GameLobbyView
-			- <i class="devicon-vuejs-plain"></i> GameLobbyView.vue
-		- GameRoomView
-			- <i class="devicon-vuejs-plain"></i> GameRoomView.vue
-		- LoginView
-			- <i class="devicon-vuejs-plain"></i> LoginView.vue
-		- ProfileView
-			- <i class="devicon-vuejs-plain"></i> ProfileView.vue
-		- ScoreBoardView
-			- <i class="devicon-vuejs-plain"></i> ScoreBoardView.vue
-		- SettingsView
-			- <i class="devicon-vuejs-plain"></i> SettingsView.vue
-		- TwoFactorLoginView
-			- <i class="devicon-vuejs-plain"></i> TwoFactorLoginView.vue
-	
+### :house: Frontend
+```
+  ├── Babel.config.js
+  ├── vue.config.js
+  ├── jsconfig.json
+  ├── package.json
+  ├── Dockerfile
+  └── src
+      ├── Main.vue
+      ├── Router
+      |   └── index.js
+      ├── Store
+      |   └── index.js
+      ├── Assets
+      |   ├── 42-logo-white.svg
+      |	  └── main.css
+      ├── Components
+      |   ├── Chat
+      |   │   ├── BaseCardRoom.vue
+      |	  │   ├── ChatFooter.vue
+      |   │   ├── ChatHeader.vue
+      |   │   ├── ChatMain.vue
+      |   │   ├── ChatSideNav.vue
+      |	  │   ├── ChatSideNavCreateRoom.vue
+      |	  │   ├── ChatSideNavGroups.vue
+      |	  │   └── ChatSideNavPrivate.vue
+      |	  ├── Dropdown
+      |	  │   ├── DropdownChatAdmin.vue
+      |	  │   └── DropdownChatHeader.vue
+      |	  ├── Friends
+      |	  │   ├── FriendsFind.vue
+      |	  │   ├── FriendsList.vue
+      |	  │   └── FriendsRequest.vue
+      |	  ├── Game
+      |	  │   ├── BaseCardGameSpectate.vue
+      |	  │   ├── BaseCardMatchHistory.vue
+      |	  │   ├── GameInvitePlayers.vue
+      |	  │   ├── GamePauseMenu.vue
+      |	  │   ├── GamePlayers.vue
+      |	  │   ├── GameResult.vue
+      |	  │   ├── GameScore.vue
+      |	  │   ├── GameSearch.vue
+      |	  │   ├── GameSpectate.vue
+      |	  │   └── TheGameInviteBox.vue
+      |	  ├── Popup
+      |	  │   ├── PopupChoice.vue
+      |	  │   ├── PopupInformation.vue
+      |	  │   ├── PopupNumber.vue
+      |	  │   └── PopupPassword.vue
+      |	  ├── Profile
+      |	  │   ├── BaseBoxNumberWithTitle.vue
+      |	  │   ├── BaseCardUser.vue
+      |	  │   ├── BaseSwitch.vue
+      |	  │   ├── ProfileButtons.vue
+      |	  │   ├── ProfileMatchHistory.vue
+      |	  │   └── TheNavBar.vue
+      |	  └── Settings
+      |	      ├── SettingsChangeAvatar.vue
+      |	      ├── SettingsChangeName.vue
+      |	      ├── SettingsChangeStatus.vue
+      |	      └── SettingsTwoFactorSetup.vue
+      └── Views
+          ├── ChatView
+          |   └── ChatView.vue
+      	  ├── FriendsView
+      	  │   └── FriendsView.vue
+      	  ├── GameLobbyView
+      	  │   └── GameLobbyView.vue
+      	  ├── GameRoomView
+      	  │   └── GameRoomView.vue
+          ├── LoginView
+      	  │   └── LoginView.vue
+      	  ├── ProfileView
+      	  │   └── ProfileView.vue
+      	  ├── ScoreBoardView
+      	  │   └── ScoreBoardView.vue
+      	  ├── SettingsView
+      	  │   └── SettingsView.vue
+	  └── TwoFactorLoginView	
+              └── TwoFactorLoginView
+```
 - :building_construction: Backend
+```
   - <i class="devicon-npm-original-wordmark"></i> nest-cli.json
   - <i class="devicon-npm-original-wordmark"></i> package.json
   - <i class="devicon-npm-original-wordmark"></i> tsconfig.build.json
@@ -159,7 +161,7 @@ It's the simplest and smallest Transcendence Project I can find.
 		- <i class="devicon-typescript-plain"></i> users.controller.ts
 		- <i class="devicon-typescript-plain"></i> users.service.ts
 		- <i class="devicon-typescript-plain"></i> users.seraliser.ts
-
+```
 <br>
 <br>
 
