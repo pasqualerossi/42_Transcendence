@@ -124,7 +124,7 @@
 					this.showNameError('Name cant have spaces')
 					return ;
 				}
-				await axios.post(`${process.env.VUE_APP_HOST_URL}:3000/users/update/name/${this.newName}`, null, { withCredentials: true })
+				await axios.post(`${process.env.VUE_APP_HOST_URL}:3000/Usersupdate/name/${this.newName}`, null, { withCredentials: true })
 				.then((response) => 
 				{
 					this.newName = '';

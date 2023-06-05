@@ -131,7 +131,7 @@ export default {
 	{
 		async getAllUsers() 
 		{
-			await axios.get(`${process.env.VUE_APP_HOST_URL}:3000/users/all`, {withCredentials: true})
+			await axios.get(`${process.env.VUE_APP_HOST_URL}:3000/Usersall`, {withCredentials: true})
 			.then((response) => 
 			{
 				this.usersData.allUsers = response.data
@@ -144,7 +144,7 @@ export default {
 
 		async getAllOtherUsers() 
 		{
-			await axios.get(`${process.env.VUE_APP_HOST_URL}:3000/users/public`, {withCredentials: true})
+			await axios.get(`${process.env.VUE_APP_HOST_URL}:3000/Userspublic`, {withCredentials: true})
 			.then((response) => 
 			{
 				this.usersData.otherUsers = response.data;

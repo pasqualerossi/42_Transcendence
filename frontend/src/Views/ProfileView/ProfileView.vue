@@ -167,7 +167,7 @@
 			{
 				if (id === 0) 
 				{
-					await axios.get(`${process.env.VUE_APP_HOST_URL}:3000/users/myuser`, {withCredentials: true})
+					await axios.get(`${process.env.VUE_APP_HOST_URL}:3000/Usersmyuser`, {withCredentials: true})
 					.then((response) => 
 					{
 						this.user = response.data
@@ -180,7 +180,7 @@
 				}
 				else 
 				{
-					await axios.get(`${process.env.VUE_APP_HOST_URL}:3000/users/id/${id}`, {withCredentials: true})
+					await axios.get(`${process.env.VUE_APP_HOST_URL}:3000/Usersid/${id}`, {withCredentials: true})
 					.then((response) => 
 					{
 						this.user = response.data

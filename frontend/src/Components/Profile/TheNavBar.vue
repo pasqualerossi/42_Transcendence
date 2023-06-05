@@ -113,7 +113,7 @@
 		{
 			logoutAPI() 
 			{
-				axios.post(`${process.env.VUE_APP_HOST_URL}:3000/authentication/logout`, null, {withCredentials: true})
+				axios.post(`${process.env.VUE_APP_HOST_URL}:3000/Authentication/logout`, null, {withCredentials: true})
 				.then((response) => 
 				{
 					store.dispatch('setUserStatus', 0);

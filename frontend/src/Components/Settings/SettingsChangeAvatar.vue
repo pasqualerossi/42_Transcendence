@@ -173,7 +173,7 @@ export default {
 			formData.append('file',this.file);
 			try 
 			{
-				await axios.post(`${process.env.VUE_APP_HOST_URL}:3000/users/avatar/`, formData, {withCredentials: true});
+				await axios.post(`${process.env.VUE_APP_HOST_URL}:3000/Usersavatar/`, formData, {withCredentials: true});
 				this.previewImage = '';
 				store.dispatch('fetchCurrentUser');
 			}

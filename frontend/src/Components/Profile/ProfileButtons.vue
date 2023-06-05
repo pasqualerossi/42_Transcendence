@@ -95,7 +95,7 @@
 		{
 			async sendFriendRequest() 
 			{
-				await axios.post(`${process.env.VUE_APP_HOST_URL}:3000/users/friend/add/${this.user.id}`, null, {withCredentials: true})
+				await axios.post(`${process.env.VUE_APP_HOST_URL}:3000/Usersfriend/add/${this.user.id}`, null, {withCredentials: true})
 				.then((response) => 
 				{
 					store.dispatch('fetchCurrentUser');
@@ -108,7 +108,7 @@
 
 			async retrieveFriendRequest() 
 			{
-				await axios.post(`${process.env.VUE_APP_HOST_URL}:3000/users/friend/retrieve/${this.user.id}`, null, {withCredentials: true})
+				await axios.post(`${process.env.VUE_APP_HOST_URL}:3000/Usersfriend/retrieve/${this.user.id}`, null, {withCredentials: true})
 				.then((response) => 
 				{
 					store.dispatch('fetchCurrentUser');
@@ -121,7 +121,7 @@
 
 			async deleteFriend() 
 			{
-				await axios.post(`${process.env.VUE_APP_HOST_URL}:3000/users/friend/remove/${this.user.id}`, null, {withCredentials: true})
+				await axios.post(`${process.env.VUE_APP_HOST_URL}:3000/Usersfriend/remove/${this.user.id}`, null, {withCredentials: true})
 				.then((response) => 
 				{
 					store.dispatch('fetchCurrentUser');
@@ -134,7 +134,7 @@
 
 			async acceptFriend() 
 			{
-				await axios.post(`${process.env.VUE_APP_HOST_URL}:3000/users/friend/accept/${this.user.id}`, null, {withCredentials: true})
+				await axios.post(`${process.env.VUE_APP_HOST_URL}:3000/Usersfriend/accept/${this.user.id}`, null, {withCredentials: true})
 				.then((response) => 
 				{
 					store.dispatch('fetchCurrentUser');
@@ -147,7 +147,7 @@
 
 			async declineFriend() 
 			{
-				await axios.post(`${process.env.VUE_APP_HOST_URL}:3000/users/friend/decline/${this.user.id}`, null, {withCredentials: true})
+				await axios.post(`${process.env.VUE_APP_HOST_URL}:3000/Usersfriend/decline/${this.user.id}`, null, {withCredentials: true})
 				.then((response) => 
 				{
 					store.dispatch('fetchCurrentUser');
@@ -160,7 +160,7 @@
 
 			async blockUser() 
 			{
-				await axios.post(`${process.env.VUE_APP_HOST_URL}:3000/users/block/${this.user.id}`, null, {withCredentials: true})
+				await axios.post(`${process.env.VUE_APP_HOST_URL}:3000/Usersblock/${this.user.id}`, null, {withCredentials: true})
 				.then((response) => 
 				{
 					store.dispatch('fetchCurrentUser');
@@ -173,7 +173,7 @@
 
 			async unblockUser() 
 			{
-				await axios.post(`${process.env.VUE_APP_HOST_URL}:3000/users/unblock/${this.user.id}`, null, {withCredentials: true})
+				await axios.post(`${process.env.VUE_APP_HOST_URL}:3000/Usersunblock/${this.user.id}`, null, {withCredentials: true})
 				.then((response) => 
 				{
 					store.dispatch('fetchCurrentUser');

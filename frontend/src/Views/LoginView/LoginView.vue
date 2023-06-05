@@ -64,7 +64,7 @@
 		{
 			login() 
 			{
-				location.replace(`${process.env.VUE_APP_HOST_URL}:3000/authentication/callback`);
+				location.replace(`${process.env.VUE_APP_HOST_URL}:3000/Authentication/callback`);
 			}
 		},
 	}
