@@ -1,23 +1,24 @@
 import { NestFactory } from '@nestjs/core';
 import { NestExpressApplication } from '@nestjs/platform-express';
+import { TypeOrmModule } from '@nestjs/typeorm';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import * as cookieParser from 'cookie-parser';
 import { ConfigModule, ConfigService } from '@nestjs/config';
-import { TypeOrmModule } from '@nestjs/typeorm';
-import { User } from './users/users.entity';
-import { UsersModule } from './users/users.module';
-import { ChatModule } from './chat/modules/chat.module';
-import { Score } from './scoreboard/score.entity';
-import { ScoreModule } from './scoreboard/score.module';
-import { GameModule } from './game/game.module';
-import { TwoFactorAuthenticationController } from './authentication/twoFactor/twoFactor.controller';
-import { TwoFactorAuthenticationService } from './authentication/twoFactor/twoFactor.service';
-import { AuthenticationService } from './authentication/authentication/authentication.service';
 import { JwtService } from '@nestjs/jwt';
-import DatabaseFile from './database/databaseFile.entity';
-import { ChatRoom } from './chat/entities/room.entity'
-import { Message } from './chat/entities/message.entity'
-import { RoomMutedUsers } from './chat/entities/muted.entity'
+
+import { User } from './Users/Users.entity';
+import { UsersModule } from './Users/Users.module';
+import { ChatModule } from './Chat/Modules/chat.module';
+import { Score } from './Scoreboard/score.entity';
+import { ScoreModule } from './Scoreboard/score.module';
+import { GameModule } from './Game/game.module';
+import { TwoFactorAuthenticationController } from './Authentication/TwoFactor/twoFactor.controller';
+import { TwoFactorAuthenticationService } from './Authentication/TwoFactor/twoFactor.service';
+import { AuthenticationService } from './Authentication/Authentication/authentication.service';
+import { ChatRoom } from './Chat/Entities/room.entity'
+import { Message } from './Chat/Entities/message.entity'
+import { RoomMutedUsers } from './Chat/Entities/muted.entity'
+import DatabaseFile from './Database/databaseFile.entity';
 
 async function bootstrap() 
 {

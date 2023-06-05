@@ -5,7 +5,8 @@
 	"author": "",
 	"private": true,
 	"license": "UNLICENSED",
-	"scripts": {
+	"scripts": 
+	{
 		"prebuild": "rimraf dist",
 		"build": "nest build",
 		"format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
@@ -20,7 +21,8 @@
 		"test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
 		"test:e2e": "jest --config ./test/jest-e2e.json"
 	},
-	"dependencies": {
+	"dependencies": 
+	{
 		"@nestjs/cli": "^9.1.5",
 		"@nestjs/common": "^9.2.0",
 		"@nestjs/config": "^2.2.0",
@@ -49,7 +51,8 @@
 		"stream": "^0.0.2",
 		"typeorm": "^0.3.10"
 	},
-	"devDependencies": {
+	"devDependencies": 
+	{
 		"@types/node": "^18.11.9"
 	}
 }
