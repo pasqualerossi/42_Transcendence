@@ -10,10 +10,10 @@ It's the simplest and smallest Transcendence Project I can find.
 
 # Project Structure
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css">
+Docker-Compose.yml
 
-- <i class="devicon-docker-plain"></i> Docker-Compose.yml
-- <i class="devicon-c-plain"></i> Makefile
+Makefile
+
 ### :house: Frontend
 ```
   ├── Babel.config.js
@@ -95,35 +95,36 @@ It's the simplest and smallest Transcendence Project I can find.
 	  └── TwoFactorLoginView	
               └── TwoFactorLoginView
 ```
-- :building_construction: Backend
+### :building_construction: Backend
 ```
-  - <i class="devicon-npm-original-wordmark"></i> nest-cli.json
-  - <i class="devicon-npm-original-wordmark"></i> package.json
-  - <i class="devicon-npm-original-wordmark"></i> tsconfig.build.json
-  - <i class="devicon-npm-original-wordmark"></i> tsconfig.json
-  - <i class="devicon-docker-plain"></i> Dockerfile
-  - :telescope: src
-  	- <i class="devicon-typescript-plain"></i> Main.ts
-	- :framed_picture: Assets
+  ├── nest-cli.json
+  ├── tsconfig.json
+  ├── tsconfig.build.json
+  ├── package.json
+  ├── Dockerfile
+  └── src
+      ├── Main.ts
+
+	- Assets
 		- default-avatar.png
-	- :desktop_computer: Authentication
+	- Authentication
 		- Authentication
-			- <i class="devicon-typescript-plain"></i> authentication.controller.ts
-			- <i class="devicon-typescript-plain"></i> authentication.module.ts
-			- <i class="devicon-typescript-plain"></i> authentication.service.ts
+			- authentication.controller.ts
+			- authentication.module.ts
+			- authentication.service.ts
 		- FourtyTwo
-			- <i class="devicon-typescript-plain"></i> fourtyTwo.strategy.ts
+			- fourtyTwo.strategy.ts
 		- Interfaces
-			- <i class="devicon-typescript-plain"></i> requestWithUser.interface.ts
+			- requestWithUser.interface.ts
 		- JWT
-			- <i class="devicon-typescript-plain"></i> jwt.strategy.ts
+			- jwt.strategy.ts
 		- TwoFactor
-			- <i class="devicon-typescript-plain"></i> twoFactor.controller.ts
-			- <i class="devicon-typescript-plain"></i> twoFactor.dto.ts
-			- <i class="devicon-typescript-plain"></i> twoFactor.guard.ts
-			- <i class="devicon-typescript-plain"></i> twoFactor.service.ts
-			- <i class="devicon-typescript-plain"></i> twoFactor.strategy.ts
-	- :speaking_head: Chat
+			- twoFactor.controller.ts
+			- twoFactor.dto.ts
+			- twoFactor.guard.ts
+			- twoFactor.service.ts
+			- twoFactor.strategy.ts
+	- Chat
 		- Controllers
 			- <i class="devicon-typescript-plain"></i> chat.controller.ts
 			- <i class="devicon-typescript-plain"></i> muted.controller.ts
