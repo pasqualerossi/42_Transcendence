@@ -2,11 +2,6 @@
 
 ### :house: Frontend
 ```
-  ├── Babel.config.js
-  ├── vue.config.js
-  ├── jsconfig.json
-  ├── package.json
-  ├── Dockerfile
   └── src
       ├── Main.vue
       ├── Router
@@ -83,11 +78,6 @@
 ```
 ### :building_construction: Backend
 ```
-  ├── nest-cli.json
-  ├── tsconfig.json
-  ├── tsconfig.build.json
-  ├── package.json
-  ├── Dockerfile
   └── src
       ├── Main.ts
       ├── Assets
