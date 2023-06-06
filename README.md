@@ -1,9 +1,5 @@
 # Project Structure
 
-```
-docker-compose.yml
-```
-
 ### :house: Frontend
 ```
   ├── Babel.config.js
