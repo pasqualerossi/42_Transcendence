@@ -266,6 +266,10 @@ Grand Total of 106 Files
 
 <img width="796" alt="Screen Shot 2023-06-05 at 3 32 22 PM" src="https://github.com/pasqualerossi/42_Transcendence/assets/58959408/fc3c968e-96ac-4770-a90d-3ab4a4d18941">
 
+## Security
+
+<img width="735" alt="Screen Shot 2023-06-06 at 8 32 07 PM" src="https://github.com/pasqualerossi/42_Transcendence/assets/58959408/167c8acf-759a-48c4-a0be-71859a6b30c3">
+
 ## TypeScript Frameworks
 
 [![My Skills](https://skillicons.dev/icons?i=vue,react,angular,nextjs,express)](https://skillicons.dev)
