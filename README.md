@@ -4,13 +4,13 @@
 ```
   └── src
       ├── Main.vue
+      ├── Assets
+      |   ├── 42-logo-white.svg
+      |	  └── main.css
       ├── Router
       |   └── index.js
       ├── Store
       |   └── index.js
-      ├── Assets
-      |   ├── 42-logo-white.svg
-      |	  └── main.css
       ├── Components
       |   ├── Chat
       |   │   ├── BaseCardRoom.vue
