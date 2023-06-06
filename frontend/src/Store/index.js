@@ -8,8 +8,7 @@ import { createStore } from 'vuex';
 import axios from 'axios';
 import io from 'socket.io-client';
 
-const state = 
-{
+const state = {
   currentUser: null,
   socketChat: null,
   socketGame: null,

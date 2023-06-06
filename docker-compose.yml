@@ -2,6 +2,7 @@
 # This allows to manage and run multiple containers as a single unit.
 
 services:
+
   postgres:
     container_name: postgres
     image: postgres:latest

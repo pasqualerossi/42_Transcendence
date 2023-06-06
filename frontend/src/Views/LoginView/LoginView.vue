@@ -4,7 +4,7 @@
 
 	<div class="login-wrapper">
 		<button @click="login">
-			<img src="@/Assets/42-logo-white.svg">
+			<img src="@/Assets/42-Logo-White.svg">
 			<strong>Login</strong>
 		</button>
 	</div>
