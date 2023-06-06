@@ -265,3 +265,15 @@ Grand Total of 106 Files
 ## Project Overview
 
 <img width="796" alt="Screen Shot 2023-06-05 at 3 32 22 PM" src="https://github.com/pasqualerossi/42_Transcendence/assets/58959408/fc3c968e-96ac-4770-a90d-3ab4a4d18941">
+
+## TypeScript Frameworks
+
+[![My Skills](https://skillicons.dev/icons?i=vue,react,angular,nextjs,express)](https://skillicons.dev)
+
+In this project, you can use any of the following:
+
+- Vue (Our Chosen Framework For This Project)
+- React
+- Angular
+- NextJS
+- ExpressJS
