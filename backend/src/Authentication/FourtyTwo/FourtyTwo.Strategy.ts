@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { PassportStrategy } from '@nestjs/passport';
-import { ConsoleLogger, Logger } from '@nestjs/common';
+import { Logger } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { Strategy } from 'passport-42';
 

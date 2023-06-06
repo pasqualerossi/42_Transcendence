@@ -1,9 +1,4 @@
-import 
-{
-	Controller,
-	Get,
-	UseGuards,
-} from '@nestjs/common';
+import { Controller, Get, UseGuards } from '@nestjs/common';
 
 import { GameService } from './Game.Service';
 import JwtTwoFactorGuard from 'src/Authentication/TwoFactor/TwoFactor.Guard';

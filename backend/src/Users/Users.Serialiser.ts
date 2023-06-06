@@ -1,5 +1,7 @@
 import { Exclude, Expose } from "class-transformer";
 
+// This code defines a serialiser class for user friend data with various properties.
+
 export class UserFriendsSerialiser
 {
 	@Expose()

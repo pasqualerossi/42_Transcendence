@@ -1,9 +1,9 @@
-import { ClassSerialiserInterceptor, Controller, Post, UseInterceptors, Res, UseGuards, Req, UnauthorizedException, Body, HttpCode, Logger, Get } from '@nestjs/common';
+import { ClassSerialiserInterceptor, Controller, Post, UseInterceptors, Res, UseGuards, Req, UnauthorizedException, Body, HttpCode, Get } from '@nestjs/common';
 import { Response } from 'express';
 
 import { TwoFactorAuthenticationService } from './TwoFactor.Service';
 import JwtAuthenticationGuard from '../JSONWebToken/JWT.Strategy';
-import RequestWithUser from '../Interfaces/RequestWithUser.Interface';
+import { RequestUser } from '../Interfaces/RequestUser.Interface';
 import { UsersService } from '../../Users/Users.Service';
 import { TwoFactorAuthenticationCodeDto } from './TwoFactor.Dto';
 import { AuthenticationService } from '../Authentication/Authentication.Service';
@@ -23,7 +23,7 @@ export class TwoFactorAuthenticationController
 	@HttpCode(200)
 	@UseGuards(JwtAuthenticationGuard)
 	async turnOnTwoFactorAuthentication(
-		@Req() request: RequestWithUser,
+		@Req() request: RequestUser,
 		@Body() { twoFactorAuthenticationCode } : TwoFactorAuthenticationCodeDto
 	) 
 	{
@@ -46,7 +46,7 @@ export class TwoFactorAuthenticationController
 	@UseGuards(JwtAuthenticationGuard)
 	async turnOffTwoFactorAuthentication
 	(
-		@Req() request: RequestWithUser,
+		@Req() request: RequestUser,
 		@Body() { twoFactorAuthenticationCode } : TwoFactorAuthenticationCodeDto
 	) 
 	{
@@ -55,7 +55,7 @@ export class TwoFactorAuthenticationController
 
 	@Get('generate')
 	@UseGuards(JwtAuthenticationGuard)
-	async register(@Res() response: Response, @Req() request: RequestWithUser) 
+	async register(@Res() response: Response, @Req() request: RequestUser) 
 	{
 		const { otpauthUrl } = await this.twoFactorAuthenticationService.generateTwoFactorAuthenticationSecret(request.user);
 
@@ -70,7 +70,7 @@ export class TwoFactorAuthenticationController
 	@UseInterceptors(ClassSerialiserInterceptor)
 	@UseGuards(JwtAuthenticationGuard)
 	async authenticate(
-		@Req() request: RequestWithUser,
+		@Req() request: RequestUser,
 		@Body() { twoFactorAuthenticationCode } : TwoFactorAuthenticationCodeDto
 	) {
 		const isCodeValid = this.twoFactorAuthenticationService.isTwoFactorAuthenticationCodeValid(

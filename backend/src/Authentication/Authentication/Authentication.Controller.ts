@@ -3,7 +3,7 @@ import { Logger } from '@nestjs/common';
 import { Response } from 'express';
 
 import { AuthenticationService } from './Authentication.Service';
-import RequestWithUser from '../Interfaces/RequestWithUser.Interface';
+import { RequestUser } from '../Interfaces/RequestUser.Interface';
 import JwtAuthenticationGuard from '../JSONWebToken/JWT.Strategy';
 import { UsersService } from '../../Users/Users.Service';
 import { User } from '../../Users/Users.Entity';
@@ -21,7 +21,7 @@ export class AuthenticationController
 
 	@UseGuards(JwtAuthenticationGuard)
 	@Get()
-	authenticate(@Req() request: RequestWithUser) 
+	authenticate(@Req() request: RequestUser) 
 	{
 		const user = request.body;
 		user.password = undefined;
@@ -31,7 +31,7 @@ export class AuthenticationController
 	@UseInterceptors(ClassSerialiserInterceptor)
 	@UseGuards(FortyTwoAuthGuard)
 	@Get('callback')
-	async login(@Req() request: RequestWithUser, @Res() response: Response): Promise<User> 
+	async login(@Req() request: RequestUser, @Res() response: Response): Promise<User> 
 	{
 		const user = request.user;
 		const accessTokenCookie = this.authenticationService.getCookieWithJwtAccessToken(user.loginName);
@@ -67,7 +67,7 @@ export class AuthenticationController
 	@UseGuards(JwtAuthenticationGuard)
 	@Post('logout')
 	@HttpCode(200)
-	async logOut(@Req() request: RequestWithUser) 
+	async logOut(@Req() request: RequestUser) 
 	{
 		await this.usersService.removeRefreshToken(request.user.id);
 		await this.usersService.setStatus(0, request.user.id);

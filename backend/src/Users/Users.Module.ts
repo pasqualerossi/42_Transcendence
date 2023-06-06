@@ -6,6 +6,9 @@ import { UserController } from './Users.Controller';
 import { User } from './Users.Entity';
 import { UsersService } from './Users.Service';
 
+// This code defines a module in the NestJS framework that manages user-related functionality 
+// and uses a TypeORM module for database operations.
+
 @Module({
 	imports: 
 	[

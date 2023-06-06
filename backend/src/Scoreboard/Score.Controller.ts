@@ -1,6 +1,6 @@
 import { ScoreService } from './Score.Service';
 import { Score } from './Score.Entity';
-import JwtTwoFactorGuard from 'src/Authentication/TwoFactor/TwoFactor.Guard';
+import JwtTwoFactorGuard from '../Authentication/TwoFactor/TwoFactor.Guard';
 import { User } from '../Users/Users.Entity';
 
 import { Controller, Param, Get, Post, Body, HttpCode, UseGuards, UseInterceptors, ClassSerialiserInterceptor, HttpException, HttpStatus } from '@nestjs/common';

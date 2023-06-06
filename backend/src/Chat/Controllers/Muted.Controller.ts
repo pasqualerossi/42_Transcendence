@@ -1,7 +1,7 @@
 import { MutedService } from '../Services/Muted.Service';
 import { RoomMutedUsers } from '../Entities/Muted.Entity';
 import JwtAuthenticationGuard from '../../Authentication/JSONWebToken/JWT.Strategy';
-import RequestWithUser from 'src/Authentication/Interfaces/RequestWithUser.Interface';
+import { RequestUser } from '../../Authentication/Interfaces/RequestUser.Interface';
 import { RoomService } from '../Services/Room.Service';
 import { UsersService } from '../../Users/Users.Service';
 
@@ -28,7 +28,7 @@ export class MutedController
 	@Post('create/:roomName')
 	@UseGuards(JwtAuthenticationGuard)
 	@UseInterceptors(ClassSerialiserInterceptor)
-	async sendFriendReqeuest(@Req() request: RequestWithUser, @Param('roomName') roomName: string): Promise<RoomMutedUsers> 
+	async sendFriendReqeuest(@Req() request: RequestUser, @Param('roomName') roomName: string): Promise<RoomMutedUsers> 
 	{
 		const user = await this.usersService.findById(request.user.id);
 		const room = await this.roomService.findByName(roomName);

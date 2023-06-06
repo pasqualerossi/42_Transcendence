@@ -5,7 +5,7 @@ import { Controller, Get, Post, Body, Delete, Param, HttpCode, UseGuards, UseInt
 import { UsersService } from './Users.Service';
 import { User } from './Users.Entity';
 import JwtTwoFactorGuard from '../Authentication/TwoFactor/TwoFactor.Guard';
-import RequestWithUser from '../Authentication/Interfaces/RequestWithUser.Interface';
+import { RequestUser } from '../Authentication/Interfaces/RequestUser.Interface';
 
 @Controller('users')
 export class UserController 
@@ -24,7 +24,7 @@ export class UserController
 	@Get('public')
 	@UseGuards(JwtTwoFactorGuard)
 	@UseInterceptors(ClassSerialiserInterceptor)
-	async getPublic(@Req() request: RequestWithUser):Promise<User[]>
+	async getPublic(@Req() request: RequestUser):Promise<User[]>
 	{
 		return await this.usersService.findAllExceptMe(request.user);
 	}
@@ -48,7 +48,7 @@ export class UserController
 	@Get('myuser')
 	@UseGuards(JwtTwoFactorGuard)
 	@UseInterceptors(ClassSerialiserInterceptor)
-	metMyUser(@Req() request: RequestWithUser)
+	metMyUser(@Req() request: RequestUser)
 	{
 		return request.user;
 	}
@@ -65,7 +65,7 @@ export class UserController
 	@Post('update/name/:username')
 	@UseGuards(JwtTwoFactorGuard)
 	@UseInterceptors(ClassSerialiserInterceptor)
-	async updateUserName(@Req() request: RequestWithUser, @Param('username') newUserName: string) 
+	async updateUserName(@Req() request: RequestUser, @Param('username') newUserName: string) 
 	{
 		if (newUserName.length > 8)
 			throw new HttpException('Name to long', HttpStatus.CONFLICT)
@@ -88,7 +88,7 @@ export class UserController
 	@UseGuards(JwtTwoFactorGuard)
 	@UseInterceptors(ClassSerialiserInterceptor)
 	@UseInterceptors(FileInterceptor('file'))
-	async addAvatar(@Req() request: RequestWithUser, @UploadedFile() file: Express.Multer.File) 
+	async addAvatar(@Req() request: RequestUser, @UploadedFile() file: Express.Multer.File) 
 	{
 		return this.usersService.addAvatar(request.user.id , file.buffer, file.originalname);
 	}
@@ -96,7 +96,7 @@ export class UserController
 	@Post('friend/add/:userId')
 	@UseGuards(JwtTwoFactorGuard)
 	@UseInterceptors(ClassSerialiserInterceptor)
-	async sendFriendReqeuest(@Req() request: RequestWithUser, @Param('userId') id: number) 
+	async sendFriendReqeuest(@Req() request: RequestUser, @Param('userId') id: number) 
 	{
 		return this.usersService.sendFriendReqeuest(request.user.id, id);
 	}
@@ -104,14 +104,14 @@ export class UserController
 	@Post('friend/remove/:userId')
 	@UseGuards(JwtTwoFactorGuard)
 	@UseInterceptors(ClassSerialiserInterceptor)
-	async removeFriend(@Req() request: RequestWithUser, @Param('userId') id: number) {
+	async removeFriend(@Req() request: RequestUser, @Param('userId') id: number) {
 		return this.usersService.removeFriend(request.user.id, id);
 	}
 
 	@Post('friend/accept/:userId')
 	@UseGuards(JwtTwoFactorGuard)
 	@UseInterceptors(ClassSerialiserInterceptor)
-	async acceptFriendReqeuest(@Req() request: RequestWithUser, @Param('userId') id: number) 
+	async acceptFriendReqeuest(@Req() request: RequestUser, @Param('userId') id: number) 
 	{
 		return this.usersService.acceptFriendReqeuest((<User>request.user).id, id);
 	}
@@ -119,7 +119,7 @@ export class UserController
 	@Post('friend/decline/:userId')
 	@UseGuards(JwtTwoFactorGuard)
 	@UseInterceptors(ClassSerialiserInterceptor)
-	async declineFriendReqeuest(@Req() request: RequestWithUser, @Param('userId') id: number) 
+	async declineFriendReqeuest(@Req() request: RequestUser, @Param('userId') id: number) 
 	{
 		return this.usersService.declineFriendReqeuest((<User>request.user).id, id);
 	}
@@ -127,7 +127,7 @@ export class UserController
 	@Post('friend/retrieve/:userId')
 	@UseGuards(JwtTwoFactorGuard)
 	@UseInterceptors(ClassSerialiserInterceptor)
-	async retrieveFriendReqeuest(@Req() request: RequestWithUser, @Param('userId') id: number) 
+	async retrieveFriendReqeuest(@Req() request: RequestUser, @Param('userId') id: number) 
 	{
 		return this.usersService.retrieveFriendReqeuest((<User>request.user).id, id);
 	}
@@ -135,7 +135,7 @@ export class UserController
 	@Post('block/:userId')
 	@UseGuards(JwtTwoFactorGuard)
 	@UseInterceptors(ClassSerialiserInterceptor)
-	async blockUser(@Req() request: RequestWithUser, @Param('userId') id: number) 
+	async blockUser(@Req() request: RequestUser, @Param('userId') id: number) 
 	{
 		return this.usersService.blockUser((<User>request.user).id, id);
 	}
@@ -143,7 +143,7 @@ export class UserController
 	@Post('unblock/:userId')
 	@UseGuards(JwtTwoFactorGuard)
 	@UseInterceptors(ClassSerialiserInterceptor)
-	async unblockUser(@Req() request: RequestWithUser, @Param('userId') id: number) 
+	async unblockUser(@Req() request: RequestUser, @Param('userId') id: number) 
 	{
 		return this.usersService.unblockUser((<User>request.user).id, id);
 	}
@@ -151,7 +151,7 @@ export class UserController
 	@Post('update/status/:number')
 	@UseGuards(JwtTwoFactorGuard)
 	@UseInterceptors(ClassSerialiserInterceptor)
-	async changeStatus(@Req() request: RequestWithUser, @Param('number') status: number) 
+	async changeStatus(@Req() request: RequestUser, @Param('number') status: number) 
 	{
 		return await this.usersService.setStatus(status, request.user.id);
 	}

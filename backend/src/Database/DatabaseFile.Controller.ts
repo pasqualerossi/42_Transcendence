@@ -1,6 +1,7 @@
 import {Controller,Get,Param,UseInterceptors,ClassSerialiserInterceptor,Res,ParseIntPipe, StreamableFile,} from '@nestjs/common';
 import { Readable } from 'stream';
 import { Response } from 'express';
+
 import DatabaseFilesService from './DatabaseFile.service';
 
 @Controller('database-files')
@@ -14,8 +15,8 @@ export default class DatabaseFilesController
 
 	@Get(':id')
 	async getDatabaseFileById(@Param('id', ParseIntPipe) id: number, @Res({ passthrough: true }) response: Response) {
-	const file = await this.databaseFilesService.getFileById(id);
 
+	const file = await this.databaseFilesService.getFileById(id);
 	const stream = Readable.from(file.data);
 
 	response.set({
