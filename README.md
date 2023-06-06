@@ -104,64 +104,64 @@ Makefile
   ├── Dockerfile
   └── src
       ├── Main.ts
-
-	- Assets
-		- default-avatar.png
-	- Authentication
-		- Authentication
-			- authentication.controller.ts
-			- authentication.module.ts
-			- authentication.service.ts
-		- FourtyTwo
-			- fourtyTwo.strategy.ts
-		- Interfaces
-			- requestWithUser.interface.ts
-		- JWT
-			- jwt.strategy.ts
-		- TwoFactor
-			- twoFactor.controller.ts
-			- twoFactor.dto.ts
-			- twoFactor.guard.ts
-			- twoFactor.service.ts
-			- twoFactor.strategy.ts
-	- Chat
-		- Controllers
-			- <i class="devicon-typescript-plain"></i> chat.controller.ts
-			- <i class="devicon-typescript-plain"></i> muted.controller.ts
-		- Entities
-			- <i class="devicon-typescript-plain"></i> message.entity.ts
-			- <i class="devicon-typescript-plain"></i> muted.entity.ts
-			- <i class="devicon-typescript-plain"></i> room.entity.ts
-		- Modules
-			- <i class="devicon-typescript-plain"></i> chat.module.ts
-		- Services
-			- <i class="devicon-typescript-plain"></i> chat.service.ts
-			- <i class="devicon-typescript-plain"></i> message.service.ts
-			- <i class="devicon-typescript-plain"></i> muted.service.ts
-			- <i class="devicon-typescript-plain"></i> room.service.ts
-		- <i class="devicon-typescript-plain"></i> chat.gateway.ts
-	- :package: Database
-		- <i class="devicon-typescript-plain"></i> databaseFile.entity.ts
-		- <i class="devicon-typescript-plain"></i> databaseFile.module.ts
-		- <i class="devicon-typescript-plain"></i> databaseFile.controller.ts
-		- <i class="devicon-typescript-plain"></i> databaseFile.service.ts
-	- :ping_pong: Game
-		- <i class="devicon-typescript-plain"></i> game.entity.ts
-		- <i class="devicon-typescript-plain"></i> game.module.ts
-		- <i class="devicon-typescript-plain"></i> game.controller.ts
-		- <i class="devicon-typescript-plain"></i> game.service.ts
-		- <i class="devicon-typescript-plain"></i> game.gateway.ts
-	- :tv: Scoreboard
-		- <i class="devicon-typescript-plain"></i> score.entity.ts
-		- <i class="devicon-typescript-plain"></i> score.module.ts
-		- <i class="devicon-typescript-plain"></i> score.controller.ts
-		- <i class="devicon-typescript-plain"></i> score.service.ts
-	- :busts_in_silhouette: Users
-		- <i class="devicon-typescript-plain"></i> users.entity.ts
-		- <i class="devicon-typescript-plain"></i> users.module.ts
-		- <i class="devicon-typescript-plain"></i> users.controller.ts
-		- <i class="devicon-typescript-plain"></i> users.service.ts
-		- <i class="devicon-typescript-plain"></i> users.seraliser.ts
+      ├── Assets
+      │   └── Default-Avatar.png
+      ├── Authentication
+      │	  ├── Authentication
+      │	  │   ├── Authentication.Controller.ts
+      │	  │   ├── Authentication.Module.ts
+      │	  │   └── Authentication.Service.ts
+      │	  ├── FourtyTwo
+      │	  │   └── FourtyTwo.Strategy.ts
+      │	  ├── Interfaces
+      │	  │   └── RequestWithUser.Interface.ts
+      │	  ├── JSONWebToken
+      │	  │   └── JWT.Strategy.ts
+      │	  └── TwoFactor
+      │	      ├── TwoFactor.Controller.ts
+      │	      ├── TwoFactor.Dto.ts
+      │	      ├── TwoFactor.Guard.ts
+      │	      ├── TwoFactor.Service.ts
+      │	      └── TwoFactor.Strategy.ts
+      ├── Chat
+      │	  ├── Controllers
+      │	  │   ├── Chat.Controller.ts
+      │	  │   └── Muted.Controller.ts
+      │	  ├── Entities
+      │	  │   ├── Message.Entity.ts
+      │	  │   ├── Muted.Entity.ts
+      │	  │   └── Room.Entity.ts
+      │	  ├── Modules
+      │	  │   └── Chat.Module.ts
+      │	  ├── Services
+      │	  │   ├── Chat.Service.ts
+      │	  │   ├── Message.Service.ts
+      │	  │   ├── Muted.Service.ts
+      │	  │   └── Room.Service.ts
+      │	  └── Gateway
+      │	      └── Chat.Gateway.ts
+      ├── Database
+      │	  ├── DatabaseFile.Entity.ts
+      │	  ├── DatabaseFile.Module.ts
+      │	  ├── DatabaseFile.Controller.ts
+      │	  └── DatabaseFile.Service.ts
+      ├── Game
+      │	  ├── Game.Entity.ts
+      │	  ├── Game.Module.ts
+      │	  ├── Game.Controller.ts
+      │	  ├── Game.Service.ts
+      │	  └── Game.Gateway.ts
+      ├── Scoreboard
+      │	  ├── Score.Entity.ts
+      │	  ├── Score.Module.ts
+      │	  ├── Score.Controller.ts
+      │	  └── Score.Service.ts
+      └── Users
+	  ├── Users.Entity.ts
+	  ├── Users.Module.ts
+	  ├── Users.Controller.ts
+	  ├── Users.Service.ts
+	  └── Users.Seraliser.ts
 ```
 <br>
 <br>
