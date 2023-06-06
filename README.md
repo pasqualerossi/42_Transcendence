@@ -1,7 +1,7 @@
 # Project Structure
 
 ```
-Docker-Compose.yml
+docker-compose.yml
 ```
 
 ### :house: Frontend
