@@ -1,3 +1,7 @@
+# To-Do
+
+- Put all View.vue files into 1 folder instead.
+
 # Project Structure
 
 ### :house: Frontend
@@ -245,9 +249,21 @@ Grand Total of 105 Files
 
 <img width="735" alt="Screen Shot 2023-06-06 at 8 32 07 PM" src="https://github.com/pasqualerossi/42_Transcendence/assets/58959408/167c8acf-759a-48c4-a0be-71859a6b30c3">
 
-## Libraries and Frameworks
+## Libraries and Frameworks In This Project
 
-### Backend
+### :house: Frontend
+
+### Vue
+- vue
+- vue-router
+- vuex
+
+### Other
+- axios
+- socket.io-client
+- lodash
+
+### :building_construction: Backend
 
 #### NestJS
 - @nestjs/platform-express
@@ -274,9 +290,7 @@ Grand Total of 105 Files
 - passport-jwt
 - cookie-parser
 
-### Frontend
-
-- vue-router
+<br>
 
 ## TypeScript Frameworks
 
