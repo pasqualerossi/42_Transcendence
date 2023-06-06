@@ -259,6 +259,39 @@ Grand Total of 105 Files
 
 <img width="735" alt="Screen Shot 2023-06-06 at 8 32 07 PM" src="https://github.com/pasqualerossi/42_Transcendence/assets/58959408/167c8acf-759a-48c4-a0be-71859a6b30c3">
 
+## Libraries and Frameworks
+
+### Backend
+
+#### NestJS
+- @nestjs/platform-express
+- @nestjs/common
+- @nestjs/typeorm
+- @nestjs/jwt
+- @nestjs/config
+- @nestjs/swagger
+- @nestjs/platform-express
+- @nestjs/core
+- @nestjs/passport
+- @nestjs/websockets
+
+#### Other
+- class-transformer
+- typeorm
+- express
+- bcrypt
+- otplib
+- qrcode
+- stream
+- socket.io
+- passport-42
+- passport-jwt
+- cookie-parser
+
+### Frontend
+
+- vue-router
+
 ## TypeScript Frameworks
 
 [![My Skills](https://skillicons.dev/icons?i=vue,react,angular,nextjs,express)](https://skillicons.dev)
