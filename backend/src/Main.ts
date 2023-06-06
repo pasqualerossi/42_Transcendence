@@ -6,19 +6,19 @@ import * as cookieParser from 'cookie-parser';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { JwtService } from '@nestjs/jwt';
 
-import { User } from './Users/Users.entity';
-import { UsersModule } from './Users/Users.module';
-import { ChatModule } from './Chat/Modules/chat.module';
-import { Score } from './Scoreboard/score.entity';
-import { ScoreModule } from './Scoreboard/score.module';
-import { GameModule } from './Game/game.module';
-import { TwoFactorAuthenticationController } from './Authentication/TwoFactor/twoFactor.controller';
-import { TwoFactorAuthenticationService } from './Authentication/TwoFactor/twoFactor.service';
-import { AuthenticationService } from './Authentication/Authentication/authentication.service';
-import { ChatRoom } from './Chat/Entities/room.entity'
-import { Message } from './Chat/Entities/message.entity'
-import { RoomMutedUsers } from './Chat/Entities/muted.entity'
-import DatabaseFile from './Database/databaseFile.entity';
+import { User } from './Users/Users.Entity';
+import { UsersModule } from './Users/Users.Module';
+import { ChatModule } from './Chat/Modules/Chat.Module';
+import { Score } from './Scoreboard/Score.Entity';
+import { ScoreModule } from './Scoreboard/Score.Module';
+import { GameModule } from './Game/Game.Module';
+import { TwoFactorAuthenticationController } from './Authentication/TwoFactor/TwoFactor.Controller';
+import { TwoFactorAuthenticationService } from './Authentication/TwoFactor/TwoFactor.Service';
+import { AuthenticationService } from './Authentication/Authentication/Authentication.Service';
+import { ChatRoom } from './Chat/Entities/Room.Entity'
+import { Message } from './Chat/Entities/Message.Entity'
+import { RoomMutedUsers } from './Chat/Entities/Muted.Entity'
+import DatabaseFile from './Database/DatabaseFile.Entity';
 
 async function bootstrap() 
 {
