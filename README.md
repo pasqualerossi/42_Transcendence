@@ -156,12 +156,11 @@ Docker-Compose.yml
 <br>
 <br>
 
-## 🖥️ Main Files
+### 🖥️ Main Files
 
 - 1 .yml file
-- 1 Makefile
 
-## 🏠 Frontend
+### 🏠 Frontend
 
 - 48 .vue files
 - 4 .js files
@@ -174,7 +173,7 @@ Docker-Compose.yml
 
 Total of 57 Frontend Files
 
-## :building_construction: Backend
+### :building_construction: Backend
 
 - 41 .ts files
 - 4 .json files
@@ -185,9 +184,9 @@ Total of 57 Frontend Files
 
 Total of 47 Backend Files
 
-## :bar_chart: Grand Total
+### :bar_chart: Grand Total
 
-Grand Total of 106 Files
+Grand Total of 105 Files
 
 <br>
 
