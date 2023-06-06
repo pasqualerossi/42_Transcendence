@@ -1,8 +1,8 @@
 # Project Structure
 
+```
 Docker-Compose.yml
-
-Makefile
+```
 
 ### :house: Frontend
 ```
