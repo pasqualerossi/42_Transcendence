@@ -1,4 +1,16 @@
-## 🖥️ Interactive Short Videos
+## Project Overview
+
+<img width="796" alt="Screen Shot 2023-06-05 at 3 32 22 PM" src="https://github.com/pasqualerossi/42_Transcendence/assets/58959408/fc3c968e-96ac-4770-a90d-3ab4a4d18941">
+
+<br>
+
+## 💂 Security
+
+<img width="735" alt="Screen Shot 2023-06-06 at 8 32 07 PM" src="https://github.com/pasqualerossi/42_Transcendence/assets/58959408/167c8acf-759a-48c4-a0be-71859a6b30c3">
+
+<br>
+
+## 🎥 Introduction Videos
 
 ### Docker
 [Link 1](https://www.youtube.com/watch?v=Gjnup-PuquQ)
@@ -56,13 +68,3 @@
 [Link 1](https://www.youtube.com/watch?v=erEgovG9WBs)
 [Link 2](https://www.youtube.com/watch?v=q1fsBWLpYW4)
 [Link 3](https://www.youtube.com/watch?v=Sxxw3qtb3_g)
-
-<br>
-
-## Project Overview
-
-<img width="796" alt="Screen Shot 2023-06-05 at 3 32 22 PM" src="https://github.com/pasqualerossi/42_Transcendence/assets/58959408/fc3c968e-96ac-4770-a90d-3ab4a4d18941">
-
-## Security
-
-<img width="735" alt="Screen Shot 2023-06-06 at 8 32 07 PM" src="https://github.com/pasqualerossi/42_Transcendence/assets/58959408/167c8acf-759a-48c4-a0be-71859a6b30c3">
