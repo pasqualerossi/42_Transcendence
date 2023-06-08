@@ -39,6 +39,7 @@
 // This script sets up a component that connects to a store and handles socket communication for entering a private chat room.
 
 	import { computed, onBeforeMount, ref } from'vue';
+	
 	import  store  from '@/Store/index.js';
 	import BaseCardUser from '@/Components/BaseCardUser.vue'
 

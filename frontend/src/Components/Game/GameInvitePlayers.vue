@@ -43,8 +43,9 @@
 <script setup>
 // This is a script that interacts with the Vuex store and socket connection to handle the logic and functionality to invite people to a game of Pong.
 
-	import BaseCardUser from '@/Components/BaseCardUser.vue'
 	import { onBeforeMount, ref, computed, onMounted } from 'vue'
+
+	import BaseCardUser from '@/Components/BaseCardUser.vue'
 	import store from '@/Store/index.js'
 
 	const availableUsers = ref([]);

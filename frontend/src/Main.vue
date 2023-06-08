@@ -29,6 +29,7 @@
 	import TheGameInviteBox from '@/Components/Game/TheGameInviteBox.vue'
 	import store from '@/Store/index.js'
 	import router from './Router'
+	
 	import { createApp } from 'vue'
 
 	export default 

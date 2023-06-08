@@ -56,6 +56,7 @@
 // It manages data, filters and sorts users based on search criteria, and interacts with the application's store to fetch the current user's data.
 
 import _ from 'lodash'
+
 import store from '@/Store/index.js';
 import BaseCardUser from '@/Components/BaseCardUser.vue'
 

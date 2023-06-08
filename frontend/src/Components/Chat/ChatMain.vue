@@ -136,10 +136,11 @@
 // It interacts with the Vuex store and uses reactive variables and computed properties to update the UI based on the current state of the chat room and user.
 
 	import store from '@/Store/index.js';
-	import { computed, ref, onMounted } from 'vue'
 	import BaseCardUser from '@/Components/BaseCardUser'
 	import PopupNumber from '@/Components/PopupNumber'
 	import DropdownChatAdmin from '@/Components/DropdownChatAdmin'
+
+	import { computed, ref, onMounted } from 'vue'
 
 	const userIdImTryingToMute = ref(0);
 	const showPopupNumber = ref(false);

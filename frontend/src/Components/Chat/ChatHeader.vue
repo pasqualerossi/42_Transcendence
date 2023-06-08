@@ -59,6 +59,7 @@
 	import DropdownChatHeader from '@/Components/DropdownChatHeader.vue';
 	import PopupPassword from '@/Components/PopupPassword.vue';
 	import PopupChoice from '@/Components/PopupChoice.vue';
+	
 	import { computed, ref } from 'vue';
 
 	const dropdownTitle = 'Menu';

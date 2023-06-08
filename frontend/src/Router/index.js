@@ -1,15 +1,15 @@
 // This sets up the routing configuration for a Vue.js application using Vue Router.
 // It defines different routes and their associated components.
 
-import ChatView from '@/Views/ChatView/ChatView.vue'
-import FriendsView from '@/Views/FriendsView/FriendsView.vue'
-import GameLobbyView from '@/Views/GameLobbyView/GameLobbyView.vue'
-import GameRoomView from '@/Views/GameRoomView/GameRoomView.vue'
-import LoginView from '@/Views/LoginView/LoginView.vue'
-import ProfileView from '@/Views/ProfileView/ProfileView.vue'
-import ScoreBoard from '@/Views/ScoreBoardView/ScoreBoardView.vue'
-import SettingsView from '@/Views/SettingsView/SettingsView.vue'
-import TwoFactorLoginView from '@/Views/TwoFactorLoginView/TwoFactorLoginView.vue'
+import ChatPage from '@/Pages/ChatPage.vue'
+import FriendsPage from '@/Pages/FriendsPage.vue'
+import GameLobbyPage from '@/Pages/GameLobbyPage.vue'
+import GameRoomPage from '@/Pages/GameRoomPage.vue'
+import LoginPage from '@/Pages/LoginPage.vue'
+import ProfilePage from '@/Pages/ProfilePage.vue'
+import ScoreBoard from '@/Pages/ScoreBoardPage.vue'
+import SettingsPage from '@/Pages/SettingsPage.vue'
+import TwoFactorLoginPage from '@/Pages/TwoFactorLoginPage.vue'
 
 import { createRouter, createWebHistory } from 'vue-router'
 
@@ -17,22 +17,22 @@ const routes = [
 {
 	path: '/',
 	name: 'login',
-	component: LoginView,
+	component: LoginPage,
 },
 {
 	path: '/profile',
 	name: 'profile',
-	component: ProfileView,
+	component: ProfilePage,
 },
 {
 	path: '/friends',
 	name: 'friends',
-	component: FriendsView
+	component: FriendsPage
 },
 {
 	path: '/chat',
 	name: 'chat',
-	component: ChatView
+	component: ChatPage
 },
 {
 	path: '/scoreboard',
@@ -42,22 +42,22 @@ const routes = [
 {
 	path: '/settings',
 	name: 'settings',
-	component: SettingsView
+	component: SettingsPage
 },
 {
 	path: '/2falogin',
 	name: '2falogin',
-	component: TwoFactorLoginView
+	component: TwoFactorLoginPage
 },
 {
 	path: '/gamelobby',
 	name: 'gamelobby',
-	component: GameLobbyView
+	component: GameLobbyPage
 },
 {
 	path: '/gameroom',
 	name: 'gameroom',
-	component: GameRoomView,
+	component: GameRoomPage,
 }
 ]
 

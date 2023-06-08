@@ -76,6 +76,7 @@
 // It also communicates with the server through the socket to join or enter rooms, validate room access, and handle password verification.
 
 	import { computed, ref } from'vue';
+	
 	import  store  from '@/Store/index.js';
 	import BaseCardRoom from '@/Components/BaseCardRoom.vue'
 	import PopupPassword from '@/Components/PopupPassword.vue'
