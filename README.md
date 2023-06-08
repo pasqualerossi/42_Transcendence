@@ -1,7 +1,3 @@
-# To-Do
-
-- Put all View.vue files into 1 folder instead.
-
 # Project Structure
 
 ### :house: Frontend
