@@ -66,35 +66,27 @@
 
 <br>
 
-### File Extensions Explained
-```
-Controller.ts
+## File Extensions Explained
+
+### Controller.ts
 - Handles requests from users and sends back responses. It's like a traffic cop directing the flow of information.
-
-Module.ts 
+### Module.ts 
 - Groups related parts of the application together. Think of it as putting similar things in the same box for organisation.
-
-Service.ts
+### Service.ts
 - Provides specific functions or tasks that the application needs. It's like having specialized workers who can do specific jobs.
-
-Strategy.ts
+### Strategy.ts
 - Defines different ways to solve a problem. It's like having different approaches or methods to tackle a task.
-
-Interface.ts
+### Interface.ts
 - Sets rules for how different parts of the application should work together. It's like having a blueprint or a contract that everyone agrees to follow.
-
-Dto.ts
+### Dto.ts
 - Defines a structure for transferring data between different parts of the application. It's like having a standardised form for sharing information.
-
-Guard.ts
+### Guard.ts
 - Protects certain parts of the application and allows access only to authorised users or under specific conditions. It's like having security guards at the entrance to check who can enter.
-
-Entity.ts
-- Tepresents a specific object or thing in the application, such as a user or a product. It's like having a model or a representation of something you want to work with.
-
-Serialiser.ts
+### Entity.ts
+- Represents a specific object or thing in the application, such as a user or a product. It's like having a model or a representation of something you want to work with.
+### Serialiser.ts
 - Converts data into a format that can be easily stored, sent, or displayed. It's like translating information into a language that computers or other systems can understand.
-```
+
 <br>
 
 ## :building_construction: Files Count
