@@ -70,7 +70,7 @@
 
 <br>
 
-### 🏠 Files Count
+## 🏠 Files Count
 
 - 48 .vue files
 - 4 .js files
@@ -85,7 +85,7 @@ Total of 57 Frontend Files
 
 <br>
 
-### :house: Frontend Libraries and Frameworks
+## :house: Frontend Libraries and Frameworks
 
 #### Vue
 - vue
@@ -99,7 +99,7 @@ Total of 57 Frontend Files
 
 <br>
 
-### TypeScript Frameworks
+## TypeScript Frameworks
 
 [![My Skills](https://skillicons.dev/icons?i=vue,react,angular,nextjs,express)](https://skillicons.dev)
 
