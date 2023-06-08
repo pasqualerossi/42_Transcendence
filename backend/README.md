@@ -69,31 +69,31 @@
 ### File Extensions Explained
 ```
 Controller.ts
-- Manages requests and responses for parts of the application.
+- Handles requests from users and sends back responses. It's like a traffic cop directing the flow of information.
 
 Module.ts 
-- Groups related components together.
+- Groups related parts of the application together. Think of it as putting similar things in the same box for organisation.
 
 Service.ts
-- Provides specific functions and operations that other parts of the application can use.
+- Provides specific functions or tasks that the application needs. It's like having specialized workers who can do specific jobs.
 
 Strategy.ts
-- Defines different ways to solve a problem and allows the application to choose the best approach at runtime.
+- Defines different ways to solve a problem. It's like having different approaches or methods to tackle a task.
 
 Interface.ts
--  Sets rules for how different parts of the application should interact and communicate.
+- Sets rules for how different parts of the application should work together. It's like having a blueprint or a contract that everyone agrees to follow.
 
 Dto.ts
-- Defines a structure for transferring data between different parts of the application.
+- Defines a structure for transferring data between different parts of the application. It's like having a standardised form for sharing information.
 
 Guard.ts
-- Ensures that certain parts of the application can only be accessed by authorised users or under specific conditions.
+- Protects certain parts of the application and allows access only to authorised users or under specific conditions. It's like having security guards at the entrance to check who can enter.
 
 Entity.ts
-- Represents a specific object or concept within the application, such as a user or a product.
+- Tepresents a specific object or thing in the application, such as a user or a product. It's like having a model or a representation of something you want to work with.
 
 Serialiser.ts
-- Converts objects or data into a format that can be easily stored, sent, or displayed.
+- Converts data into a format that can be easily stored, sent, or displayed. It's like translating information into a language that computers or other systems can understand.
 ```
 <br>
 
