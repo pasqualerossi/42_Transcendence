@@ -64,6 +64,35 @@
 	  └── Users.Seraliser.ts
 ```
 
+### :building_construction: Files Explained
+```
+Controller.ts
+- Handles incoming requests and returns responses.
+
+Module.ts 
+- Groups related components together.
+
+Service.ts
+- Provides specific functionalities or operations.
+
+Strategy.ts
+- Implements a strategy pattern with interchangeable algorithms.
+
+Interface.ts
+- Defines a contract or set of rules for other components.
+
+Dto.ts
+- Defines a data structure for transferring data between components.
+
+Guard.ts
+- Protects resources and routes based on conditions.
+
+Entity.ts
+- Represents a data model or object within the application's domain.
+
+Serialiser.ts
+- Converts data objects or entities into a different format.
+```
 <br>
 
 ## :building_construction: Files Count
