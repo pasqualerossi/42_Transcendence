@@ -64,7 +64,7 @@
 	  └── Users.Seraliser.ts
 ```
 
-### :building_construction: File Extensions Explained
+### File Extensions Explained
 ```
 Controller.ts
 - Handles incoming requests and returns responses.
