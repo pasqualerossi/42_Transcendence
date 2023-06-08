@@ -96,3 +96,17 @@ Total of 57 Frontend Files
 - axios
 - socket.io-client
 - lodash
+
+<br>
+
+### TypeScript Frameworks
+
+[![My Skills](https://skillicons.dev/icons?i=vue,react,angular,nextjs,express)](https://skillicons.dev)
+
+In this project, you can use any of the following:
+
+- Vue (Our Chosen Framework For This Project)
+- React
+- Angular
+- NextJS
+- ExpressJS
