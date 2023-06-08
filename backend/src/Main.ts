@@ -20,6 +20,11 @@ import { Message } from './Chat/Entities/Message.Entity'
 import { RoomMutedUsers } from './Chat/Entities/Muted.Entity'
 import DatabaseFile from './Database/DatabaseFile.Entity';
 
+// The code initialises a Nest.js application, 
+// enables CORS with a specific origin, 
+// sets up Swagger documentation, 
+// and starts the application on port 3000.
+
 async function bootstrap() 
 {
 	const app = await NestFactory.create<NestExpressApplication>(AppModule);
@@ -40,6 +45,12 @@ async function bootstrap()
 
 	await app.listen(3000);
 }
+
+// This code is configuring and defining the main module for a NestJS application.
+// It sets up the application's configuration, 
+// connects to a PostgreSQL database, 
+// and includes various modules and providers for authentication, user management, 
+// chat functionality, scoring, and two-factor authentication.
 
 @Module ({
 	imports: 
