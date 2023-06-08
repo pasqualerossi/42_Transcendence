@@ -69,31 +69,31 @@
 ### File Extensions Explained
 ```
 Controller.ts
-- Handles incoming requests and returns responses.
+- Manages requests and responses for parts of the application.
 
 Module.ts 
 - Groups related components together.
 
 Service.ts
-- Provides specific functionalities or operations.
+- Provides specific functions and operations that other parts of the application can use.
 
 Strategy.ts
-- Implements a strategy pattern with interchangeable algorithms.
+- Defines different ways to solve a problem and allows the application to choose the best approach at runtime.
 
 Interface.ts
-- Defines a contract or set of rules for other components.
+-  Sets rules for how different parts of the application should interact and communicate.
 
 Dto.ts
-- Defines a data structure for transferring data between components.
+- Defines a structure for transferring data between different parts of the application.
 
 Guard.ts
-- Protects resources and routes based on conditions.
+- Ensures that certain parts of the application can only be accessed by authorised users or under specific conditions.
 
 Entity.ts
-- Represents data models within the application.
+- Represents a specific object or concept within the application, such as a user or a product.
 
 Serialiser.ts
-- Converts data entities into a different format.
+- Converts objects or data into a format that can be easily stored, sent, or displayed.
 ```
 <br>
 
