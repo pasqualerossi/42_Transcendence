@@ -66,7 +66,7 @@
 
 <br>
 
-## File Extensions Explained
+## 📂 File Extensions Explained
 
 ### Controller.ts
 - Handles requests from users and sends back responses. It's like a traffic cop directing the flow of information.
