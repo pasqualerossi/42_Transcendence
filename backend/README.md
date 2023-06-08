@@ -88,10 +88,10 @@ Guard.ts
 - Protects resources and routes based on conditions.
 
 Entity.ts
-- Represents a data model or object within the application's domain.
+- Represents data models within the application.
 
 Serialiser.ts
-- Converts data objects or entities into a different format.
+- Converts data entities into a different format.
 ```
 <br>
 
