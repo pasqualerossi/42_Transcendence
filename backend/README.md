@@ -64,6 +64,8 @@
 	  └── Users.Seraliser.ts
 ```
 
+<br>
+
 ### File Extensions Explained
 ```
 Controller.ts
