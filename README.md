@@ -66,17 +66,3 @@
 ## Security
 
 <img width="735" alt="Screen Shot 2023-06-06 at 8 32 07 PM" src="https://github.com/pasqualerossi/42_Transcendence/assets/58959408/167c8acf-759a-48c4-a0be-71859a6b30c3">
-
-<br>
-
-## TypeScript Frameworks
-
-[![My Skills](https://skillicons.dev/icons?i=vue,react,angular,nextjs,express)](https://skillicons.dev)
-
-In this project, you can use any of the following:
-
-- Vue (Our Chosen Framework For This Project)
-- React
-- Angular
-- NextJS
-- ExpressJS
