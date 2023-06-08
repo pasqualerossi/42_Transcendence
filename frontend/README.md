@@ -87,12 +87,12 @@ Total of 57 Frontend Files
 
 ### :house: Frontend Libraries and Frameworks
 
-### Vue
+#### Vue
 - vue
 - vue-router
 - vuex
 
-### Other
+#### Other
 - axios
 - socket.io-client
 - lodash
