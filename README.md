@@ -60,25 +60,16 @@
       |	      ├── SettingsChangeName.vue
       |	      ├── SettingsChangeStatus.vue
       |	      └── SettingsTwoFactorSetup.vue
-      └── Views
-          ├── ChatView
-          |   └── ChatView.vue
-      	  ├── FriendsView
-      	  │   └── FriendsView.vue
-      	  ├── GameLobbyView
-      	  │   └── GameLobbyView.vue
-      	  ├── GameRoomView
-      	  │   └── GameRoomView.vue
-          ├── LoginView
-      	  │   └── LoginView.vue
-      	  ├── ProfileView
-      	  │   └── ProfileView.vue
-      	  ├── ScoreBoardView
-      	  │   └── ScoreBoardView.vue
-      	  ├── SettingsView
-      	  │   └── SettingsView.vue
-	  └── TwoFactorLoginView	
-              └── TwoFactorLoginView
+      └── Pages
+          ├── ChatPage.vue
+      	  ├── FriendsPage.vue
+      	  ├── GameLobbyPage.vue
+      	  ├── GameRoomPage.vue
+          ├── LoginPage.vue
+      	  ├── ProfilePage.vue
+      	  ├── ScoreBoardPage.vue
+      	  ├── SettingsPage.vue
+	  └── TwoFactorLoginPage.vue
 ```
 ### :building_construction: Backend
 ```
