@@ -138,3 +138,38 @@ Total of 47 Backend Files
 - passport-42
 - passport-jwt
 - cookie-parser
+
+<br>
+
+# 🎥 Introduction Videos
+
+## Docker
+[Link 1](https://www.youtube.com/watch?v=Gjnup-PuquQ)
+[Link 2](https://www.youtube.com/watch?v=gAkwW2tuIqE)
+
+## PostgreSQL
+
+[Link 1](https://www.youtube.com/watch?v=zsjvFFKOm3c)
+[Link 2](https://www.youtube.com/watch?v=Cz3WcZLRaWc)
+[Link 3](https://www.youtube.com/watch?v=4QN1BzxF8wM)
+[Link 4](https://www.youtube.com/watch?v=W2Z7fbCLSTw)
+
+## TypeScript
+[Link 1](https://www.youtube.com/watch?v=zQnBQ4tB3ZA)
+[Link 2](https://www.youtube.com/watch?v=ahCwqrYpIuM)
+[Link 3](https://www.youtube.com/watch?v=ydkQlJhodio)
+[Link 4](https://www.youtube.com/watch?v=H91aqUHn8sE)
+
+## NestJS
+[Link 1](https://www.youtube.com/watch?v=0M8AYU_hPas)
+
+## JSON
+[Link 1](https://www.youtube.com/watch?v=rZUfzlOIqJo)
+
+## Chat
+[Link 1](https://www.youtube.com/watch?v=UBUNrFtufWo)
+
+## Web Development
+[Link 1](https://www.youtube.com/watch?v=erEgovG9WBs)
+[Link 2](https://www.youtube.com/watch?v=q1fsBWLpYW4)
+[Link 3](https://www.youtube.com/watch?v=Sxxw3qtb3_g)
