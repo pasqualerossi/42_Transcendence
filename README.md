@@ -75,3 +75,8 @@ http://<HOST_URL>:3000/authentication/callback
 and click submit.
 
 <img width="104" alt="Screen Shot 2023-06-09 at 12 35 40 PM" src="https://github.com/pasqualerossi/42_Transcendence/assets/58959408/0d59270b-4a91-45ba-b755-3d4df6023ae3">
+
+13. Head back to your iTerm and copy the following to iTerm:
+```
+cd .. && docker-compose up --build
+```
