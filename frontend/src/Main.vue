@@ -16,7 +16,6 @@
 </template>
 
 <script>
-	
 	// This script sets up a Vue component that handles game invitations and navigation.
 	// It imports components, store, and router.
 	// It initialises data properties.
@@ -25,12 +24,25 @@
 	// It listens to game invitation events and redirects to the game room.
 	// Finally, it creates and mounts the Vue application.
 
+	import { createApp } from 'vue'
+
 	import TheNavBar from '@/Components/Profile/TheNavBar.vue'
 	import TheGameInviteBox from '@/Components/Game/TheGameInviteBox.vue'
 	import store from '@/Store/index.js'
 	import router from './Router'
+
+	// MAIN - Everything Starts From Here.
+	createApp(App).use(router).use(store).mount('#app');
 	
-	import { createApp } from 'vue'
+	// Create a Vue Web Application called App using 'createApp() function.
+	// Add a router using app.use(router), to define the different routes in this web app.
+	// Then add a store using the app.use(store). 
+	// Store is a centralised storage system for the web app's data, that makes it easy to manage and share data across different components.
+	// Finally mounts the web application by attaching a HTML element with the ID '#app' that will be will be rendered and displayed on the webpage.
+
+
+	// EXPORT DEFAULT
+	// This interacts with the store to fetch data, sets up event listeners for socket communication, and handle game invitations and redirects.
 
 	export default 
 	{
@@ -96,13 +108,9 @@
 			}
 		}
 	}
-
-	// MAIN - Everything Starts From Here.
-	createApp(App).use(router).use(store).mount('#app');
 </script>
 
 <style>
-
  /* This is CSS code that sets the style and appearance of elements on the web page. */
 
 	:root 
@@ -145,5 +153,4 @@
 		text-align: center;
 		color: #2c3e50;
 	}
-
 </style>
