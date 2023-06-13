@@ -5,6 +5,7 @@ import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import * as cookieParser from 'cookie-parser';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { JwtService } from '@nestjs/jwt';
+import { Module } from '@nestjs/common';
 
 import { User } from './Users/Users.Entity';
 import { UsersModule } from './Users/Users.Module';
@@ -15,6 +16,7 @@ import { GameModule } from './Game/Game.Module';
 import { TwoFactorAuthenticationController } from './Authentication/TwoFactor/TwoFactor.Controller';
 import { TwoFactorAuthenticationService } from './Authentication/TwoFactor/TwoFactor.Service';
 import { AuthenticationService } from './Authentication/Authentication/Authentication.Service';
+import { AuthenticationModule } from './Authentication/Authentication/Authentication.Module'
 import { ChatRoom } from './Chat/Entities/Room.Entity'
 import { Message } from './Chat/Entities/Message.Entity'
 import { RoomMutedUsers } from './Chat/Entities/Muted.Entity'

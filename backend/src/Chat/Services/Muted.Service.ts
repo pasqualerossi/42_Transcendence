@@ -17,6 +17,8 @@ export class MutedService
 		private mutedRepository: Repository<RoomMutedUsers>,
 	) {}
 
+	// Muting a user in a chat room for a specified duration.
+
 	async createMuted(user: User, room: ChatRoom, muteTime: number): Promise<RoomMutedUsers> 
 	{
 		const roomMutedUsers = this.mutedRepository.create({
@@ -29,10 +31,14 @@ export class MutedService
 		return await this.mutedRepository.save(roomMutedUsers);
 	}
 
+	// Delete A Muted Person
+
 	async deleteMuted(roomMutedUsersId: number) 
 	{
 		return await this.mutedRepository.delete(roomMutedUsersId);
 	}
+
+	// Find All Muted People
 
 	findAll(): Promise<RoomMutedUsers[]> 
 	{
@@ -44,6 +50,8 @@ export class MutedService
 			]
 		});
 	}
+
+	// Find Muted Person By Their ID
 
 	findById(id: number): Promise<RoomMutedUsers> 
 	{

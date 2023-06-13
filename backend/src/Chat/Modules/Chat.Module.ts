@@ -14,6 +14,10 @@ import { ChatService } from '../Services/Chat.Service';
 import { MutedService } from '../Services/Muted.Service';
 import { UsersModule } from '../../Users/Users.Module';
 
+// This defines a module in a Nest.js application for handling chat functionality.
+// It imports and configures dependencies related to database models, controllers, services, and a gateway for real-time communication. 
+// The module exports these components for use in other parts of the application.
+
 @Module({
 	imports: 
 	[

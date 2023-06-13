@@ -28,6 +28,8 @@ export class ChatService
 		private readonly roomService: RoomService,
 		private readonly mutedService: MutedService,
 	) {}
+	
+	// Check If User's Token is Valid
 
 	async validateToken(client: Socket) 
 	{
@@ -40,10 +42,14 @@ export class ChatService
 		return user;
 	}
 
+	// Check If A Room Exists
+
 	async roomExists(roomName: string): Promise<Boolean> 
 	{
 		return (await this.roomRepository.findOne({where: {name: roomName}}) !== null)
 	}
+
+	// Check Who's A Member In A Chat
 
 	async isMember(roomName: string, userId: number): Promise<Boolean> 
 	{
@@ -55,6 +61,8 @@ export class ChatService
 		return false;
 	}
 
+	// Check Who's Banned In A Chat
+
 	async isBanned(roomName: string, userId: number): Promise<Boolean> 
 	{
 		const room: ChatRoom | null = await this.roomService.findByName(roomName);
@@ -64,6 +72,8 @@ export class ChatService
 			return true;
 		return false;
 	}
+
+	// Check Who's Admin In A Chat
 
 	async isAdmin(roomName: string, userId: number): Promise<Boolean> 
 	{
@@ -75,6 +85,8 @@ export class ChatService
 		return false;
 	}
 
+	// Check Who's Blocked In A Chat
+
 	async isBlocked(userId: number, blockedId: number): Promise<Boolean> 
 	{
 		const user: User | null = await this.usersService.findById(userId);
@@ -84,6 +96,8 @@ export class ChatService
 			return true;
 		return false;
 	}
+
+	// Check Who's Muted In A Chat
 
 	async isMuted(userId: number, roomName: string): Promise<Boolean> 
 	{
@@ -105,6 +119,8 @@ export class ChatService
 		}
 		return true;
 	}
+
+	// Create A Chat Room
 
 	async createRoom(newRoom: {name: string, access: string, password?: string}): Promise<ChatRoom> 
 	{
@@ -134,6 +150,8 @@ export class ChatService
 		}
 	}
 
+	// Set The Room Privacy
+
 	async setRoomPrivacy(room: ChatRoom, password: string, access: string) 
 	{
 		if (password === null) 
@@ -146,10 +164,14 @@ export class ChatService
 		this.roomRepository.update({id: room.id}, {password: hash, access: access});
 	}
 
+	// Delete A Chat Room
+
 	async deleteRoom(roomName: string) 
 	{
 		await this.roomRepository.delete({name: roomName});
 	}
+
+	// Set A User As Admin
 
 	async setUserAsAdmin(room: ChatRoom, user: User) 
 	{
@@ -166,6 +188,8 @@ export class ChatService
 		await this.userRepository.save(user);
 	}
 
+	// Password Protection A Chat Room
+
 	async passwordProtectionRoom(roomName: string, password: string): Promise<boolean> 
 	{
 		const room: ChatRoom | null = await this.roomService.findByName(roomName);
@@ -176,6 +200,8 @@ export class ChatService
 
 		return isMatch;
 	}
+
+	// Join A Chat Room
 
 	async joinRoom(roomName: string, userId: number) 
 	{
@@ -192,6 +218,8 @@ export class ChatService
 		await this.userRepository.save(user);
 	}
 
+	// Find A User In A List
+
 	findInUserArray(arr: Array<User>, userId: number): number 
 	{
 		return arr.findIndex(user => 
@@ -199,6 +227,8 @@ export class ChatService
 			return user.id === userId;
 		});
 	}
+
+	// Find A Room In A List
 	
 	findInRoomArray(arr: Array<ChatRoom>, roomName: string): number 
 	{
@@ -207,6 +237,8 @@ export class ChatService
 			return room.name === roomName;
 		});
 	}
+
+	// Leave A Chat Room
 
 	async leaveRoom(roomName: string, userId: number): Promise<ChatRoom> 
 	{
@@ -233,6 +265,8 @@ export class ChatService
 		return room;
 	}
 
+	// Ban A User From A Room
+
 	async banUserFromRoom(roomName: string, userId: number): Promise<ChatRoom> 
 	{
 		const room: ChatRoom | null = await this.roomService.findByName(roomName);
@@ -248,6 +282,8 @@ export class ChatService
 		room.bannedUsers.push(user);
 		return await this.roomRepository.save(room);
 	}
+
+	// Un-Ban A User From A Room
 	
 	async unBanUserFromRoom(roomName: string, userId: number): Promise<ChatRoom> 
 	{		
@@ -263,6 +299,8 @@ export class ChatService
 		}
 		return await this.roomRepository.save(room);
 	}
+
+	// Create A Message In A Room
 	
 	async createMessage(roomName: string, userId: number, text: string) 
 	{
@@ -284,6 +322,8 @@ export class ChatService
 		room.messages.push(message);
 		await this.roomRepository.save(room);
 	}
+
+	// Create A Bot Message In A Room
 
 	async createBotMessage(roomName: string, text: string) 
 	{

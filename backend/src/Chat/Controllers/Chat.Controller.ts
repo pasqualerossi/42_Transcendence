@@ -19,6 +19,7 @@ export class ChatController
 	@Get('room/:name')
 	@UseGuards(JwtAuthenticationGuard)
 	@UseInterceptors(ClassSerialiserInterceptor)
+
 	async getByName(@Param('name') name: string):Promise<ChatRoom>
 	{
 		return await this.roomService.findByName(name);
@@ -27,6 +28,7 @@ export class ChatController
 	@Get('all')
 	@UseGuards(JwtAuthenticationGuard)
 	@UseInterceptors(ClassSerialiserInterceptor)
+	
 	async getAll():Promise<ChatRoom[]>
 	{
 		return await this.roomService.findAll();

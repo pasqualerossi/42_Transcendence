@@ -20,6 +20,9 @@ export class MutedController
 	@Get('all')
 	@UseGuards(JwtAuthenticationGuard)
 	@UseInterceptors(ClassSerialiserInterceptor)
+
+	// Get Everyone Who's Muted
+
 	async getAll():Promise<RoomMutedUsers[]>
 	{
 		return await this.mutedService.findAll();
@@ -28,6 +31,9 @@ export class MutedController
 	@Post('create/:roomName')
 	@UseGuards(JwtAuthenticationGuard)
 	@UseInterceptors(ClassSerialiserInterceptor)
+
+	// Send Friend Request
+
 	async sendFriendReqeuest(@Req() request: RequestUser, @Param('roomName') roomName: string): Promise<RoomMutedUsers> 
 	{
 		const user = await this.usersService.findById(request.user.id);
