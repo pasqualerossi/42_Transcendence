@@ -116,12 +116,12 @@
 			{
 				if (this.newName.length > 8) 
 				{
-					this.showNameError('Name cant have more then 8 characters')
+					this.showNameError('Your Username Cant Have More Than 8 Characters')
 					return ;
 				}
 				if (this.newName.includes(' ')) 
 				{
-					this.showNameError('Name cant have spaces')
+					this.showNameError('Your Name Cant Have Spaces')
 					return ;
 				}
 				await axios.post(`${process.env.VUE_APP_HOST_URL}:3000/Usersupdate/name/${this.newName}`, null, { withCredentials: true })
@@ -132,7 +132,7 @@
 				})
 				.catch((error) => 
 				{
-					if (error.response.data.message == 'Name is taken') 
+					if (error.response.data.message == 'This Name Is Taken') 
 					{
 						this.showNameError('Name is taken')
 					}

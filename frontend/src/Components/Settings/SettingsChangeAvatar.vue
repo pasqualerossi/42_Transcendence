@@ -5,7 +5,7 @@
 
 	<div class="change-avatar-wrapper">
 		<h2>Change Profile Picture</h2>
-		<div>Current Picture:</div>
+		<div>Your Current Picture:</div>
 		<img :src="imageLink" width="65">
 		<form @submit.prevent="onSubmit" enctype="multipart/form-data">
 			<img v-if="previewImage" :src="previewImage" class="uploading-image" width="100" height="100"/>
@@ -128,7 +128,9 @@ export default {
 	},
 
 	methods: 
-	{
+	{	
+		// Sets the message property to the provided error message, clears the file property, 
+		// and sets a timeout to clear the error message after 3 seconds.
 		fileError(errorMessage) 
 		{
 			this.message = errorMessage;
@@ -139,6 +141,10 @@ export default {
 			this.file = '';
 		},
 
+		// Triggered when a file is selected. 
+		// It reads the file as a data URL using FileReader and sets the previewImage property to the result. 
+		// It checks the file's type and size, and if they don't meet the requirements, it calls fileError 
+		// with the appropriate error message.
 		onSelect(e)
 		{
 			const image = e.target.files[0];
@@ -162,11 +168,17 @@ export default {
 			this.file = file;
 		},
 
+		// Triggered when the form is submitted. It checks if a file is selected 
+		// and if not, calls fileError with a "select a valid file" error message. 
+		// If a file is selected, it creates a new FormData object, appends the file to it, 
+		// and sends a POST request using axios to upload the file. If the request is successful, 
+		// it clears the previewImage property and dispatches a Vuex action to fetch the current user's data. 
+		// If an error occurs, it sets the message property to the error message received from the server.
 		async onSubmit()
 		{
 			if (this.file === '') 
 			{
-				this.fileError('select a valid file')
+				this.fileError('Please Select A Valid File')
 				return ;
 			}
 			const formData = new FormData();

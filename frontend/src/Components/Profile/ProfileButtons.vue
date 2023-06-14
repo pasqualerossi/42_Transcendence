@@ -93,6 +93,8 @@
 
 		methods: 
 		{
+			// Sends a friend request by making a POST request to the server using axios. 
+			// It then dispatches the 'fetchCurrentUser' action to update the current user's data.
 			async sendFriendRequest() 
 			{
 				await axios.post(`${process.env.VUE_APP_HOST_URL}:3000/Usersfriend/add/${this.user.id}`, null, {withCredentials: true})
@@ -106,6 +108,8 @@
 				})
 			},
 
+			// Retrieves a friend request by making a POST request to the server using axios. 
+			// It then dispatches the 'fetchCurrentUser' action to update the current user's data.
 			async retrieveFriendRequest() 
 			{
 				await axios.post(`${process.env.VUE_APP_HOST_URL}:3000/Usersfriend/retrieve/${this.user.id}`, null, {withCredentials: true})
@@ -119,6 +123,8 @@
 				})
 			},
 
+			// Removes a friend by making a POST request to the server using axios. 
+			// It then dispatches the 'fetchCurrentUser' action to update the current user's data.
 			async deleteFriend() 
 			{
 				await axios.post(`${process.env.VUE_APP_HOST_URL}:3000/Usersfriend/remove/${this.user.id}`, null, {withCredentials: true})
@@ -132,6 +138,8 @@
 				})
 			},
 
+			// Accepts a friend request by making a POST request to the server using axios. 
+			// It then dispatches the 'fetchCurrentUser' action to update the current user's data.
 			async acceptFriend() 
 			{
 				await axios.post(`${process.env.VUE_APP_HOST_URL}:3000/Usersfriend/accept/${this.user.id}`, null, {withCredentials: true})
@@ -145,6 +153,8 @@
 				})
 			},
 
+			// Declines a friend request by making a POST request to the server using axios. 
+			// It then dispatches the 'fetchCurrentUser' action to update the current user's data.
 			async declineFriend() 
 			{
 				await axios.post(`${process.env.VUE_APP_HOST_URL}:3000/Usersfriend/decline/${this.user.id}`, null, {withCredentials: true})
@@ -158,6 +168,8 @@
 				})
 			},
 
+			// Blocks a user by making a POST request to the server using axios. 
+			// It then dispatches the 'fetchCurrentUser' action to update the current user's data.
 			async blockUser() 
 			{
 				await axios.post(`${process.env.VUE_APP_HOST_URL}:3000/Usersblock/${this.user.id}`, null, {withCredentials: true})
@@ -171,6 +183,8 @@
 				})
 			},
 
+			// Unblocks a user by making a POST request to the server using axios. 
+			// It then dispatches the 'fetchCurrentUser' action to update the current user's data.
 			async unblockUser() 
 			{
 				await axios.post(`${process.env.VUE_APP_HOST_URL}:3000/Usersunblock/${this.user.id}`, null, {withCredentials: true})
@@ -187,29 +201,34 @@
 
 		computed: 
 		{
+			// Retrieves the current user data from the Vuex store using the 'getCurrentUser' getter.
 			currentUser() 
 			{
 				return store.getters.getCurrentUser;
 			},
 
+			// Checks if the current user has received a friend request.
 			receivedRequest() 
 			{
 				if (this.currentUser)
 					return this.currentUser.receivedFriendRequests.some(e => e.username === this.user.username);
 			},
 
+			// Checks if the current user has sent a friend request.
 			sentRequest() 
 			{
 				if (this.currentUser)
 					return this.currentUser.sendFriendRequests.some(e => e.username === this.user.username);
 			},
 
+			// Checks if the user is a friend of the current user.
 			isFriend() 
 			{
 				if (this.currentUser)
 					return this.currentUser.friends.some(e => e.username === this.user.username);
 			},
 
+			// Checks if the user is blocked by the current user.
 			isBlocked() 
 			{
 				if (this.currentUser)

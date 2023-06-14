@@ -94,6 +94,8 @@
 		return store.getters.getSocketChat;
 	})
 
+	// This ensures that the socket event listeners are removed to prevent memory leaks.
+
 	onUnmounted(() => 
 	{
 		if (socket.value) 
@@ -101,6 +103,9 @@
 			socket.value.off();
 		}
 	})
+
+	// This fetches the current user data and redirects to the home page if the user is not logged in.
+	// It also sets up socket event listeners for refreshing the current room, refreshing the list of rooms, and handling bans, mutes, and blocks.
 
 	onBeforeMount(async () => 
 	{

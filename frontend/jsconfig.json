@@ -4,14 +4,16 @@
     "target": "es5",
     "module": "esnext",
     "baseUrl": "./",
-    "moduleResolution": "node",
+	"moduleResolution": "node",
+	
 	"paths": 
 	{
 	  "@/*": 
 	  [
         "src/*"
       ]
-    },
+	},
+	
 	"lib": 
 	[
       "esnext",

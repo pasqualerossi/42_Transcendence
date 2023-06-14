@@ -1,5 +1,5 @@
 # This file is used to define and configure multiple containers that work together as a service in a Docker environment. 
-# This allows to manage and run multiple containers as a single unit.
+# This allows to manage and run multiple containers (postgres, backend and frontend) as a single unit.
 
 services:
 

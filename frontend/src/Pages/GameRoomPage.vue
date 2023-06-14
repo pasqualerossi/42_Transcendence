@@ -96,6 +96,9 @@
 		return store.getters.getCurrentGameRole;
 	})
 
+	// DRAW
+	// This defines several functions for drawing different game elements on the canvas, 
+	// such as the background, walls, paddles, and the ball.
 	const drawBackground = (width, height, color) => 
 	{
 		context.value.fillStyle = color;
@@ -142,6 +145,11 @@
 		context.value = canvas.value.getContext('2d');
 	}
 
+	// GAME ACTIONS
+	// This defines functions for various game actions, 
+	// such as resuming, exiting, and pausing the game. 
+	// It also includes functions for resetting game data, starting the game, 
+	// fetching player information, and handling game over scenarios.
 	const resumeGame = () => 
 	{
 		socket.value.emit('resumeGame')
@@ -192,6 +200,8 @@
 		router.push('gamelobby')
 	}
 
+	// KEYBOARD EVENT HANDLING
+	// This is a keyhooks function that handles keyboard events for controlling the game paddles.
 	const keyhooks = (e) => 
 	{
 		if (!countdown.value) 
@@ -216,6 +226,10 @@
 		store.commit('setCurrentGameKey', 0)
 		store.commit('setCurrentGameRole', '')
 	}
+
+	// This fetches the current user data from the Vuex store, 
+	// checks if the user is authenticated, and initializes the game canvas. 
+	// It also sets up event listeners for game-related socket events.
 
 	onBeforeMount(async () => 
 	{
@@ -297,6 +311,9 @@
 		}
 	}
 
+	// This fetches player information, starts the game if the current role is a player, 
+	// and adds a keyboard event listener for controlling the game.
+
 	onMounted(() => 
 	{
 		if (!socket.value) 
@@ -311,6 +328,9 @@
 			document.addEventListener('keydown', keyhooks)
 		}
 	})
+
+	// This resets game-related data, turns off socket event listeners, removes the keyboard event listener, 
+	// and handles the case where a player exits the game prematurely.
 
 	onUnmounted(() => 
 	{

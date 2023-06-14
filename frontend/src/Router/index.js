@@ -19,49 +19,57 @@ const routes = [
 	name: 'login',
 	component: LoginPage,
 },
+
 {
 	path: '/profile',
 	name: 'profile',
 	component: ProfilePage,
 },
+
 {
 	path: '/friends',
 	name: 'friends',
 	component: FriendsPage
 },
+
 {
 	path: '/chat',
 	name: 'chat',
 	component: ChatPage
 },
+
 {
 	path: '/scoreboard',
 	name: 'scoreboard',
 	component: ScoreBoard
 },
+
 {
 	path: '/settings',
 	name: 'settings',
 	component: SettingsPage
 },
+
 {
 	path: '/2falogin',
 	name: '2falogin',
 	component: TwoFactorLoginPage
 },
+
 {
 	path: '/gamelobby',
 	name: 'gamelobby',
 	component: GameLobbyPage
 },
+
 {
 	path: '/gameroom',
 	name: 'gameroom',
 	component: GameRoomPage,
-}
-]
+}]
 
-const router = createRouter({
+const router = createRouter(
+{
 	history: createWebHistory(process.env.BASE_URL),
 	routes
 })

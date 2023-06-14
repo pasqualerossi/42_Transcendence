@@ -8,7 +8,10 @@ import { createStore } from 'vuex';
 import axios from 'axios';
 import io from 'socket.io-client';
 
-const state = {
+// STATE
+
+const state = 
+{
   currentUser: null,
   socketChat: null,
   socketGame: null,
@@ -16,6 +19,8 @@ const state = {
   currentGameRole: '',
   watchingCurrentProfileID: 0,
 };
+
+// GETTERS
 
 const getters = 
 {
@@ -26,6 +31,8 @@ const getters =
   getCurrentGameRole: (state) => state.currentGameRole,
   getWatchingCurrentProfileID: (state) => state.watchingCurrentProfileID,
 };
+
+// ACTIONS
 
 const actions = 
 {
@@ -89,6 +96,8 @@ const actions =
   },
 };
 
+// MUTATIONS
+
 const mutations = 
 {
   setCurrentUser(state, user) 
@@ -121,6 +130,8 @@ const mutations =
     state.watchingCurrentProfileID = id;
   },
 };
+
+// STORE
 
 const store = createStore
 ({

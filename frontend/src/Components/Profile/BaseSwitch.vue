@@ -60,7 +60,6 @@
 
 	export default {
 		name: 'BaseSwitch',
-
 		emits: ['checked'],
 
 		data() 

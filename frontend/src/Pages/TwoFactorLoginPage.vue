@@ -44,7 +44,8 @@
 		gap: 10px;
 	}
 
-	h2 {
+	h2 
+	{
 		color: var(--blue-dark);
 		letter-spacing: 2px;
 	}
@@ -99,7 +100,8 @@ export default
 		}
 	},
 
-	methods: {
+	methods: 
+	{
 		login2FA() 
 		{
 			if (this.formData.code == '') 

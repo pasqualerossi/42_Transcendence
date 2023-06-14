@@ -56,6 +56,11 @@
 
 		methods: 
 		{
+			// Retrieves the match history for a user by making a GET request to the server using axios. 
+			// It uses the user.id property and a limit of 10 matches. 
+			// The request is made with the withCredentials option set to true. 
+			// Upon receiving a response, the method returns the data from the response. 
+			// If an error occurs, the error message is logged to the console.
 			async fetchHistory() 
 			{
 				this.limitedMatchHistory = await axios.get(`${process.env.VUE_APP_HOST_URL}:3000/score/matchHistory/${this.user.id}/${10}`, {withCredentials: true})
@@ -70,6 +75,7 @@
 			}
 		},
 
+		// Retrieve the Match History.
 		mounted() 
 		{
 			this.fetchHistory();

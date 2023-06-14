@@ -71,6 +71,9 @@
 		return store.getters.getCurrentUser;
 	})
 
+	// This is called when a user wants to enter a game room.
+	// It sets the current game key and role in the Vuex store. 
+	// Then navigates to the "gameroom" route using the Vue Router.
 	const enterGameRoom = (gameKey) => 
 	{
 		store.commit('setCurrentGameKey', Number(gameKey));
@@ -78,6 +81,8 @@
 		router.push('gameroom');
 	}
 
+	// This fetches the current user data from the Vuex store. 
+	// If there is no current user, it redirects to the home page using the Vue Router.
 	onBeforeMount(async () => 
 	{
 		await store.dispatch('fetchCurrentUser');

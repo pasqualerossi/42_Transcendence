@@ -116,11 +116,13 @@ export default {
 
 	computed: 
 	{
+		// Returns the component name associated with the current tab.
 		currentTabComponent() 
 		{
 			return 'Friends' + this.currentTab;
 		},
 
+		// Retrieves the current user data from the Vuex store.
 		currentUser() 
 		{
 			return store.getters.getCurrentUser;
@@ -128,7 +130,8 @@ export default {
 	},
 
 	methods: 
-	{
+	{	
+		// Sends an HTTP GET request to retrieve all users' data and stores it in usersData.allUsers.
 		async getAllUsers() 
 		{
 			await axios.get(`${process.env.VUE_APP_HOST_URL}:3000/Usersall`, {withCredentials: true})
@@ -142,6 +145,7 @@ export default {
 			})
 		},
 
+		// Sends an HTTP GET request to retrieve other users' data and stores it in usersData.otherUsers.
 		async getAllOtherUsers() 
 		{
 			await axios.get(`${process.env.VUE_APP_HOST_URL}:3000/Userspublic`, {withCredentials: true})
@@ -156,6 +160,7 @@ export default {
 		},
 	},
 
+	// This checks if there is a current user, redirects to the home page if not, and then calls the getAllUsers, 
 	async beforeMount() 
 	{
 		if (!this.currentUser) 

@@ -86,16 +86,20 @@
 
 		computed: 
 		{
+			// Retrieves the name of the current route using this.$route.name. It returns the name of the current route.
 			currentRoute() 
 			{
 				return this.$route.name;
 			},
 
+			// Retrieves the current user data from the Vuex store using the getCurrentUser getter.
 			currentUser() 
 			{
 				return store.getters.getCurrentUser;
 			},
 
+			// Checks the value of currentRoute and determines whether the navbar should be displayed. 
+			// If the current route is '2falogin', 'login', or 'gameroom', it returns false; otherwise, it returns true.
 			navbarAllowed() 
 			{
 				if (this.currentRoute === '2falogin' || this.currentRoute === 'login' || this.currentRoute === 'gameroom')
@@ -104,6 +108,7 @@
 			}
 		},
 
+		// This dispatches the 'fetchCurrentUser' action from the Vuex store, which fetches the current user's data.
 		async created() 
 		{
 			await store.dispatch('fetchCurrentUser');
@@ -111,6 +116,10 @@
 
 		methods: 
 		{
+			// Logs out the user by making a POST request to the server using axios. 
+			// It sends the request to the /Authentication/logout endpoint with the withCredentials option set to true. 
+			// Upon successful logout, it dispatches the 'setUserStatus' action with a value of 0, commits the 'setCurrentUser' mutation with a value of null, 
+			// and navigates the user to the '/' route. If an error occurs, the error message is stored in the errorMsg property.
 			logoutAPI() 
 			{
 				axios.post(`${process.env.VUE_APP_HOST_URL}:3000/Authentication/logout`, null, {withCredentials: true})
