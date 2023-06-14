@@ -68,6 +68,41 @@
 	  └── TwoFactorLoginPage.vue
 ```
 
+### 💻 Vue Keywords and Concepts Explained 
+
+`name`
+> It's like giving a name to a Vue component for identification purposes.
+
+`emits`
+> It's a way for a Vue component to declare and emit custom events that other components can listen for.
+
+`props`
+> It's a way for a parent component to share information or data with its child components. It's like giving something to the child component to use.
+
+`methods`
+> They are like special abilities or actions that a Vue component can perform. When something happens, like a button click, the component can use these methods to respond or do something.
+
+`computed`
+> They are like special calculations or derived values that a Vue component can automatically keep track of. They are useful for things that depend on other data within the component.
+
+`export default`
+> It's a way to export the main definition of a component, so it can be imported and used in other parts of the application.
+
+`components`
+> They are like Lego blocks that you can use to build your Vue application. Each component is like a piece of functionality or a part of the user interface that can be reused in different places.
+
+`data()`
+> It's like a box where a Vue component can store and keep track of its own information or data. It's like having a personal space to hold things.
+
+`onUnmounted`
+> It's like having a special instruction or code that gets executed just before a Vue component is removed or disappears from the screen. It's useful for cleaning up or doing any final tasks.
+
+`onMounted`
+> It's like having a special instruction or code that gets executed as soon as a Vue component is added or appears on the screen. It's useful for setting up or initializing things when the component starts showing.
+
+`async`
+> It's a way to write functions that can do multiple tasks at once without blocking other code from running. It's like telling the function to do something in the background while the rest of the code continues executing. This helps in managing tasks that may take some time, like fetching data from a server, without making the application freeze or become unresponsive.
+
 <br>
 
 ## 🏠 Files Count
