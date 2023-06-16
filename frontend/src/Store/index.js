@@ -40,7 +40,7 @@ const actions =
   {
 	try 
 	{
-      const response = await axios.get(`${process.env.VUE_APP_HOST_URL}:3000/Usersmyuser`, { withCredentials: true });
+      const response = await axios.get(`${process.env.VUE_APP_HOST_URL}:3000/Profilemyuser`, { withCredentials: true });
       commit('setCurrentUser', response.data);
 	} 
 	catch (error) {}
@@ -50,7 +50,7 @@ const actions =
   {
 	try 
 	{
-      const response = await axios.post(`${process.env.VUE_APP_HOST_URL}:3000/Usersupdate/status/${status}`, null, { withCredentials: true });
+      const response = await axios.post(`${process.env.VUE_APP_HOST_URL}:3000/Profileupdate/status/${status}`, null, { withCredentials: true });
       commit('setCurrentUser', response.data);
 	} 
 	catch (error) {}

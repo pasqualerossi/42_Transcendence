@@ -134,7 +134,7 @@ export default {
 		// Sends an HTTP GET request to retrieve all users' data and stores it in usersData.allUsers.
 		async getAllUsers() 
 		{
-			await axios.get(`${process.env.VUE_APP_HOST_URL}:3000/Usersall`, {withCredentials: true})
+			await axios.get(`${process.env.VUE_APP_HOST_URL}:3000/Profileall`, {withCredentials: true})
 			.then((response) => 
 			{
 				this.usersData.allUsers = response.data
@@ -148,7 +148,7 @@ export default {
 		// Sends an HTTP GET request to retrieve other users' data and stores it in usersData.otherUsers.
 		async getAllOtherUsers() 
 		{
-			await axios.get(`${process.env.VUE_APP_HOST_URL}:3000/Userspublic`, {withCredentials: true})
+			await axios.get(`${process.env.VUE_APP_HOST_URL}:3000/Profilepublic`, {withCredentials: true})
 			.then((response) => 
 			{
 				this.usersData.otherUsers = response.data;
