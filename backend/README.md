@@ -57,12 +57,12 @@
       │	      ├── Score.Module.ts
       │	      ├── Score.Controller.ts
       │	      └── Score.Service.ts
-      └── Users
-	  ├── Users.Entity.ts
-	  ├── Users.Module.ts
-	  ├── Users.Controller.ts
-	  ├── Users.Service.ts
-	  └── Users.Seraliser.ts
+      └── Profile
+	  ├── Profile.Entity.ts
+	  ├── Profile.Module.ts
+	  ├── Profile.Controller.ts
+	  ├── Profile.Service.ts
+	  └── Profile.Seraliser.ts
 ```
 
 <br>
