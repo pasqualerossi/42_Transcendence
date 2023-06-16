@@ -1,9 +1,9 @@
-import { ChatRoom } from './Room.Entity';
-import { User } from '../../Users/Users.Entity';
-import { UserFriendsSerialiser } from '../../Users/Users.Serialiser';
-
 import { CreateDateColumn } from "typeorm";
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne} from 'typeorm';
+
+import { ChatRoom } from './Room.Entity';
+import { User } from '../../Profile/Profile.Entity';
+import { UserFriendsSerialiser } from '../../Profile/Profile.Serialiser';
 
 @Entity() 
 export class RoomMutedUsers 

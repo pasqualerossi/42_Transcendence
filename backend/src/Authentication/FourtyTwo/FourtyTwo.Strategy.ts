@@ -5,8 +5,8 @@ import { Logger } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { Strategy } from 'passport-42';
 
-import { UsersService } from '../../Users/Users.Service';
-import { User } from '../../Users/Users.Entity';
+import { UsersService } from '../../Profile/Profile.Service';
+import { User } from '../../Profile/Profile.Entity';
 
 // 42 Authentication Guard
 @Injectable()

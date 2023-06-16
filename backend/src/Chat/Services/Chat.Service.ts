@@ -6,9 +6,9 @@ import { Socket } from 'socket.io';
 
 import { Message } from '../Entities/Message.Entity';
 import { ChatRoom } from '../Entities/Room.Entity';
-import { User } from '../../Users/Users.Entity';
+import { User } from '../../Profile/Profile.Entity';
 import { RoomService } from './Room.Service';
-import { UsersService } from '../../Users/Users.Service';
+import { UsersService } from '../../Profile/Profile.Service';
 import { MutedService } from './Muted.Service';
 import { RoomMutedUsers } from '../Entities/Muted.Entity';
 

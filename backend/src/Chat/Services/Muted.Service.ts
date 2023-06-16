@@ -3,9 +3,9 @@ import { Repository, Not } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { plainToClass } from 'class-transformer';
 
-import { UserFriendsSerialiser } from '../../Users/Users.Serialiser';
+import { UserFriendsSerialiser } from '../../Profile/Profile.Serialiser';
 import { RoomMutedUsers } from '../Entities/Muted.Entity';
-import { User } from '../../Users/Users.Entity';
+import { User } from '../../Profile/Profile.Entity';
 import { ChatRoom } from '../Entities/Room.Entity';
 
 @Injectable()

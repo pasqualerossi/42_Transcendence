@@ -7,12 +7,12 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { JwtService } from '@nestjs/jwt';
 import { Module } from '@nestjs/common';
 
-import { User } from './Users/Users.Entity';
-import { UsersModule } from './Users/Users.Module';
+import { User } from './Profile/Profile.Entity';
+import { UsersModule } from './Profile/Profile.Module';
 import { ChatModule } from './Chat/Modules/Chat.Module';
-import { Score } from './Scoreboard/Score.Entity';
-import { ScoreModule } from './Scoreboard/Score.Module';
-import { GameModule } from './Game/Game.Module';
+import { Score } from './Game/Scoreboard/Score.Entity';
+import { ScoreModule } from './Game/Scoreboard/Score.Module';
+import { GameModule } from './Game/Pong/Game.Module';
 import { TwoFactorAuthenticationController } from './Authentication/TwoFactor/TwoFactor.Controller';
 import { TwoFactorAuthenticationService } from './Authentication/TwoFactor/TwoFactor.Service';
 import { AuthenticationService } from './Authentication/Authentication/Authentication.Service';

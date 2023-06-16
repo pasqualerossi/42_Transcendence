@@ -1,7 +1,7 @@
 import { Exclude } from 'class-transformer';
 import { Entity, PrimaryGeneratedColumn, Column, OneToMany, ManyToMany } from 'typeorm';
 
-import { User } from '../../Users/Users.Entity';
+import { User } from '../../Profile/Profile.Entity';
 import { Message } from './Message.Entity'
 import { RoomMutedUsers } from './Muted.Entity'
 

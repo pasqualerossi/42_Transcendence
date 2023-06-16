@@ -4,8 +4,8 @@ import { authenticator } from 'otplib';
 import { toFileStream } from 'qrcode';
 import { Response } from 'express';
 
-import { User } from '../../Users/Users.Entity';
-import { UsersService } from '../../Users/Users.Service';
+import { User } from '../../Profile/Profile.Entity';
+import { UsersService } from '../../Profile/Profile.Service';
 
 @Injectable()
 export class TwoFactorAuthenticationService 

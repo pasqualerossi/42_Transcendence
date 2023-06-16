@@ -4,7 +4,8 @@ import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { Request } from 'express';
 
-import { UsersService } from '../../Users/Users.Service';
+import { UsersService } from '../../Profile/Profile.Service';
+import { TokenPayload } from '../Interfaces/RequestUser.Interface';
 
 @Injectable()
 export class JwtTwoFactorStrategy extends PassportStrategy

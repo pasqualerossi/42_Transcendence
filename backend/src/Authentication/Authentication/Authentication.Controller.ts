@@ -5,8 +5,8 @@ import { Response } from 'express';
 import { AuthenticationService } from './Authentication.Service';
 import { RequestUser } from '../Interfaces/RequestUser.Interface';
 import JwtAuthenticationGuard from '../JSONWebToken/JWT.Strategy';
-import { UsersService } from '../../Users/Users.Service';
-import { User } from '../../Users/Users.Entity';
+import { UsersService } from '../../Profile/Profile.Service';
+import { User } from '../../Profile/Profile.Entity';
 import { FortyTwoAuthGuard } from '../FourtyTwo/FourtyTwo.Strategy';
 
 @Controller('authentication')

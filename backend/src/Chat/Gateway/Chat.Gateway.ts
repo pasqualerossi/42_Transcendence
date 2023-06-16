@@ -3,7 +3,7 @@ import { Server, Socket } from 'socket.io';
 import { HttpException, HttpStatus, Logger } from '@nestjs/common';
 
 import { RoomService } from '../Services/Room.Service';
-import { UsersService } from '../../Users/Users.Service';
+import { UsersService } from '../../Profile/Profile.Service';
 import { ChatService } from '../Services/Chat.Service';
 import { MutedService } from '../Services/Muted.Service';
 

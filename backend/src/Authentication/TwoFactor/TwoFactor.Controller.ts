@@ -4,7 +4,7 @@ import { Response } from 'express';
 import { TwoFactorAuthenticationService } from './TwoFactor.Service';
 import JwtAuthenticationGuard from '../JSONWebToken/JWT.Strategy';
 import { RequestUser } from '../Interfaces/RequestUser.Interface';
-import { UsersService } from '../../Users/Users.Service';
+import { UsersService } from '../../Profile/Profile.Service';
 import { TwoFactorAuthenticationCodeDto } from './TwoFactor.Dto';
 import { AuthenticationService } from '../Authentication/Authentication.Service';
 

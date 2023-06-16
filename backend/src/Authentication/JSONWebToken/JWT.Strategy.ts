@@ -5,7 +5,8 @@ import { ConfigService } from '@nestjs/config';
 import { Request } from 'express';
 import { AuthGuard } from '@nestjs/passport';
 
-import { UsersService } from '../../Users/Users.Service';
+import { UsersService } from '../../Profile/Profile.Service';
+import { TokenPayload } from '../Interfaces/RequestUser.Interface';
 
 // JSON WEB TOKEN AUTHENTICATION GUARD
 @Injectable()

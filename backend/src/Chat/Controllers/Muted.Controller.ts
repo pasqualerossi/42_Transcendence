@@ -3,7 +3,7 @@ import { RoomMutedUsers } from '../Entities/Muted.Entity';
 import JwtAuthenticationGuard from '../../Authentication/JSONWebToken/JWT.Strategy';
 import { RequestUser } from '../../Authentication/Interfaces/RequestUser.Interface';
 import { RoomService } from '../Services/Room.Service';
-import { UsersService } from '../../Users/Users.Service';
+import { UsersService } from '../../Profile/Profile.Service';
 
 import { Controller, Get, Post, Param, UseGuards, UseInterceptors, Req, ClassSerialiserInterceptor, HttpException, HttpStatus} from '@nestjs/common';
 

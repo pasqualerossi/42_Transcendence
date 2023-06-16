@@ -1,7 +1,7 @@
 import { Controller, Get, Param, UseGuards, UseInterceptors, ClassSerialiserInterceptor } from '@nestjs/common';
 
 import { RoomService } from '../Services/Room.Service';
-import { UsersService } from '../../Users/Users.Service';
+import { UsersService } from '../../Profile/Profile.Service';
 import { ChatService } from '../Services/Chat.Service';
 import { ChatRoom } from '../Entities/Room.Entity';
 import JwtAuthenticationGuard from 'src/Authentication/JSONWebToken/JWT.Strategy';

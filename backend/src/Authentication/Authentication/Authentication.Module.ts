@@ -8,7 +8,7 @@ import { AuthenticationController } from './Authentication.Controller';
 import { JwtStrategy } from '../JSONWebToken/JWT.Strategy';
 import { JwtTwoFactorStrategy } from '../TwoFactor/TwoFactor.Strategy';
 import { FortyTwoStrategy } from '../FourtyTwo/FourtyTwo.Strategy';
-import { UsersModule } from '../../Users/Users.Module';
+import { UsersModule } from '../../Profile/Profile.Module';
 
 @Module({
 	imports: 

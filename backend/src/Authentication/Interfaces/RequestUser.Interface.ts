@@ -1,6 +1,6 @@
 import { Request } from 'express';
 
-import { User } from '../../Users/Users.Entity';
+import { User } from '../../Profile/Profile.Entity';
 
 // Request With User Interface
 interface RequestUser extends Request 
@@ -11,8 +11,8 @@ interface RequestUser extends Request
 // Token Payload Interface
 interface TokenPayload 
 {
-  loginName: string;
-  isSecondFactorAuthenticated: boolean;
+  loginName: string; // Representing The Login Name
+  isSecondFactorAuthenticated: boolean; // This Is Indicating Whether The Second-Factor Authentication Is Authenticated.
 }
 
 export { RequestUser, TokenPayload };
