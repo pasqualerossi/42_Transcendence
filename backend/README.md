@@ -46,16 +46,17 @@
       │	  ├── DatabaseFile.Controller.ts
       │	  └── DatabaseFile.Service.ts
       ├── Game
-      │	  ├── Game.Entity.ts
-      │	  ├── Game.Module.ts
-      │	  ├── Game.Controller.ts
-      │	  ├── Game.Service.ts
-      │	  └── Game.Gateway.ts
-      ├── Scoreboard
-      │	  ├── Score.Entity.ts
-      │	  ├── Score.Module.ts
-      │	  ├── Score.Controller.ts
-      │	  └── Score.Service.ts
+      │    ├── Pong
+      │    │   ├── Game.Entity.ts
+      │	   │   ├── Game.Module.ts
+      │	   │   ├── Game.Controller.ts
+      │	   │   ├── Game.Service.ts
+      │	   │   └── Game.Gateway.ts
+      │    └── Scoreboard
+      │	      ├── Score.Entity.ts
+      │	      ├── Score.Module.ts
+      │	      ├── Score.Controller.ts
+      │	      └── Score.Service.ts
       └── Users
 	  ├── Users.Entity.ts
 	  ├── Users.Module.ts
