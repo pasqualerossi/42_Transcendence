@@ -160,7 +160,7 @@ export default {
 		},
 	},
 
-	// This checks if there is a current user, redirects to the home page if not, and then calls the getAllUsers, 
+	// This checks if there is a current user, redirects to the home page if not, and then calls the getAllUsers.
 	async beforeMount() 
 	{
 		if (!this.currentUser) 
