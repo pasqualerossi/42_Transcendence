@@ -16,7 +16,7 @@ services:
 
   backend:
     container_name: backend
-    build: ../backend
+    build: ./backend
     depends_on:
       - postgres
     ports:
@@ -24,14 +24,14 @@ services:
     volumes:
       - ${PWD}/backend/src:/backend/src
     env_file:
-      - ../backend/.env
+      - ./backend/.env
     networks:
       - closed
     restart: always
 
   frontend:
     container_name: frontend
-    build: ../frontend
+    build: ./frontend
     depends_on:
       - backend
     ports:
@@ -39,7 +39,7 @@ services:
     volumes:
       - ${PWD}/frontend/src:/frontend/src
     env_file:
-      - ../frontend/.env
+      - ./frontend/.env
     restart: always
 
 networks:
