@@ -1,6 +1,13 @@
 ## Project Structure
 
-### :building_construction: Backend
+The backend comprises of:
+- 💁 **Authentication** 
+- 🗣️ **Chat** 
+- 🖥️ **Database** 
+- 🏓 **Game** 
+- 🤵 **Profile**
+
+### :building_construction: Backend Folders/Files
 ```
   └── src
       ├── Main.ts
