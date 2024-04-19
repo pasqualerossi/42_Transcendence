@@ -53,10 +53,10 @@
       │	   │   ├── Game.Service.ts
       │	   │   └── Game.Gateway.ts
       │    └── Scoreboard
-      │	      ├── Score.Entity.ts
-      │	      ├── Score.Module.ts
-      │	      ├── Score.Controller.ts
-      │	      └── Score.Service.ts
+      │	       ├── Score.Entity.ts
+      │	       ├── Score.Module.ts
+      │	       ├── Score.Controller.ts
+      │	       └── Score.Service.ts
       └── Profile
 	  ├── Profile.Entity.ts
 	  ├── Profile.Module.ts
